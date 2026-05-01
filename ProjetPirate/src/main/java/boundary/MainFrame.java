@@ -28,52 +28,104 @@ public class MainFrame extends javax.swing.JFrame {
 
         PanelHaut = new javax.swing.JPanel();
         JPanelDes = new javax.swing.JPanel();
+        boutonLancer = new javax.swing.JButton();
+        de1 = new boundary.PanelDe();
+        de2 = new boundary.PanelDe();
         JPanelInfo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        InfoButton = new javax.swing.JButton();
         Titre = new javax.swing.JLabel();
+        InfoButton = new javax.swing.JButton();
         PanelPlateau = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PanelHaut.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         PanelHaut.setLayout(new java.awt.BorderLayout());
 
         JPanelDes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JPanelDes.setPreferredSize(new java.awt.Dimension(230, 180));
+        JPanelDes.setPreferredSize(new java.awt.Dimension(190, 150));
+
+        boutonLancer.setText("Lancer les dés");
+        boutonLancer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonLancerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout de1Layout = new javax.swing.GroupLayout(de1);
+        de1.setLayout(de1Layout);
+        de1Layout.setHorizontalGroup(
+            de1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+        de1Layout.setVerticalGroup(
+            de1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout de2Layout = new javax.swing.GroupLayout(de2);
+        de2.setLayout(de2Layout);
+        de2Layout.setHorizontalGroup(
+            de2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+        de2Layout.setVerticalGroup(
+            de2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout JPanelDesLayout = new javax.swing.GroupLayout(JPanelDes);
         JPanelDes.setLayout(JPanelDesLayout);
         JPanelDesLayout.setHorizontalGroup(
             JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
+            .addGroup(JPanelDesLayout.createSequentialGroup()
+                .addGroup(JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelDesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(de1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(de2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPanelDesLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(boutonLancer)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPanelDesLayout.setVerticalGroup(
             JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
+            .addGroup(JPanelDesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(de1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(de2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boutonLancer)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         PanelHaut.add(JPanelDes, java.awt.BorderLayout.WEST);
 
         JPanelInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JPanelInfo.setPreferredSize(new java.awt.Dimension(300, 180));
+        JPanelInfo.setPreferredSize(new java.awt.Dimension(300, 150));
         JPanelInfo.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 80));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 5));
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 70));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
 
+        Titre.setFont(new java.awt.Font("Algerian", 3, 36)); // NOI18N
+        Titre.setForeground(new java.awt.Color(10, 10, 10));
+        Titre.setText("Isla de la muerte");
+        Titre.setPreferredSize(new java.awt.Dimension(350, 50));
+        jPanel1.add(Titre);
+
+        InfoButton.setBackground(new java.awt.Color(186, 224, 255));
+        InfoButton.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         InfoButton.setText("?");
-        InfoButton.setToolTipText("Afficher les regles du jeu");
+        InfoButton.setToolTipText("Afficher les règles du jeu");
         InfoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InfoButtonActionPerformed(evt);
             }
         });
         jPanel1.add(InfoButton);
-
-        Titre.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
-        Titre.setText("Isla de la muerte");
-        jPanel1.add(Titre);
 
         JPanelInfo.add(jPanel1, java.awt.BorderLayout.NORTH);
 
@@ -87,11 +139,11 @@ public class MainFrame extends javax.swing.JFrame {
         PanelPlateau.setLayout(PanelPlateauLayout);
         PanelPlateauLayout.setHorizontalGroup(
             PanelPlateauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 705, Short.MAX_VALUE)
         );
         PanelPlateauLayout.setVerticalGroup(
             PanelPlateauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
 
         getContentPane().add(PanelPlateau, java.awt.BorderLayout.CENTER);
@@ -112,11 +164,23 @@ public class MainFrame extends javax.swing.JFrame {
         + "Cases spéciales :\n"
         + "-Case Bombe\n"
         + "-Case mystère\n"
-        + "-Chute de noix de coco",
+        + "-Chute de noix de coco\n"
+        + "BONNE CHANCE",
         "Règles du jeu",
         javax.swing.JOptionPane.INFORMATION_MESSAGE
     );
     }//GEN-LAST:event_InfoButtonActionPerformed
+
+    private void boutonLancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonLancerActionPerformed
+       boutonLancer.addActionListener(e -> {
+        //a changer par un appel de noyau fonctionnel
+        int resultat1 = (int)(Math.random() * 6) + 1;
+        int resultat2 = (int)(Math.random() * 6) + 1;
+
+        de1.lancerAnimation(resultat1);
+        de2.lancerAnimation(resultat2);
+        });
+    }//GEN-LAST:event_boutonLancerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +224,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel PanelHaut;
     private javax.swing.JPanel PanelPlateau;
     private javax.swing.JLabel Titre;
+    private javax.swing.JButton boutonLancer;
+    private boundary.PanelDe de1;
+    private boundary.PanelDe de2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
