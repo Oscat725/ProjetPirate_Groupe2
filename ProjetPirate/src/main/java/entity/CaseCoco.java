@@ -1,5 +1,10 @@
 package entity;
 
-public class CaseCoco {
+public class CaseCoco extends Case {
+
+	public CaseCoco(Integer numero) {
+		super(numero);
+	}
+
 
 }

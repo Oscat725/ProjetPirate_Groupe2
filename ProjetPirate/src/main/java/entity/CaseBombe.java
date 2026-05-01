@@ -1,5 +1,8 @@
 package entity;
 
-public class CaseBombe {
-
+public class CaseBombe extends Case{
+	
+	public CaseBombe(Integer numero) {
+		super(numero);
+	}
 }
