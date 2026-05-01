@@ -26,6 +26,7 @@ public class PanelDe extends JPanel {
     private final Timer timerAnimation;
     private int nombreToursAnimation;
     private int valeurFinale;
+    private Runnable onAnimationFinie;
 
     public PanelDe() {
         this.valeur = 1;
@@ -47,10 +48,15 @@ public class PanelDe extends JPanel {
         return valeur;
     }
 
+    public void setOnAnimationFinie(Runnable callback) {
+        this.onAnimationFinie = callback;
+    }
+
     public void lancerAnimation(int resFinal) {
         if (resFinal<1 || resFinal>6) {
             throw new IllegalArgumentException("Résultat final invalide");
         }
+        timerAnimation.stop();
         this.valeurFinale = resFinal;
         this.nombreToursAnimation = 0;
         timerAnimation.start();
@@ -63,6 +69,8 @@ public class PanelDe extends JPanel {
         } else {
             this.valeur = valeurFinale;
             timerAnimation.stop();
+            if (onAnimationFinie != null)
+                onAnimationFinie.run();
         }
         repaint();
     }
@@ -88,7 +96,6 @@ public class PanelDe extends JPanel {
         g2d.drawRoundRect(x, y, taille, taille, 20, 20);
 
         //points
-        g2d.setColor(Color.BLACK);
         int rayon = taille/8;
 
         int gauche = x+  taille/4;

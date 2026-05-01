@@ -10,11 +10,28 @@ package boundary;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private dialogue.Dialogue dialogue;
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+    }
+
+    public void setDialogue(dialogue.Dialogue dialogue) {
+        this.dialogue = dialogue;
+        de1.setOnAnimationFinie(() -> dialogue.animationDeTerminee());
+        de2.setOnAnimationFinie(() -> dialogue.animationDeTerminee());
+    }
+
+    public void activerBouton(boolean actif) {
+        boutonLancer.setEnabled(actif);
+    }
+
+    public void afficherDes(int r1, int r2) {
+        de1.lancerAnimation(r1);
+        de2.lancerAnimation(r2);
     }
 
     /**
@@ -172,14 +189,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_InfoButtonActionPerformed
 
     private void boutonLancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonLancerActionPerformed
-       boutonLancer.addActionListener(e -> {
-        //a changer par un appel de noyau fonctionnel
-        int resultat1 = (int)(Math.random() * 6) + 1;
-        int resultat2 = (int)(Math.random() * 6) + 1;
-
-        de1.lancerAnimation(resultat1);
-        de2.lancerAnimation(resultat2);
-        });
+        if (dialogue != null)
+            dialogue.lancerDes();
     }//GEN-LAST:event_boutonLancerActionPerformed
 
     /**

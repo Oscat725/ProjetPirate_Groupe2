@@ -11,6 +11,11 @@ package onepiece.projetpirate;
 public class ProjetPirate {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        java.awt.EventQueue.invokeLater(() -> {
+            boundary.MainFrame frame = new boundary.MainFrame();
+            dialogue.Dialogue dialogue = new dialogue.Dialogue(frame);
+            frame.setDialogue(dialogue);
+            frame.setVisible(true);
+        });
     }
 }
