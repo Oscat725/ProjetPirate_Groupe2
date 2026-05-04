@@ -3,6 +3,7 @@ package entity;
 public class Pion  {
 	
 	private int position;
+	private Couleur couleur;
 	
 	public int getPosition() {
 		return position;
@@ -13,8 +14,8 @@ public class Pion  {
 		return position;
 	}
 	
-//	public Couleur getCouleur() {
-//		return couleur;
-//	}
+	public Couleur getCouleur() {
+		return couleur;
+	}
 
 }
