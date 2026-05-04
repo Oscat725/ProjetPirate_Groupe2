@@ -11,18 +11,23 @@ package boundary;
 public class MainFrame extends javax.swing.JFrame {
 
     private dialogue.Dialogue dialogue;
+    private boundary.PanelPlateau plateau;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        plateau = new boundary.PanelPlateau();
+        PanelPlateau.setLayout(new java.awt.BorderLayout());
+        PanelPlateau.add(plateau, java.awt.BorderLayout.CENTER);
     }
 
     public void setDialogue(dialogue.Dialogue dialogue) {
         this.dialogue = dialogue;
         de1.setOnAnimationFinie(() -> dialogue.animationDeTerminee());
         de2.setOnAnimationFinie(() -> dialogue.animationDeTerminee());
+        plateau.setOnPionPlace(caseNumero -> dialogue.pionPlaceCorrectement(caseNumero));
     }
 
     public void activerBouton(boolean actif) {
@@ -32,6 +37,14 @@ public class MainFrame extends javax.swing.JFrame {
     public void afficherDes(int r1, int r2) {
         de1.lancerAnimation(r1);
         de2.lancerAnimation(r2);
+    }
+
+    public void activerDrag(int cible) {
+        plateau.activerDrag(cible);
+    }
+
+    public void deplacerPion(int joueur, int caseNumero, java.awt.Color couleur) {
+        plateau.deplacerPion(joueur, caseNumero, couleur);
     }
 
     /**
