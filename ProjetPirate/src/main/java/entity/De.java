@@ -15,6 +15,7 @@ public class De {
 	}
 	
 	public int getValeur() {
+		valeur = MIN + random.nextInt(MAX);
 		return valeur;
 	}
 	
