@@ -11,7 +11,6 @@ public class De {
 	
 	public De() {
 		this.random = new Random();
-		this.valeur = MIN + random.nextInt(MAX); // 6 exclus ( Quand on créer le dé, nombre aléatoire ) 
 	}
 	
 	public int getValeur() {
