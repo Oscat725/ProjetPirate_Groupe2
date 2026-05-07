@@ -64,5 +64,9 @@ public class Joueur {
     	tabValDe[1] = deDeux.getValeur();
     	return tabValDe;
     }
+    
+    public int getValeurCoco() {
+    	return deUn.getValeur();
+    }
 
 }
