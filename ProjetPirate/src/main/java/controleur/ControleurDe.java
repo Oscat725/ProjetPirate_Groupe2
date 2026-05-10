@@ -4,29 +4,21 @@
  */
 package controleur;
 
-/**
- *
- * @author nolawi
- */
-//public class ControleurDe {
-//    public int lancerDe(){
-//        joueur.lancer();
-//        return ;
-//    }
-//}
-//
-//public class ControleurDeplacer {
-//    
-//    private Joueuer j;
-//    
-//    
-//    public controleurDeplacer(Joueur j ){}
-//    
-//    public int deplacer(int nbDe){
-//        int newPos = j.deplacer(nbDe);
-//        Pion pion = j.getPion();
-//        pion.setPosition(newPos);
-//        j.setPion(pion);
-//        return j;
-//    }
-//}
+import entity.Jeu;
+
+// Nolawi
+public class ControleurDe implements ILancerDe {
+
+    private Jeu jeu;
+
+    public ControleurDe(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    @Override
+    public int[] lancerDe() {
+        return jeu.getJoueurCourant().lancerDe();
+    }
+}
+
+
