@@ -30,6 +30,8 @@ public class Dialogue implements IPirates {
             mainFrame.afficherDes(r1, r2);
         }
     }
+    
+    
 
     public void animationDeTerminee() {
         desTermines++;
