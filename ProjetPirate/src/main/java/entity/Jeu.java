@@ -28,6 +28,10 @@ public class Jeu {
         joueurs[index] = joueur;
     }
 
+    public Joueur getJoueur(int index) {
+        return joueurs[index];
+    }
+
     public void passerAuJoueurSuivant() {
         currentJoueur = (currentJoueur + 1) % 2;
     }
