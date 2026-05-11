@@ -68,5 +68,9 @@ public class Joueur {
     public int getValeurCoco() {
     	return deUn.getValeur();
     }
+    
+    public Pion getPion() {
+    	return pion;
+    }
 
 }

@@ -5,7 +5,7 @@ import entity.Plateau;
 
 public class ControlVerifierFinPartie {
     
-    private static final int CASE_FINALE = Plateau.NB_CASES - 1; // case 30 ( indice 29 ) 
+    private static final int CASE_FINALE = 29; // case 30 ( indice 29 ) 
     
     private final Joueur[] joueurs;
     
