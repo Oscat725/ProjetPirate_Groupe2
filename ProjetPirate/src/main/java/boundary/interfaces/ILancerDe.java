@@ -1,6 +1,6 @@
 package boundary.interfaces;
 
 public interface ILancerDe {
-	void afficherDe(int resultat);
+	int resultatDe();
 	void finLancerDe();
 }
