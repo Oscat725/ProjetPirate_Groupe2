@@ -20,4 +20,20 @@ public class Jeu {
         return currentJoueur;
     }
 
+    public Joueur getJoueurCourant() {
+        return joueurs[currentJoueur];
+    }
+
+    public void setJoueur(int index, Joueur joueur) {
+        joueurs[index] = joueur;
+    }
+
+    public Joueur getJoueur(int index) {
+        return joueurs[index];
+    }
+
+    public void passerAuJoueurSuivant() {
+        currentJoueur = (currentJoueur + 1) % 2;
+    }
+
 }

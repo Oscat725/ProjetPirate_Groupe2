@@ -1,4 +1,4 @@
-package boundary;
+package presentation;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -57,7 +57,6 @@ public class PanelPlateau extends JPanel {
         directions[11] = PanelCase.COIN_GAUCHE_BAS;
         directions[20] = PanelCase.COIN_GAUCHE_HAUT;
         directions[21] = PanelCase.COIN_GAUCHE_BAS;
-        directions[30] = PanelCase.COIN_GAUCHE_HAUT;
 
         for (int i = 1; i <= 30; i++) {
             cases[i - 1] = new PanelCase(i, types[i], directions[i]);

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package boundary;
+package presentation;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -103,7 +103,7 @@ public class PanelCase extends javax.swing.JPanel {
 
         int w  = getWidth();
         int h  = getHeight();
-        int s  = Math.min(w, h) / 4;  // strip size, same for all sides
+        int s  = Math.min(w, h) / 4;
         int cx = w / 2;
         int cy = h / 2;
 
@@ -128,10 +128,12 @@ public class PanelCase extends javax.swing.JPanel {
             case COIN_GAUCHE_HAUT:
                 g2d.fillRect(0, 0, w, s);        // top
                 g2d.fillRect(0, 0, s, h);        // left
+                g2d.fillRect(w-s, h-s, s, s); 
                 break;
             case COIN_GAUCHE_BAS:
                 g2d.fillRect(0, 0, s, h);        // left
-                g2d.fillRect(0, h - s, w, s);    // bottom
+                g2d.fillRect(0, h - s, w, s);
+                g2d.fillRect(w-s, 0, s, s);    // bottom
                 break;
             default:                             // HORIZONTAL
                 g2d.fillRect(0, 0, w, s);        // top
@@ -151,19 +153,19 @@ public class PanelCase extends javax.swing.JPanel {
         switch (direction == null ? HORIZONTAL : direction) {
             case COIN_DROITE_HAUT:
                 g2d.drawLine(w/9, cy, cx, cy);           // horizontal: left → center
-                g2d.drawLine(cx, cy, cx, 8*h/9);       // vertical:   center → bottom
+                g2d.drawLine(cx, cy, cx, 8*h/9);         // vertical:   center → bottom
                 break;
             case COIN_DROITE_BAS:
-                g2d.drawLine(cx, h/9, cx, cy);         // vertical:   top → center
+                g2d.drawLine(cx, h/9, cx, cy);           // vertical:   top → center
                 g2d.drawLine(cx, cy, w/9, cy);           // horizontal: center → left
                 break;
             case COIN_GAUCHE_HAUT:
-                g2d.drawLine(8*w/9, cy, cx, cy);       // horizontal: right → center
-                g2d.drawLine(cx, cy, cx, 8*h/9);       // vertical:   center → bottom
+                g2d.drawLine(8*w/9, cy, cx, cy);         // horizontal: right → center
+                g2d.drawLine(cx, cy, cx, 8*h/9);         // vertical:   center → bottom
                 break;
             case COIN_GAUCHE_BAS:
                 g2d.drawLine(cx, h/9, cx, cy);           // vertical:   top → center
-                g2d.drawLine(cx, cy, 8*w/9, cy);           // horizontal: center → right
+                g2d.drawLine(cx, cy, 8*w/9, cy);         // horizontal: center → right
                 break;
             default:
                 g2d.drawLine(w / 9, cy, 8 * w / 9, cy);

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package boundary;
+package presentation;
 
 /**
  *
@@ -11,14 +11,14 @@ package boundary;
 public class MainFrame extends javax.swing.JFrame {
 
     private dialogue.Dialogue dialogue;
-    private boundary.PanelPlateau plateau;
+    private presentation.PanelPlateau plateau;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        plateau = new boundary.PanelPlateau();
+        plateau = new presentation.PanelPlateau();
         PanelPlateau.setLayout(new java.awt.BorderLayout());
         PanelPlateau.add(plateau, java.awt.BorderLayout.CENTER);
     }
@@ -59,8 +59,8 @@ public class MainFrame extends javax.swing.JFrame {
         PanelHaut = new javax.swing.JPanel();
         JPanelDes = new javax.swing.JPanel();
         boutonLancer = new javax.swing.JButton();
-        de1 = new boundary.PanelDe();
-        de2 = new boundary.PanelDe();
+        de1 = new presentation.PanelDe();
+        de2 = new presentation.PanelDe();
         JPanelInfo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Titre = new javax.swing.JLabel();
@@ -249,8 +249,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPlateau;
     private javax.swing.JLabel Titre;
     private javax.swing.JButton boutonLancer;
-    private boundary.PanelDe de1;
-    private boundary.PanelDe de2;
+    private presentation.PanelDe de1;
+    private presentation.PanelDe de2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

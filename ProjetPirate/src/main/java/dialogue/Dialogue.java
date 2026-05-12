@@ -1,8 +1,8 @@
 package dialogue;
 
-import boundary.MainFrame;
 import interface_noyau_fonctionnel.INoyauFonctionnel;
 import interface_noyau_fonctionnel.IPirates;
+import presentation.MainFrame;
 
 public class Dialogue implements IPirates {
 
@@ -30,6 +30,8 @@ public class Dialogue implements IPirates {
             mainFrame.afficherDes(r1, r2);
         }
     }
+    
+    
 
     public void animationDeTerminee() {
         desTermines++;

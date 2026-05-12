@@ -12,7 +12,7 @@ public class ProjetPirate {
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            boundary.MainFrame frame = new boundary.MainFrame();
+            presentation.MainFrame frame = new presentation.MainFrame();
             dialogue.Dialogue dialogue = new dialogue.Dialogue(frame);
             frame.setDialogue(dialogue);
             frame.setVisible(true);
