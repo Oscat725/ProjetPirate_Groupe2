@@ -1,6 +1,6 @@
 package boundary.interfaces;
 
 public interface IFinDePartie {
-	boolean verifierFinDePartie();
+	//boolean verifierFinDePartie();
 	void finPartie();
 }

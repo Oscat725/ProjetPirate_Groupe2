@@ -8,44 +8,46 @@ import entity.Plateau;
 
 
 public class ControlDeplacer implements IDeplacerPirate {
-	
 	private static final int CASE_MAX = 29;
     private final Jeu jeu;
     IBoundary boundary;
+    private final IControlJeuPirate controlJeuPirate; 
     
     
-    public ControlDeplacer(Jeu jeu, IBoundary boundary, ControlActiverCase controlActiverCase) {
+    public ControlDeplacer(Jeu jeu, IBoundary boundary, IControlJeuPirate controlJeuPirate) {
 	    	this.jeu = jeu;
 	    	this.boundary = boundary;
+	    	this.controlJeuPirate = controlJeuPirate;
     }
-    
-    @Override
-    public int deplacerPirate(int somme){
+
+
+    public void deplacerPirate(int somme){
+    	
     		Joueur joueur = jeu.getJoueurCourant();
     		Plateau plateau = jeu.getPlateau();
-    		int pos = j.getPosition();
     		int indexJoueur = jeu.getIndiceJoueurCourant();
     		
+    		
+    		int pos = joueur.getPosition();
     		int nouvellePos = pos + somme;
+    		
 	    	if (nouvellePos > 29) {
-	    		nouvellePos -= (pos%30);
+	    		nouvellePos -= (nouvellePos%29);
 	    	}
 	    	
 	    	if (nouvellePos != pos) {
-	            plateau.getCase(pos).removeJoueur(indexJoueur);
-	            plateau.getCase(nouvellePos).setJoueur(indexJoueur, joueur);
-	        }
-	            boundary.deplacerPirates(j.getNom(), nouvellePos, this);
+            plateau.getCase(pos).removeJoueur(indexJoueur);
+	    }
 	    	
-	    	j.setPosition(pos);
+        plateau.getCase(nouvellePos).setJoueur(indexJoueur, joueur);
+	    
+	    	joueur.setPosition(nouvellePos);
 	    	
-    		
-    		
-        return jeu;
+	    	boundary.deplacerPirates(joueur.getNom(), pos, nouvellePos, this);
     }
     
     @Override
     public void finDeplacerPirate() {
-        controlActiverCase.activer();
+    	controlJeuPirate.apresDeplacer(); 
     }
 }

@@ -1,6 +1,6 @@
 package boundary.interfaces;
 
 public interface IPointsDeVie {
-	int calculerPV();
+	//int calculerPV();
 	void finAfficherPV();
 }

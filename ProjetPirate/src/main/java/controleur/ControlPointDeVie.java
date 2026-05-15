@@ -31,7 +31,6 @@ public class ControlPointDeVie {
             nouveauxPV = Joueur.PV_MAX;//le joueur ne peut pas avoir plus de 5 points de vie          
         }
         joueur.setPointDeVie(nouveauxPV);
-        joueur.setPointDeVie(nouveauxPV);
     }
 	
 	public boolean verifierPointsDeVie(Joueur joueur) {
