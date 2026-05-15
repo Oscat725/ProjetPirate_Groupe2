@@ -18,8 +18,6 @@ public class ControlCommencerPartie {
         jeu.setJoueur(1, new Joueur(nomJ2, new Pion()));
     }
 
-    // one die per player, re-rolls on tie, sets currentJoueur accordingly
-    // returns the name of the player who goes first
     public String determinerJoueurQuiCommence() {
         De de = new De();
         int resJ1, resJ2;
