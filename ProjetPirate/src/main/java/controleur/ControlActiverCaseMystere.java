@@ -2,21 +2,28 @@ package controleur;
 
 import java.lang.instrument.IllegalClassFormatException;
 
+import entity.Case;
 import entity.CaseMystere;
 import entity.Joueur;
 
 public class ControlActiverCaseMystere extends ControlActiverCaseSpecial{
 
-	private Joueur joueur;
+	
 	private ControlPointDeVie controlVie;
-	private ControlDeplacerPirate controlDeplacerPirate;
+	private ControlDeplacer controlDeplacerPirate;
+	
+	public ControlActiverCaseMystere(Joueur joueur, Case caseSpecial, ControlPointDeVie controlVie) {
+		super(joueur, caseSpecial);
+		this.controlVie = controlVie;
+		this.controlDeplacerPirate = new ControlDeplacer(joueur);
+	}
 	
 	private void faireAvancerJoueur(int nb) {
-		controlDeplacerPirate.deplacerJoueur(nb,joueur);
+		controlDeplacerPirate.deplacer(nb);
 	}
 	
 	private void faireReculerJoueur(int nb) {
-		controlDeplacerPirate.deplacerJoueur(nb,joueur);
+		controlDeplacerPirate.deplacer(nb);
 	}
 	
 	private void modifPointDeVie(int nb) {
@@ -26,32 +33,25 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial{
 	@Override
 	void activerCase() {
 		if (caseSpecial instanceof CaseMystere caseMystere ) {
-			caseMystere.activerCase();
-			switch (caseMystere.effect) {
-			case 0: 
-				faireAvancerJoueur(caseMystere.getValue());
-				break;
-			case 1:
-				faireReculerJoueur(caseMystere.getValue());
-				break;
-			case 2:
-				if (caseMystere.getValue()>2) {
-					throw new IllegalArgumentException("Unexpected value: " + caseMystere.getValue());
-				}
-				modifPointDeVie(caseMystere.getValue());
-				break;
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + caseMystere.effect);
-			}
-		}
-		else {
-			throw new IllegalClassFormatException("Unexpercted class : "+ caseSpecial.getClass())
+//			caseMystere.activerCase();
+//			switch (caseMystere.effect) {
+//			case 0: 
+//				faireAvancerJoueur(caseMystere.getValue());
+//				break;
+//			case 1:
+//				faireReculerJoueur(caseMystere.getValue());
+//				break;
+//			case 2:
+//				if (caseMystere.getValue()>2) {
+//					throw new IllegalArgumentException("Unexpected value: " + caseMystere.getValue());
+//				}
+//				modifPointDeVie(caseMystere.getValue());
+//				break;
+//			default:
+//				throw new IllegalArgumentException("Unexpected value: " + caseMystere.effect);
+//			}
 		}
 		
-	}
-
-	public ControlActiverCaseMystere() {
-		super();
 	}
 
 }

@@ -2,23 +2,30 @@ package controleur;
 
 import java.lang.instrument.IllegalClassFormatException;
 
+import entity.Case;
 import entity.CaseBombe;
+import entity.Joueur;
 
 
 public class ControlAvtiverCaseBombe extends ControlActiverCaseSpecial {
 
-	private ConrolPointsDeVie controlVie;
-	private ControlLanceDe controlDe;
-	
-	
+	private ControlPointDeVie controlVie;
+	private ControleurDe controlDe;
+
+
+
+	public ControlAvtiverCaseBombe(Joueur joueur, Case caseSpecial,ControleurDe controleurDe,ControlPointDeVie controlVie) {
+		super(joueur, caseSpecial);
+		this.controlDe = controleurDe;
+		this.controlVie = controlVie;
+	}
+
 	@Override
 	void activerCase() {
 		if (caseSpecial instanceof CaseBombe caseBombe  ) {
-			caseBombe.activerBombe(controlDe.lancerDe(null));
-			controlVie.predrePointsDeVie(caseBombe.getDamage());
-		}
-		else {
-			throw new IllegalClassFormatException("Unexpercted class : "+ caseSpecial.getClass())
+//			caseBombe.activerBombe(controlDe.lancerDe());
+//			controlVie.perdrePointsDeVie(CaseBombe.getValue(), joueur);;
+			//TODO Completer le fonctions necessaires de Case Bombe
 		}
 		
 	}
