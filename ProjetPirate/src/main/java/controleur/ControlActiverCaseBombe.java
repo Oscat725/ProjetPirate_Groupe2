@@ -7,14 +7,14 @@ import entity.CaseBombe;
 import entity.Joueur;
 
 
-public class ControlAvtiverCaseBombe extends ControlActiverCaseSpecial {
+public class ControlActiverCaseBombe extends ControlActiverCaseSpecial {
 
 	private ControlPointDeVie controlVie;
 	private ControleurDe controlDe;
 
 
 
-	public ControlAvtiverCaseBombe(Joueur joueur, Case caseSpecial,ControleurDe controleurDe,ControlPointDeVie controlVie) {
+	public ControlActiverCaseBombe(Joueur joueur, Case caseSpecial,ControleurDe controleurDe,ControlPointDeVie controlVie) {
 		super(joueur, caseSpecial);
 		this.controlDe = controleurDe;
 		this.controlVie = controlVie;
