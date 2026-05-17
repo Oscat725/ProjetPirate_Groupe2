@@ -53,8 +53,9 @@ public class ControlPointDeVie implements IPointsDeVie{
 	
     //la boundary appelle calculerPV() si elle a besoin des PV avant affichage
     @Override
-    public int calculerPV() {
-        return jeu.getJoueurCourant().getPointDeVie();
+    public void calculerPV() {
+    	Joueur courant = jeu.getJoueurCourant();
+        boundary.afficherPointDeVie(courant.getNom(), courant.getPointDeVie(),this);
     }
  
     //la boundary appelle finAfficherPV() une fois l'affichage terminé
