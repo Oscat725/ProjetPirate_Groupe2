@@ -17,10 +17,12 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 
 
 
-	public ControlActiverCaseBombe(Joueur joueur, Case caseSpecial,ControleurDe controleurDe,ControlPointDeVie controlVie) {
+	public ControlActiverCaseBombe(Joueur joueur, Case caseSpecial,ControleurDe controleurDe,ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate, IBoundary iBoundary) {
 		super(joueur, caseSpecial);
 		this.controlDe = controleurDe;
 		this.controlVie = controlVie;
+		this.controlJeuPirate = controlJeuPirate;
+		this.iBoundary = iBoundary;
 	}
 
 	@Override
