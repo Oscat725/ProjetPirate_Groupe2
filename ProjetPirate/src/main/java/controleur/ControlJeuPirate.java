@@ -1,11 +1,11 @@
 
-//package controleur;
+package controleur;
 
-//import entity.Joueur;
+import entity.Joueur;
 
 
-//public class ControlJeuPirate {
-	//private Joueur joueur;
+public class ControlJeuPirate {
+	private Joueur joueur;
 	//private ControlDeplacer controlDeplacer;
 	//private ControlVerifierFinPartie controlVerifierFinPartie;
 //	private ControlActiverCase controlActiverCase;
@@ -18,4 +18,4 @@
 //		this.controlActiverCase = controlActiverCase;
 	
 	//}
-//}
+}

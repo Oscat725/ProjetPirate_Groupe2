@@ -2,15 +2,18 @@ package controleur;
 
 import java.lang.instrument.IllegalClassFormatException;
 
+import boundary.interfaces.IBoundary;
+import boundary.interfaces.ICaseBombe;
 import entity.Case;
 import entity.CaseBombe;
 import entity.Joueur;
 
 
-public class ControlActiverCaseBombe extends ControlActiverCaseSpecial {
-
+public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implements ICaseBombe{
+	private ControlJeuPirate controlJeuPirate;
 	private ControlPointDeVie controlVie;
 	private ControleurDe controlDe;
+	private IBoundary iBoundary;
 
 
 
@@ -29,5 +32,19 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial {
 		}
 		
 	}
+
+	@Override
+	public void afficherBombe() {
+		activerCase(); //pourait renvoyer degats
+		//iBoundary.degatsBombe(degats, this);
+		
+	}
+
+	@Override
+	public void finCaseBombe() {
+		//controlJeuPirate.finCaseBombe();
+		
+	}
+	
 	
 }
