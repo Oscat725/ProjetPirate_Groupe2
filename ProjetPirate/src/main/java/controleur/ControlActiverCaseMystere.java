@@ -5,17 +5,20 @@ import java.lang.instrument.IllegalClassFormatException;
 import entity.Case;
 import entity.CaseMystere;
 import entity.Joueur;
+import boundary.interfaces.*;
 
-public class ControlActiverCaseMystere extends ControlActiverCaseSpecial{
+public class ControlActiverCaseMystere extends ControlActiverCaseSpecial implements ICaseMystere{
 
 	
 	private ControlPointDeVie controlVie;
 	private ControlDeplacer controlDeplacerPirate;
+	private ControlJeuPirate  controlJeuPirate;
 	
-	public ControlActiverCaseMystere(Joueur joueur, Case caseSpecial, ControlPointDeVie controlVie) {
+	public ControlActiverCaseMystere(Joueur joueur, Case caseSpecial, ControlPointDeVie controlVie,ControlJeuPirate controlJeuPirate ) {
 		super(joueur, caseSpecial);
 		this.controlVie = controlVie;
 		this.controlDeplacerPirate = new ControlDeplacer(joueur);
+		this.controlJeuPirate     = controlJeuPirate;
 	}
 	
 	private void faireAvancerJoueur(int nb) {
@@ -53,5 +56,11 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial{
 		}
 		
 	}
+	
+	//appelé par la boundary après afficherCaseMystere()
+    @Override
+    public void finCaseMystere() {
+        //controlJeuPirate.apresActiverCase();
+    }
 
 }

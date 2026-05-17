@@ -1,14 +1,17 @@
 package controleur;
-import entity.Joueur;
+import entity.*;
+import boundary.interfaces.*;
 
 
-public class ControlPointDeVie {
-	private Joueur joueur1;
-	private Joueur joueur2;
+public class ControlPointDeVie implements IPointsDeVie{
+	private Jeu jeu;
+	private IBoundary boundary;
+	private ControlJeuPirate controlJeuPirate;
 	
-	public ControlPointDeVie(Joueur joueur1, Joueur joueur2) {
-		this.joueur1 = joueur1;
-		this.joueur2 = joueur2;
+	public ControlPointDeVie(Jeu jeu, IBoundary boundary, ControlJeuPirate controlJeuPirate) {
+		this.jeu = jeu;
+		this.boundary = boundary;
+		this.controlJeuPirate = controlJeuPirate;
 	}
 	
 	public void perdrePointsDeVie(int nb, Joueur joueur) {
@@ -20,6 +23,9 @@ public class ControlPointDeVie {
 		    nouveauxPV = 0;
 		}
 		joueur.setPointDeVie(nouveauxPV);
+		//le controleur demande au boundary d'afficher les PV 
+		//laboundary rappelle finAfficherPV() quannd c'est fait
+		boundary.afficherPointDeVie(joueur.getNom(), nouveauxPV, this);
 	}
 	
 	public void gagnerPointsDeVie(int nb, Joueur joueur) {
@@ -32,6 +38,7 @@ public class ControlPointDeVie {
         }
         joueur.setPointDeVie(nouveauxPV);
         joueur.setPointDeVie(nouveauxPV);
+        boundary.afficherPointDeVie(joueur.getNom(), nouveauxPV, this);
     }
 	
 	public boolean verifierPointsDeVie(Joueur joueur) {
@@ -40,8 +47,22 @@ public class ControlPointDeVie {
 	
 	//permet au controller ControlCommecnerPartie de reset les PV des 2 joueurs 
 	public void resetPointsDeVie() {
-        joueur1.setPointDeVie(Joueur.PV_MAX);
-        joueur2.setPointDeVie(Joueur.PV_MAX);
+		 jeu.getJoueur(0).setPointDeVie(Joueur.PV_MAX);
+	     jeu.getJoueur(1).setPointDeVie(Joueur.PV_MAX);
+    }
+	
+    //la boundary appelle calculerPV() si elle a besoin des PV avant affichage
+    @Override
+    public void calculerPV() {
+    	Joueur courant = jeu.getJoueurCourant();
+        boundary.afficherPointDeVie(courant.getNom(), courant.getPointDeVie(),this);
+    }
+ 
+    //la boundary appelle finAfficherPV() une fois l'affichage terminé
+    //le contrôleur chaîne vers ControlJeuPirate (contrôleur principal)
+    @Override
+    public void finAfficherPV() {
+        //controlJeuPirate.apresAfficherPV();
     }
 
 }
