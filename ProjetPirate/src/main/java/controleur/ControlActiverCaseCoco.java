@@ -17,32 +17,28 @@ public class ControlActiverCaseCoco extends ControlActiverCaseSpecial {
 
 	public ControlActiverCaseCoco(Joueur[] joueurs, Case caseSpecial, ControlPointDeVie controlVie,
 			ControlCacherDe controlDe) {
-		super(joueurs, caseSpecial);
+		super(joueurs);
 		this.controlVie = controlVie;
 		this.controlDe = controlDe;
 		this.random = new Random();
 		this.derniersDegats = 0;
 	}
 
-//    @Override
-//    public void activerCase(Joueur joueur) {
-//        // 1) 1 ou 2
-//        derniersDegats = DEGATS_MIN + random.nextInt(DEGATS_MAX - DEGATS_MIN + 1);
-//        
-//        // 2) //On met les dégats sur le joueurs
-//        controlVie.perdrePointsDeVie(derniersDegats, joueur);
-//        
-//        // 3) True car effecté par la coco
-//        controlDe.setAffecteCoco(joueur, true);
-//    }
+    @Override
+    public void activerCase(Case caseCourant, int joueurCourant) {
+        // 1) 1 ou 2
+        derniersDegats = DEGATS_MIN + random.nextInt(DEGATS_MAX - DEGATS_MIN + 1);
+        
+        // 2) //On met les dégats sur le joueurs
+        controlVie.perdrePointsDeVie(derniersDegats, joueurs[joueurCourant]);
+        
+        // 3) True car effecté par la coco
+        controlDe.setAffecteCoco(joueurs[joueurCourant], true);
+    }
 
 	public int getDerniersDegats() {
 		return derniersDegats;
 	}
 
-	@Override
-	void activerCase() {
-		// TODO Auto-generated method stub
 
-	}
 }

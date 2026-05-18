@@ -5,14 +5,12 @@ import entity.Joueur;
 
 public abstract class ControlActiverCaseSpecial {
 	Joueur[] joueurs;
-	Case caseSpecial;
 	
-	protected ControlActiverCaseSpecial(Joueur[] joueurs, Case caseSpecial) {
+	protected ControlActiverCaseSpecial(Joueur[] joueurs) {
 		super();
 		this.joueurs = joueurs;
-		this.caseSpecial = caseSpecial;
 	}
 	
-	abstract void activerCase();
+	abstract void activerCase(Case caseCourante, int joueurCourant);
 
 }

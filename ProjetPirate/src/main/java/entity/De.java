@@ -18,5 +18,13 @@ public class De {
 		return valeur;
 	}
 	
+	public int lancerDes(int nbDes, int valeurMax, int valeurMin) {
+		valeur = 0;
+		for(int i=0; i<nbDes; i++) {
+			valeur+= random.nextInt(valeurMin,valeurMax+1);
+		}
+		return valeur;
+	}
+	
 
 }

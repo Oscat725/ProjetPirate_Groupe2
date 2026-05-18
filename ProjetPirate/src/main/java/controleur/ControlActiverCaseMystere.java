@@ -14,9 +14,9 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 	private ControlJeuPirate controlJeuPirate;
 	private int joueurCourant;
 
-	public ControlActiverCaseMystere(Joueur[] joueurs, Case caseSpecial, int joueurCourant,
+	public ControlActiverCaseMystere(Joueur[] joueurs, int joueurCourant,
 			ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate) {
-		super(joueurs, caseSpecial);
+		super(joueurs);
 		this.joueurCourant = joueurCourant;
 		this.controlVie = controlVie;
 		this.controlJeuPirate = controlJeuPirate;
@@ -37,7 +37,7 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 	}
 
 	@Override
-	void activerCase() {
+	void activerCase(Case caseSpecial,int joueurCourant) {
 		if (caseSpecial instanceof CaseMystere caseMystere) {
 			caseMystere.activerCase();
 			switch (caseMystere.effect) {
@@ -57,6 +57,7 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 				throw new IllegalArgumentException("Unexpected value: " + caseMystere.effect);
 			}
 		}
+		finCaseMystere();
 
 	}
 
