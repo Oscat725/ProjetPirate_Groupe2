@@ -37,8 +37,8 @@ public class ControlPointDeVie implements IPointsDeVie{
             nouveauxPV = Joueur.PV_MAX;//le joueur ne peut pas avoir plus de 5 points de vie          
         }
         joueur.setPointDeVie(nouveauxPV);
-        joueur.setPointDeVie(nouveauxPV);
         boundary.afficherPointDeVie(joueur.getNom(), nouveauxPV, this);
+
     }
 	
 	public boolean verifierPointsDeVie(Joueur joueur) {

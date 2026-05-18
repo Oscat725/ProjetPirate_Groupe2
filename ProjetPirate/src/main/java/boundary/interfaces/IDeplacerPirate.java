@@ -1,6 +1,6 @@
 package boundary.interfaces;
 
 public interface IDeplacerPirate {
-	int deplacerPirate();
+	//int deplacerPirate(int somme);
 	void finDeplacerPirate();
 }

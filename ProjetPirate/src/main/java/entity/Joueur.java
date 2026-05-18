@@ -36,33 +36,26 @@ public class Joueur {
 		return pion.getPosition();
 	}
 	
+	public int setPosition(int pos) {
+		return pion.setPosition(pos);
+	}
+	
 	public void setAffecteCoco() {
 		affecteCoco = true;
 	}
-	
-    
-    public int deplacer(int nbDe) {
-    	int pos = pion.getPosition();
-    	pos = pos + nbDe;
-    	if (pos > 29) {
-    		pos -= (pos%30);
-    	}
-    	pion.setPosition(pos);
-    	return pos;
-    }
     
     public int[] lancerDe() {
-    	int[] tabValDe =new int[] {0, 0};
-    	tabValDe[0] = deUn.getValeur();
-
-    	
-    	if (affecteCoco) {
-    		affecteCoco = false;
-    		return tabValDe;
-    	}
-    	
-    	tabValDe[1] = deDeux.getValeur();
-    	return tabValDe;
+	    	int[] tabValDe =new int[] {0, 0};
+	    	tabValDe[0] = deUn.getValeur();
+	
+	    	
+	    	if (affecteCoco) {
+	    		affecteCoco = false;
+	    		return tabValDe;
+	    	}
+	    	
+	    	tabValDe[1] = deDeux.getValeur();
+	    	return tabValDe;
     }
     
     public int getValeurCoco() {

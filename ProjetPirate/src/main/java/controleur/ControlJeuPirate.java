@@ -32,10 +32,6 @@ public class ControlJeuPirate implements INoyauFonctionnel{
 		
 	}
 	
-	public void apresLancerDe(int i) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	//-----methodes a implementer pour INoyau-----
 	
@@ -96,5 +92,43 @@ public class ControlJeuPirate implements INoyauFonctionnel{
 	public static void main(String[] args) {
 		
 	}
+	
+	public ControlJeuPirate(Jeu jeu, IBoundary boundary) {
+        this.jeu = jeu;
+        this.boundary = boundary;
+    }
+	
+	// Setter pour injecter les contrôleurs après construction
+    public void setControleurs(ControleurDe controleurDe,
+                               ControlDeplacer controlDeplacer,
+                               ControlVerifierFinPartie controlVerifierFinPartie) {
+        this.controleurDe = controleurDe;
+        this.controlDeplacer = controlDeplacer;
+        this.controlVerifierFinPartie = controlVerifierFinPartie;
+    }
+    
+    // Démarre un tour : lance les dés 
+    public void jouerTour() {
+        controleurDe.lancerDe();
+    }
+
+    // Appelé par ControleurDe quand l'animation des dés est finie
+    public void apresLancerDe(int sommeDes) {
+        controlDeplacer.deplacerPirate(sommeDes);
+    }
+
+    // Appelé par ControlDeplacer quand l'animation du déplacement est finie
+    public void apresDeplacer() {
+        // Vérifier le type de case et activer si spéciale
+        // ... puis appeler controlVerifierFinPartie
+        controlVerifierFinPartie.verifierFinPartie(); //-> Juste pour tester la console mais n'est pas encore fonctionnel
+    }
+
+    //
+    public void finDeTour() {
+        jeu.passerAuJoueurSuivant();
+        boundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
+        // Attend le prochain clic de l'utilisateur
+    }
 
 }
