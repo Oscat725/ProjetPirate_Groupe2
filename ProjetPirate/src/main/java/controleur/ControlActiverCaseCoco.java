@@ -1,22 +1,29 @@
-//package controleur;
-//
-//public class ControlActiverCaseCoco extends ControlActiverCaseSpecial {
-//    
-//    private static final int DEGATS_MIN = 1;
-//    private static final int DEGATS_MAX = 2;
-//    
-//    private final ControlPointsDeVie controlVie;
-//    private final ControlCacherDe controlDe;
-//    private final Random random;
-//    private int derniersDegats;
-//    
-//    public ControlActiverCaseCoco(ControlPointsDeVie controlVie, ControlCacherDe controlDe) {
-//        this.controlVie = controlVie;
-//        this.controlDe = controlDe;
-//        this.random = new Random();
-//        this.derniersDegats = 0;
-//    }
-//    
+package controleur;
+
+import java.util.Random;
+
+import entity.Case;
+import entity.Joueur;
+
+public class ControlActiverCaseCoco extends ControlActiverCaseSpecial {
+
+	private static final int DEGATS_MIN = 1;
+	private static final int DEGATS_MAX = 2;
+
+	private final ControlPointDeVie controlVie;
+	private final ControlCacherDe controlDe;
+	private final Random random;
+	private int derniersDegats;
+
+	public ControlActiverCaseCoco(Joueur joueur, Case caseSpecial, ControlPointDeVie controlVie,
+			ControlCacherDe controlDe) {
+		super(joueur, caseSpecial);
+		this.controlVie = controlVie;
+		this.controlDe = controlDe;
+		this.random = new Random();
+		this.derniersDegats = 0;
+	}
+
 //    @Override
 //    public void activerCase(Joueur joueur) {
 //        // 1) 1 ou 2
@@ -28,8 +35,14 @@
 //        // 3) True car effecté par la coco
 //        controlDe.setAffecteCoco(joueur, true);
 //    }
-//    
-//    public int getDerniersDegats() {
-//        return derniersDegats;
-//    }	
-//}
+
+	public int getDerniersDegats() {
+		return derniersDegats;
+	}
+
+	@Override
+	void activerCase() {
+		// TODO Auto-generated method stub
+
+	}
+}

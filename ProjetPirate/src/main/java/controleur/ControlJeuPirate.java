@@ -3,8 +3,9 @@ package controleur;
 
 import boundary.interfaces.IBoundary;
 import entity.*;
+import interface_noyau_fonctionnel.INoyauFonctionnel;
 
-public class ControlJeuPirate implements boundary.interfaces.ITourJoueur {
+public class ControlJeuPirate implements INoyauFonctionnel{
 
     private Jeu jeu;
     private IBoundary boundary;
@@ -15,96 +16,68 @@ public class ControlJeuPirate implements boundary.interfaces.ITourJoueur {
     private ControlDeplacer controlDeplacer;
     private ControlPointDeVie controlPointDeVie;
     private ControlVerifierFinPartie controlVerifierFinPartie;
-    private ControlActiverBombe controlActiverBombe;
+    private ControlActiverCaseBombe controlActiverBombe;
     private ControlActiverCaseCoco controlActiverCaseCoco;
-    private ControlActiverMystere controlActiverMystere;
+    private ControlActiverCaseMystere controlActiverMystere;
 
     public ControlJeuPirate(IBoundary boundary) {
         this.jeu = new Jeu();
         this.boundary = boundary;
 
-        this.controlCommencerPartie = new ControlCommencerPartie(jeu, boundary, this);
-        this.controleurDe = new ControleurDe(jeu, boundary, this);
-        this.controlDeplacer = new ControlDeplacer(jeu, boundary, this);
-        this.controlPointDeVie = new ControlPointDeVie(boundary, this);
-        this.controlVerifierFinPartie = new ControlVerifierFinPartie(boundary, this);
-        this.controlActiverBombe = new ControlActiverBombe(boundary, this, controlPointDeVie);
-        this.controlActiverCaseCoco = new ControlActiverCaseCoco(boundary, this, controlPointDeVie);
-        this.controlActiverMystere = new ControlActiverMystere(boundary, this, controlPointDeVie);
     }
 
-    // Point d'entrée — démarre le jeu (utilisé en mode console et IHM)
-    public void jouer() {
-        controlCommencerPartie.commencerPartie();
-    }
+	@Override
+	public void jouer() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    // Appelé par ControlCommencerPartie.finCommencerPartie() ou
-    // Adaptateur.confirmationCommencer()
-    public void jouerUnTour() {
-        if (controlPointDeVie != null && jeu.getJoueur(0) != null) {
-            controlPointDeVie.setJoueurs(jeu.getJoueur(0), jeu.getJoueur(1));
-            controlVerifierFinPartie.setJoueurs(jeu.getJoueurs());
-        }
+	@Override
+	public void soumettreNoms(String nomJ1, String nomJ2) {
+		// TODO Auto-generated method stub
+		
+	}
 
-        Joueur joueurCourant = jeu.getJoueurCourant();
-        boundary.changerJoueurActif(joueurCourant.getNom(), joueurCourant.getPosition(), joueurCourant.getPointDeVie(),
-                this);
-    }
+	@Override
+	public void confirmationCommencer() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void finAfficherTour() {
-        lancerDesDuTour();
-    }
+	@Override
+	public void confirmationTourVu() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    // Appelé par finAfficherTour() ou Adaptateur.confirmationTourVu()
-    public void lancerDesDuTour() {
-        controleurDe.lancerDe();
-    }
+	@Override
+	public void confirmationDes() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    // Appelé par ControleurDe.finLancerDe()
-    public void apresLancerDe(int sommeDes) {
-        controlDeplacer.deplacer(sommeDes);
-    }
+	@Override
+	public void confirmationDeplacement() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    // Appelé par ControlDeplacer.finDeplacerPirate()
-    public void apresDeplacer() {
-        // UC4/5/6 — Vérifier si case spéciale
-        Joueur joueurCourant = jeu.getJoueurCourant();
-        int position = joueurCourant.getPosition();
-        Case caseCourante = jeu.getPlateau().getCase(position);
+	@Override
+	public void confirmationCaseSpeciale() {
+		// TODO Auto-generated method stub
+		
+	}
 
-        if (caseCourante instanceof CaseBombe) {
-            controlActiverBombe.activerCase(joueurCourant);
-        } else if (caseCourante instanceof CaseCoco) {
-            controlActiverCaseCoco.activerCase(joueurCourant);
-        } else if (caseCourante instanceof CaseMystere) {
-            controlActiverMystere.activerCase(joueurCourant);
-        } else {
-            boundary.afficherMessage("Case normale, aucun effet.");
-            apresCaseSpeciale();
-        }
-    }
+	@Override
+	public void confirmationPV() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    // Appelé par les contrôleurs de cases spéciales (fin*)
-    public void apresCaseSpeciale() {
-        // UC9 — Vérifier fin de partie
-        controlVerifierFinPartie.verifierEtAfficher();
-    }
+	@Override
+	public void confirmationFinPartie() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    // Appelé par ControlPointDeVie.finAfficherPV()
-    public void apresAfficherPV() {
-        // Continuer le flux (après affichage PV, on continue normalement)
-    }
-
-    // Appelé par ControlVerifierFinPartie
-    public void apreVerifierFin(boolean partieFinie) {
-        if (!partieFinie) {
-            jeu.passerAuJoueurSuivant();
-            jouerUnTour();
-        }
-    }
-
-    public Jeu getJeu() {
-        return jeu;
-    }
 }
