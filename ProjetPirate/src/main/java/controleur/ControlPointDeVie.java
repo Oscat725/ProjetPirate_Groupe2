@@ -62,7 +62,7 @@ public class ControlPointDeVie implements IPointsDeVie{
     //le contrôleur chaîne vers ControlJeuPirate (contrôleur principal)
     @Override
     public void finAfficherPV() {
-        //controlJeuPirate.apresAfficherPV();
+        controlJeuPirate.apresAfficherPV();
     }
 
 }

@@ -83,7 +83,7 @@ public class BoundaryConsole implements IBoundary {
     public void deplacerPirates(String nomPirate, int ancienneCase, int nouvelleCase, IDeplacerPirate callback) {
         System.out.println(nomPirate + " avance de la case " + (ancienneCase + 1)
                          + " à la case " + (nouvelleCase + 1));
-        callback.finDeplacerPirate();
+        callback.finDeplacerPirate(nouvelleCase);
     }
     
     //Methode IBoundary sans callback

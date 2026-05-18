@@ -20,6 +20,7 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
     private ControlPointDeVie controlPointDeVie;
     private ControlVerifierFinPartie controlVerifierFinPartie;
     private ControlActiverCase controlActiverCase;
+    private ControlPirateCourant controlPirateCourant;
 
     public ControlJeuPirate(IBoundary iBoundary) {
 
@@ -45,6 +46,9 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
         
         this.controlActiverCase = 
         	new ControlActiverCase();
+        
+        this.controlPirateCourant =
+        	new ControlPirateCourant(jeu.getJoueur(0), jeu.getJoueur(1));
 
     }
 
@@ -57,15 +61,31 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
     }
     
     //-----methodes appellees par les autres controleurs-----
-	public void jouerUnTour() {
-		// TODO Auto-generated method stub
-		
-	}
 	
     public void apresLancerDe(int sommeDes) {
         controlDeplacer.deplacerPirate(sommeDes);
     }
     
+    public void jouerUnTour() {
+        controleurDe.lancerDe();
+    }
+    
+    public void apresDeplacer(int numCase) {
+        //controlActiverCase.activerCase(jeu.getJoueurCourant(),jeu.getPlateau().getCase(numCase)); //A decommenter
+    }
+    
+    public void apresActiverCase() {
+    	controlPointDeVie.calculerPV();
+    }
+    
+    public void apresAfficherPV() {
+    	controlPirateCourant.changerJoueur();
+    	if(controlVerifierFinPartie.verifierFinPartie()) {
+    		System.out.println("Fin Partie"); //a modifier ulterieurement
+    	}else {
+    		jouerUnTour();
+    	}
+    }
     
 	//-----methodes a implementer pour INoyau-----
 	
@@ -131,24 +151,13 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
 	            new ControlJeuPirate(boundary);
 	    
 		controleur.controlCommencerPartie.commencerPartie();
+		
 	}
 	
-	
-    
-    // Démarre un tour : lance les dés 
-    public void jouerTour() {
-        controleurDe.lancerDe();
-    }
 
 
-    // Appelé par ControlDeplacer quand l'animation du déplacement est finie
-    public void apresDeplacer() {
-        // Vérifier le type de case et activer si spéciale
-        // ... puis appeler controlVerifierFinPartie
-        controlVerifierFinPartie.verifierFinPartie(); //-> Juste pour tester la console mais n'est pas encore fonctionnel
-    }
 
-    //
+    //????
     public void finDeTour() {
         jeu.passerAuJoueurSuivant();
         iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom());

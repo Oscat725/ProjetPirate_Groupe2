@@ -48,7 +48,7 @@ public class ControlDeplacer implements IDeplacerPirate {
     }
     
     @Override
-    public void finDeplacerPirate() {
-    	controlJeuPirate.apresDeplacer(); 
+    public void finDeplacerPirate(int numCase) {
+    	controlJeuPirate.apresDeplacer(numCase); // il me faut la case
     }
 }
