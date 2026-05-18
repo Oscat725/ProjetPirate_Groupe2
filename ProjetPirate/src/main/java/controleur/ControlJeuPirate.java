@@ -2,6 +2,7 @@ package controleur;
 
 import boundary.interfaces.IBoundary;
 import boundary.interfaces.IControlJeuPirate;
+import console.BoundaryConsole;
 import entity.*;
 import interface_noyau_fonctionnel.INoyauFonctionnel;
 
@@ -122,8 +123,14 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
 		
 	}
 	
+	// -----main pour tester le deroulement d'une partie-----
 	public static void main(String[] args) {
-		
+		IBoundary boundary = new BoundaryConsole(); 
+
+	    ControlJeuPirate controleur =
+	            new ControlJeuPirate(boundary);
+	    
+		controleur.controlCommencerPartie.commencerPartie();
 	}
 	
 	

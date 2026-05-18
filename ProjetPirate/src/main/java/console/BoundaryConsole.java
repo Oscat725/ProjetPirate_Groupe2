@@ -14,15 +14,15 @@ import controleur.ControlCommencerPartie;
 public class BoundaryConsole implements IBoundary {
 
     private final Scanner scanner;
-    private final ControlCommencerPartie controlCommencerPartie;
+    //private final ControlCommencerPartie controlCommencerPartie;
     
-    public BoundaryConsole(ControlCommencerPartie controlCommencerPartie) {
+    public BoundaryConsole() {
         this.scanner = new Scanner(System.in);
-        this.controlCommencerPartie = controlCommencerPartie;
+        //this.controlCommencerPartie = controlCommencerPartie;
     }
     
     // Initialisation de la partie
-    public void commencerPartie(ICommencerPartie callback) {
+    public void commencerPartie(ICommencerPartie controlCommencerPartie) {
     	
         System.out.println("\n     ISLA DE LA MUERTE - Jeu des Pirates\n\n");
         
