@@ -17,8 +17,8 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 
 
 
-	public ControlActiverCaseBombe(Joueur[] joueurs, Case caseSpecial,ControleurDe controleurDe,ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate, IBoundary iBoundary) {
-		super(joueurs, caseSpecial);
+	public ControlActiverCaseBombe(Joueur[] joueurs,ControleurDe controleurDe,ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate, IBoundary iBoundary) {
+		super(joueurs);
 		this.controlDe = controleurDe;
 		this.controlVie = controlVie;
 		this.controlJeuPirate = controlJeuPirate;
@@ -26,18 +26,20 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 	}
 
 	@Override
-	void activerCase() {
-		if (caseSpecial instanceof CaseBombe caseBombe  ) {
-//			caseBombe.activerBombe(controlDe.lancerDe());
-//			controlVie.perdrePointsDeVie(CaseBombe.getValue(), joueur);;
-			//TODO Completer le fonctions necessaires de Case Bombe
+	void activerCase(Case caseBombe,int joueurCourant) {
+		if (caseBombe instanceof CaseBombe caseB) {
+			int valeur = controlDe.lancerDesModif(1, 5, 0);
+			caseB.activerBombe(valeur);
+			controlVie.perdrePointsDeVie(CaseBombe.getValue(), joueurs[joueurCourant]);
 		}
+			
 		
+		finCaseBombe();
 	}
 
 	@Override
 	public void afficherBombe() {
-		activerCase(); //pourait renvoyer degats
+//		activerCase(int joueurCourant); //pourait renvoyer degats
 		//iBoundary.degatsBombe(degats, this);
 		
 	}

@@ -54,4 +54,17 @@ public class Case {
 		return joueursCase[numJoueur];
 	}
 
+	public boolean isCaseBombe() {
+		return this instanceof CaseBombe;
+	}
+
+	public boolean isCaseCoco() {
+		return this instanceof CaseCoco;
+	}
+
+	public boolean isCaseMystere() {
+		return this instanceof CaseMystere;
+	}
+
+
 }

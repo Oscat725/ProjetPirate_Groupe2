@@ -23,6 +23,11 @@ public class ControleurDe implements ILancerDe {
         resultatDes = jeu.getJoueurCourant().lancerDe();
         boundary.affichageResultatDe(1, resultatDes[0], this);
     }
+    
+    //Appele pour les fontion generales
+    public int lancerDesModif(int nbDes, int valeurMax, int valeurMin) {
+		return jeu.getJoueurCourant().lancerDesGeneral(nbDes, valeurMax, valeurMin);
+	}
 
     @Override
     public int resultatDe() {
