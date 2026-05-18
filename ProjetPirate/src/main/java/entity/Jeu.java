@@ -32,8 +32,13 @@ public class Jeu {
         return joueurs[index];
     }
 
+    public Joueur[] getJoueurs() {
+    	return joueurs;
+    }
+    
     public void passerAuJoueurSuivant() {
         currentJoueur = (currentJoueur + 1) % 2;
     }
+    
 
 }
