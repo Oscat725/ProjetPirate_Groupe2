@@ -7,62 +7,63 @@ import entity.CaseMystere;
 import entity.Joueur;
 import boundary.interfaces.*;
 
-public class ControlActiverCaseMystere extends ControlActiverCaseSpecial implements ICaseMystere{
+public class ControlActiverCaseMystere extends ControlActiverCaseSpecial implements ICaseMystere {
 
-	
 	private ControlPointDeVie controlVie;
 	private ControlDeplacer controlDeplacerPirate;
-	private ControlJeuPirate  controlJeuPirate;
+	private ControlJeuPirate controlJeuPirate;
 	private int joueurCourant;
-	
-	public ControlActiverCaseMystere(Joueur[] joueurs, Case caseSpecial,int joueurCourant, ControlPointDeVie controlVie,ControlJeuPirate controlJeuPirate ) {
+
+	public ControlActiverCaseMystere(Joueur[] joueurs, Case caseSpecial, int joueurCourant,
+			ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate) {
 		super(joueurs, caseSpecial);
 		this.joueurCourant = joueurCourant;
 		this.controlVie = controlVie;
-		this.controlDeplacerPirate = new ControlDeplacer(joueurs);
-		this.controlJeuPirate     = controlJeuPirate;
+		this.controlJeuPirate = controlJeuPirate;
+		this.controlDeplacerPirate = new ControlDeplacer(controlJeuPirate.getJeu(), controlJeuPirate.getBoundary(),
+				controlJeuPirate);
 	}
-	
+
 	private void faireAvancerJoueur(int nb) {
-		controlDeplacerPirate.deplacer(nb, joueurCourant);
+		controlDeplacerPirate.deplacerPirate(nb);
 	}
-	
+
 	private void faireReculerJoueur(int nb) {
-		controlDeplacerPirate.deplacer(nb, joueurCourant);
+		controlDeplacerPirate.deplacerPirate(-nb);
 	}
-	
+
 	private void modifPointDeVie(int nb) {
-		controlVie.gagnerPointsDeVie(nb,joueurs[joueurCourant]);
+		controlVie.gagnerPointsDeVie(nb, joueurs[joueurCourant]);
 	}
-	
+
 	@Override
 	void activerCase() {
-		if (caseSpecial instanceof CaseMystere caseMystere ) {
-//			caseMystere.activerCase();
-//			switch (caseMystere.effect) {
-//			case 0: 
-//				faireAvancerJoueur(caseMystere.getValue());
-//				break;
-//			case 1:
-//				faireReculerJoueur(caseMystere.getValue());
-//				break;
-//			case 2:
-//				if (caseMystere.getValue()>2) {
-//					throw new IllegalArgumentException("Unexpected value: " + caseMystere.getValue());
-//				}
-//				modifPointDeVie(caseMystere.getValue());
-//				break;
-//			default:
-//				throw new IllegalArgumentException("Unexpected value: " + caseMystere.effect);
-//			}
+		if (caseSpecial instanceof CaseMystere caseMystere) {
+			caseMystere.activerCase();
+			switch (caseMystere.effect) {
+			case 0: 
+				faireAvancerJoueur(caseMystere.getValue());
+				break;
+			case 1:
+				faireReculerJoueur(caseMystere.getValue());
+				break;
+			case 2:
+				if (caseMystere.getValue()>2) {
+					throw new IllegalArgumentException("Unexpected value: " + caseMystere.getValue());
+				}
+				modifPointDeVie(caseMystere.getValue());
+				break;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + caseMystere.effect);
+			}
 		}
-		
+
 	}
-	
-	//appelé par la boundary après afficherCaseMystere()
-    @Override
-    public void finCaseMystere() {
-        //controlJeuPirate.apresActiverCase();
-    }
+
+	// appelé par la boundary après afficherCaseMystere()
+	@Override
+	public void finCaseMystere() {
+		// controlJeuPirate.apresActiverCase();
+	}
 
 }

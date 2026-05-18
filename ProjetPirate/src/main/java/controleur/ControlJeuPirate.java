@@ -2,10 +2,11 @@ package controleur;
 
 
 import boundary.interfaces.IBoundary;
+import boundary.interfaces.IControlJeuPirate;
 import entity.*;
 import interface_noyau_fonctionnel.INoyauFonctionnel;
 
-public class ControlJeuPirate implements INoyauFonctionnel{
+public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate{
 
 	private Jeu jeu = new Jeu();
 	private Joueur[] joueurs = jeu.getJoueurs();
@@ -26,6 +27,15 @@ public class ControlJeuPirate implements INoyauFonctionnel{
         this.boundary = boundary;
 
     }
+    
+    public Jeu getJeu() {
+        return this.jeu;
+    }
+
+    public IBoundary getBoundary() {
+        return this.boundary;
+    }
+    
     //-----methodes appellees par les autres controleurs-----
 	public void jouerUnTour() {
 		// TODO Auto-generated method stub

@@ -1,7 +1,5 @@
 package boundary.interfaces;
 
-import controleur.ILancerDe;
-
 public interface IBoundary {
 	//Doit prendre deux valeur de deux separemment pour qu'on affiche les valeurs de dé séparemment
 	void affichageResultatDe(int valeurDe1, int valeurDe2, ILancerDe callback);
@@ -13,5 +11,7 @@ public interface IBoundary {
 	 // Affichages simples sans callback d'interface (pas besoin d'attendre)
     void afficherMessage(String message);                // pour les cases spéciales
     void changerJoueurActif(String nomPirate);		// indiquer à qui est le tour
+    void commencerPartie(ICommencerPartie callback); 
+    
 	
 }

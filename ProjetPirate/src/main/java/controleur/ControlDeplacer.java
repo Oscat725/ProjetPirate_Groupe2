@@ -1,6 +1,7 @@
 package controleur;
 
 import boundary.interfaces.IBoundary;
+import boundary.interfaces.IControlJeuPirate;
 import boundary.interfaces.IDeplacerPirate;
 import entity.Jeu;
 import entity.Joueur;

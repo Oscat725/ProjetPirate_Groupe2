@@ -1,5 +1,9 @@
-package console;
-import boundary.intergaces.IBoundary;
+package presentation;
+import boundary.interfaces.IBoundary;
+import boundary.interfaces.ILancerDe;
+import boundary.interfaces.IDeplacerPirate;
+import boundary.interfaces.IPointsDeVie;
+import boundary.interfaces.IFinDePartie;
 
 
 public class BoundaryJeuPirate implements IBoundary {

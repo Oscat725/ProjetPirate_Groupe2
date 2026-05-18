@@ -1,47 +1,30 @@
 package console;
 
-
 import entity.Jeu;
-import controleur.ControlCommencerPartie;
-import controleur.ControleurDe;
-import controleur.ControlDeplacer;
-import controleur.ControlVerifierFinPartie;
-import controleur.ControlJeuPirate;
-import controleur.ControlPointDeVie;
+import controleur.*;
 
 public class MainConsole {
-	
-	
+    
     public static void main(String[] args) {
-
-
         Jeu jeu = new Jeu();
         
-        // Créer le contrôleur de début de partie
-        ControlCommencerPartie controlCommencer = new ControlCommencerPartie(jeu);
+        //initialisation temporaire pour lier les objets
+        ControlJeuPirate controlJeu = new ControlJeuPirate(jeu, null);
+        ControlCommencerPartie controlCommencer = new ControlCommencerPartie(jeu, null, controlJeu);
         
-        // Créer la boundary console
+        //création de  boundary
         BoundaryConsole boundary = new BoundaryConsole(controlCommencer);
         
-        // ControlJeuPirate est créé d'abord (il implémente IControlJeuPirate)
-        ControlJeuPirate controlJeu = new ControlJeuPirate(jeu, boundary);
-
-
-        boundary.commencerPartie();
         
-        // Créer les autres contrôleurs
+        //instanciation des controleur avec la vraie boundary
+        controlJeu = new ControlJeuPirate(jeu, boundary);
         ControlDeplacer controlDeplacer = new ControlDeplacer(jeu, boundary, controlJeu);
         ControleurDe controleurDe = new ControleurDe(jeu, boundary, controlJeu);
-        ControlVerifierFinPartie controlVerifier = new ControlVerifierFinPartie(jeu, boundary, controlJeu);
+        ControlVerifierFinPartie controlVerifier = new ControlVerifierFinPartie(jeu.getJoueurs());
         
-        
-        
-     	// ControlJeuPirate reçoit les contrôleurs après
         controlJeu.setControleurs(controleurDe, controlDeplacer, controlVerifier);
         
-        // Lancer la boucle de jeu
-        boundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
-        controlJeu.jouerTour();
+        // test
+        controlJeu.jouer();
     }
-
 }

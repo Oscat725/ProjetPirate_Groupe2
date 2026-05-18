@@ -1,7 +1,7 @@
-package controleur;
+package boundary.interfaces;
 
 public interface ILancerDe {
 	int resultatDe();
 	void finLancerDe();
-    int[] lancerDe();
+    void lancerDe();
 }

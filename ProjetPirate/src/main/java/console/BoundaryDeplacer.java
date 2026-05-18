@@ -1,26 +1,48 @@
 package console;
 
-import boundary.interfaces.IBoundary;
+import boundary.interfaces.*;
 
 public class BoundaryDeplacer implements IBoundary {
-	
-	public BoundaryDeplacer(IControlDeplacer controlDeplacer) {
-		this.controlDeplacer = controlDeplacer;
+
+	@Override
+	public void deplacerPirates(String nomPirate, int ancienneCase, int nouvelleCase, IDeplacerPirate callback) {
+		System.out.println(nomPirate + " avance de la case " + (ancienneCase + 1) + " à la case " + (nouvelleCase + 1));
+		callback.finDeplacerPirate();
 	}
+
 	
-	public int deplacer(int somme, IControlDeplacer controlDeplacer) {
-		System.out.println("Le pirate se déplace de "+ somme +" cases.\n");
-		
-		
-		System.out.println("La nouvelle position du joueur est " + newpos + ".\n");
-		controlDeplacer.finDeplacerPirate();
-		
-		return newpos;
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void affichageResultatDe(int v1, int v2, ILancerDe c) {
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public void afficherEffetCase(String t, String m, IActiverCase c) {
+	}
+
+	@Override
+	public void afficherPointDeVie(String n, int p, IPointsDeVie c) {
+	}
+
+	@Override
+	public void afficherFinDePartie(String n, IFinDePartie c) {
+	}
+
+	@Override
+	public void afficherMessage(String m) {
+	}
+
+	@Override
+	public void changerJoueurActif(String n) {
+	}
+
+	@Override
+	public void commencerPartie(ICommencerPartie c) {
+	}
 }

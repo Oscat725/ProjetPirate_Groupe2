@@ -1,4 +1,4 @@
-package controleur;
+package boundary.interfaces;
 
 public interface IControlJeuPirate {
     void apresLancerDe(int sommeDes);

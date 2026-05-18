@@ -3,11 +3,12 @@ package console;
 
 import java.util.Scanner;
 import boundary.interfaces.IBoundary;
+import boundary.interfaces.ICommencerPartie;
 import boundary.interfaces.IActiverCase;
 import boundary.interfaces.IDeplacerPirate;
 import boundary.interfaces.IFinDePartie;
+import boundary.interfaces.ILancerDe;
 import boundary.interfaces.IPointsDeVie;
-import controleur.ILancerDe;
 import controleur.ControlCommencerPartie;
 
 public class BoundaryConsole implements IBoundary {
@@ -21,7 +22,7 @@ public class BoundaryConsole implements IBoundary {
     }
     
     // Initialisation de la partie
-    public void commencerPartie() {
+    public void commencerPartie(ICommencerPartie callback) {
     	
         System.out.println("\n     ISLA DE LA MUERTE - Jeu des Pirates\n\n");
         
@@ -33,8 +34,10 @@ public class BoundaryConsole implements IBoundary {
         controlCommencerPartie.initialiserJoueurs(nom1, nom2);
         
         System.out.println("\nLancer des dés pour déterminer qui commence ...");
-        String premier = controlCommencerPartie.determinerJoueurQuiCommence();
+        String premier = controlCommencerPartie.determinerQuiCommence();
         System.out.println(premier + " commence la partie !\n");
+        
+        controlCommencerPartie.finCommencerPartie(); // Notifie la fin de l'action
         
     }
     
