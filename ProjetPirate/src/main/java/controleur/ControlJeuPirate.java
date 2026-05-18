@@ -1,39 +1,58 @@
 package controleur;
 
-
 import boundary.interfaces.IBoundary;
 import boundary.interfaces.IControlJeuPirate;
 import entity.*;
 import interface_noyau_fonctionnel.INoyauFonctionnel;
 
-public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate{
+public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
 
-	private Jeu jeu = new Jeu();
-	private Joueur[] joueurs = jeu.getJoueurs();
-	
-    private IBoundary boundary;
+    private Jeu jeu;
+    private Joueur[] joueurs;
+
+    private IBoundary iBoundary;
 
     // Sous-controleurs
-    private ControlCommencerPartie controlCommencerPartie = new ControlCommencerPartie(jeu, boundary, this);
-    private ControleurDe controleurDe = new ControleurDe(jeu, boundary, this);
-    private ControlDeplacer controlDeplacer = new ControlDeplacer(joueurs);
-    private ControlPointDeVie controlPointDeVie = new ControlPointDeVie(jeu, boundary, this);
-    private ControlVerifierFinPartie controlVerifierFinPartie = new ControlVerifierFinPartie(joueurs);
-    private ControlActiverCaseBombe controlActiverBombe = new ControlActiverCaseBombe(null, null, controleurDe, controlPointDeVie, null, boundary);
-    private ControlActiverCaseCoco controlActiverCaseCoco = new ControlActiverCaseCoco(null, null, controlPointDeVie, null);
-    private ControlActiverCaseMystere controlActiverMystere = new ControlActiverCaseMystere(null, null, controlPointDeVie, null);
+    private ControlCommencerPartie controlCommencerPartie;
+    private ControleurDe controleurDe;
+    private ControlDeplacer controlDeplacer;
+    private ControlPointDeVie controlPointDeVie;
+    private ControlVerifierFinPartie controlVerifierFinPartie;
+    private ControlActiverCase controlActiverCase;
 
-    public ControlJeuPirate(IBoundary boundary) {
-        this.boundary = boundary;
+    public ControlJeuPirate(IBoundary iBoundary) {
+
+        this.iBoundary = iBoundary;
+
+        this.jeu = new Jeu();
+        this.joueurs = jeu.getJoueurs();
+
+        this.controlCommencerPartie =
+            new ControlCommencerPartie(jeu, iBoundary, this);
+
+        this.controleurDe =
+            new ControleurDe(jeu, iBoundary, this);
+
+        this.controlPointDeVie =
+            new ControlPointDeVie(jeu, iBoundary, this);
+
+        this.controlVerifierFinPartie =
+            new ControlVerifierFinPartie(joueurs);
+
+        this.controlDeplacer =
+            new ControlDeplacer(jeu, iBoundary, this);
+        
+        this.controlActiverCase = 
+        	new ControlActiverCase();
 
     }
-    
+
     public Jeu getJeu() {
         return this.jeu;
     }
 
     public IBoundary getBoundary() {
-        return this.boundary;
+        return this.iBoundary;
     }
     
     //-----methodes appellees par les autres controleurs-----
@@ -42,7 +61,11 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate{
 		
 	}
 	
-
+    public void apresLancerDe(int sommeDes) {
+        controlDeplacer.deplacerPirate(sommeDes);
+    }
+    
+    
 	//-----methodes a implementer pour INoyau-----
 	
 	@Override
@@ -103,29 +126,13 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate{
 		
 	}
 	
-	public ControlJeuPirate(Jeu jeu, IBoundary boundary) {
-        this.jeu = jeu;
-        this.boundary = boundary;
-    }
 	
-	// Setter pour injecter les contrôleurs après construction
-    public void setControleurs(ControleurDe controleurDe,
-                               ControlDeplacer controlDeplacer,
-                               ControlVerifierFinPartie controlVerifierFinPartie) {
-        this.controleurDe = controleurDe;
-        this.controlDeplacer = controlDeplacer;
-        this.controlVerifierFinPartie = controlVerifierFinPartie;
-    }
     
     // Démarre un tour : lance les dés 
     public void jouerTour() {
         controleurDe.lancerDe();
     }
 
-    // Appelé par ControleurDe quand l'animation des dés est finie
-    public void apresLancerDe(int sommeDes) {
-        controlDeplacer.deplacerPirate(sommeDes);
-    }
 
     // Appelé par ControlDeplacer quand l'animation du déplacement est finie
     public void apresDeplacer() {
@@ -137,7 +144,7 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate{
     //
     public void finDeTour() {
         jeu.passerAuJoueurSuivant();
-        boundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
+        iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
         // Attend le prochain clic de l'utilisateur
     }
 
