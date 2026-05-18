@@ -4,12 +4,12 @@ import entity.Case;
 import entity.Joueur;
 
 public abstract class ControlActiverCaseSpecial {
-	Joueur joueur;
+	Joueur[] joueurs;
 	Case caseSpecial;
 	
-	public ControlActiverCaseSpecial(Joueur joueur, Case caseSpecial) {
+	protected ControlActiverCaseSpecial(Joueur[] joueurs, Case caseSpecial) {
 		super();
-		this.joueur = joueur;
+		this.joueurs = joueurs;
 		this.caseSpecial = caseSpecial;
 	}
 	

@@ -13,24 +13,26 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 	private ControlPointDeVie controlVie;
 	private ControlDeplacer controlDeplacerPirate;
 	private ControlJeuPirate  controlJeuPirate;
+	private int joueurCourant;
 	
-	public ControlActiverCaseMystere(Joueur joueur, Case caseSpecial, ControlPointDeVie controlVie,ControlJeuPirate controlJeuPirate ) {
-		super(joueur, caseSpecial);
+	public ControlActiverCaseMystere(Joueur[] joueurs, Case caseSpecial,int joueurCourant, ControlPointDeVie controlVie,ControlJeuPirate controlJeuPirate ) {
+		super(joueurs, caseSpecial);
+		this.joueurCourant = joueurCourant;
 		this.controlVie = controlVie;
-		this.controlDeplacerPirate = new ControlDeplacer(joueur);
+		this.controlDeplacerPirate = new ControlDeplacer(joueurs);
 		this.controlJeuPirate     = controlJeuPirate;
 	}
 	
 	private void faireAvancerJoueur(int nb) {
-		controlDeplacerPirate.deplacer(nb);
+		controlDeplacerPirate.deplacer(nb, joueurCourant);
 	}
 	
 	private void faireReculerJoueur(int nb) {
-		controlDeplacerPirate.deplacer(nb);
+		controlDeplacerPirate.deplacer(nb, joueurCourant);
 	}
 	
 	private void modifPointDeVie(int nb) {
-		controlVie.gagnerPointsDeVie(nb,joueur);
+		controlVie.gagnerPointsDeVie(nb,joueurs[joueurCourant]);
 	}
 	
 	@Override

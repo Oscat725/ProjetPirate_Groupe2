@@ -15,9 +15,9 @@ public class ControlActiverCaseCoco extends ControlActiverCaseSpecial {
 	private final Random random;
 	private int derniersDegats;
 
-	public ControlActiverCaseCoco(Joueur joueur, Case caseSpecial, ControlPointDeVie controlVie,
+	public ControlActiverCaseCoco(Joueur[] joueurs, Case caseSpecial, ControlPointDeVie controlVie,
 			ControlCacherDe controlDe) {
-		super(joueur, caseSpecial);
+		super(joueurs, caseSpecial);
 		this.controlVie = controlVie;
 		this.controlDe = controlDe;
 		this.random = new Random();
