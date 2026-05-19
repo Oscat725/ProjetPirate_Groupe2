@@ -28,15 +28,15 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 	@Override
 	void activerCase(Case caseBombe,int joueurCourant) {
 		if (caseBombe instanceof CaseBombe caseB) {
-			int valeur = controlDe.lancerDesModif(1, 5, 0);
+			// La bombe fait entre 1 et 5 de dégâts ( modif 0)
+			int valeur = controlDe.lancerDesModif(1, 5, 1); 
 			caseB.activerBombe(valeur);
-			controlVie.perdrePointsDeVie(CaseBombe.getValue(), joueurs[joueurCourant]);
-		}
 			
-		
+			// On utilise la "valeur" directement 
+			controlVie.perdrePointsDeVie(valeur, joueurs[joueurCourant]);
+		}
 		finCaseBombe();
 	}
-
 	@Override
 	public void afficherBombe() {
 //		activerCase(int joueurCourant); //pourait renvoyer degats

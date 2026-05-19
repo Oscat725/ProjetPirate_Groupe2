@@ -28,6 +28,10 @@ public class ControlCommencerPartie implements ICommencerPartie {
     public void initialiserJoueurs(String nomJ1, String nomJ2) {
         jeu.setJoueur(0, new Joueur(nomJ1, new Pion()));
         jeu.setJoueur(1, new Joueur(nomJ2, new Pion()));
+        
+        //initaliser sur la case de depart
+        jeu.getPlateau().getCase(0).setJoueur(0, jeu.getJoueur(0));
+        jeu.getPlateau().getCase(0).setJoueur(1, jeu.getJoueur(1));
     }
 
     @Override

@@ -9,11 +9,8 @@ public class ControlCacherDe {
 		this.joueur = joueur;
 	}
 	
-	boolean setAffecterCoco(Joueur joueurAffecte) {
-		return false;//joueur.setAffecteCoco();
+	public void setAffecteCoco(Joueur joueurAffecte, boolean estAffecte) {
+		// Décommente quand la méthode existera dans Joueur :
+		// joueurAffecte.setAffecteCoco(estAffecte); 
 	}
-	
-	//boolean testAffecterCoco(Joueur joueurAffecte){
-	//	return joueur.getAffecterCoco;
-	//}
 }

@@ -8,9 +8,8 @@ import interface_noyau_fonctionnel.INoyauFonctionnel;
 
 public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
 
-    private Jeu jeu;
+	private Jeu jeu;
     private Joueur[] joueurs;
-
     private IBoundary iBoundary;
 
     // Sous-controleurs
@@ -21,6 +20,12 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
     private ControlVerifierFinPartie controlVerifierFinPartie;
     private ControlActiverCase controlActiverCase;
     private ControlPirateCourant controlPirateCourant;
+    
+    // On déclare juste les variables ici, sans les initialiser
+    private ControlCacherDe controlCacherDe; 
+    private ControlActiverCaseBombe controlBombe;
+    private ControlActiverCaseCoco controlCoco;
+    private ControlActiverCaseMystere controlMystere;
 
     public ControlJeuPirate(IBoundary iBoundary) {
 
@@ -29,27 +34,19 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
         this.jeu = new Jeu();
         this.joueurs = jeu.getJoueurs();
 
-        this.controlCommencerPartie =
-            new ControlCommencerPartie(jeu, iBoundary, this);
+        this.controlCommencerPartie = new ControlCommencerPartie(jeu, iBoundary, this);
+        this.controleurDe = new ControleurDe(jeu, iBoundary, this);
+        this.controlPointDeVie = new ControlPointDeVie(jeu, iBoundary, this);
+        this.controlVerifierFinPartie = new ControlVerifierFinPartie(joueurs);
+        this.controlDeplacer = new ControlDeplacer(jeu, iBoundary, this);
+        this.controlPirateCourant = new ControlPirateCourant(this.jeu);
 
-        this.controleurDe =
-            new ControleurDe(jeu, iBoundary, this);
+        this.controlCacherDe = new ControlCacherDe(null); 
+        this.controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, this, iBoundary);
+        this.controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe);
+        this.controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this);
 
-        this.controlPointDeVie =
-            new ControlPointDeVie(jeu, iBoundary, this);
-
-        this.controlVerifierFinPartie =
-            new ControlVerifierFinPartie(joueurs);
-
-        this.controlDeplacer =
-            new ControlDeplacer(jeu, iBoundary, this);
-        
-        this.controlActiverCase = 
-        	new ControlActiverCase();
-        
-        this.controlPirateCourant =
-        	new ControlPirateCourant(jeu.getJoueur(0), jeu.getJoueur(1));
-
+        this.controlActiverCase = new ControlActiverCase(controlBombe, controlCoco, controlMystere);
     }
 
     public Jeu getJeu() {
@@ -71,29 +68,44 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
     }
     
     public void apresDeplacer(int numCase) {
-        //controlActiverCase.activerCase(jeu.getJoueurCourant(),jeu.getPlateau().getCase(numCase)); //A decommenter
+        controlActiverCase.activerCase(jeu.getPlateau().getCase(numCase), jeu.getIndiceJoueurCourant());
+        
+        apresActiverCase();
     }
     
     public void apresActiverCase() {
-    	controlPointDeVie.calculerPV();
+        controlPointDeVie.calculerPV();
     }
     
     public void apresAfficherPV() {
-    	controlPirateCourant.changerJoueur();
-    	if(controlVerifierFinPartie.verifierFinPartie()) {
-    		System.out.println("Fin Partie"); //a modifier ulterieurement
-    	}else {
-    		jouerUnTour();
-    	}
+       //On vérifie si la partie est terminée (victoire ou mort)
+        if(controlVerifierFinPartie.verifierFinPartie()) {
+            
+            // On détermine qui a gagné :
+            // Si le joueur courant a atteint la case 30 ou si l'autre est mort, c'est lui le gagnant.
+            String gagnant = jeu.getJoueurCourant().getNom();
+            
+            // Si le joueur courant vient de mourir (ex: case bombe), l'autre gagne.
+            if(jeu.getJoueurCourant().getPointDeVie() <= 0) {
+                // Si courant = joueur 0, l'autre est joueur 1 (et inversement)
+                int autreJoueurIndex = (jeu.getIndiceJoueurCourant() == 0) ? 1 : 0;
+                gagnant = jeu.getJoueur(autreJoueurIndex).getNom();
+            }
+            
+            iBoundary.afficherFinDePartie(gagnant, null); // Fin de la boucle
+            
+        } else {
+            // La partie continue : on change de joueur et on relance le tour
+            finDeTour(); 
+        }
     }
     
 	//-----methodes a implementer pour INoyau-----
 	
-	@Override
-	public void jouer() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void jouer() {
+        controlCommencerPartie.commencerPartie();
+    }
 
 	@Override
 	public void soumettreNoms(String nomJ1, String nomJ2) {
@@ -158,10 +170,11 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
 
 
     //????
-    public void finDeTour() {
+	public void finDeTour() {
         jeu.passerAuJoueurSuivant();
+        controlPirateCourant.changerJoueur();
         iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
-        // Attend le prochain clic de l'utilisateur
+        jouerUnTour(); // Démarre le tour du nouveau joueur
     }
 
 }

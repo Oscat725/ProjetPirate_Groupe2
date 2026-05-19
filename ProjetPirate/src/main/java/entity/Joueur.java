@@ -40,8 +40,8 @@ public class Joueur {
 		return pion.setPosition(pos);
 	}
 	
-	public void setAffecteCoco() {
-		affecteCoco = true;
+	public void setAffecteCoco(boolean estAffecte) {
+	    this.affecteCoco = estAffecte;
 	}
     
     public int[] lancerDe() {

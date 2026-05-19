@@ -9,20 +9,18 @@ public class MainConsole {
         Jeu jeu = new Jeu();
         
         //initialisation temporaire pour lier les objets
-        ControlJeuPirate controlJeu = new ControlJeuPirate(jeu, null);
+        ControlJeuPirate controlJeu = new ControlJeuPirate(null);
         ControlCommencerPartie controlCommencer = new ControlCommencerPartie(jeu, null, controlJeu);
         
         //création de  boundary
-        BoundaryConsole boundary = new BoundaryConsole(controlCommencer);
+        BoundaryConsole boundary = new BoundaryConsole();
         
         
         //instanciation des controleur avec la vraie boundary
-        controlJeu = new ControlJeuPirate(jeu, boundary);
+        controlJeu = new ControlJeuPirate(boundary);
         ControlDeplacer controlDeplacer = new ControlDeplacer(jeu, boundary, controlJeu);
         ControleurDe controleurDe = new ControleurDe(jeu, boundary, controlJeu);
         ControlVerifierFinPartie controlVerifier = new ControlVerifierFinPartie(jeu.getJoueurs());
-        
-        controlJeu.setControleurs(controleurDe, controlDeplacer, controlVerifier);
         
         // test
         controlJeu.jouer();

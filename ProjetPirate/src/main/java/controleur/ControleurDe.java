@@ -21,7 +21,8 @@ public class ControleurDe implements ILancerDe {
     // Appelé par ControlJeuPirate
     public void lancerDe() {
         resultatDes = jeu.getJoueurCourant().lancerDe();
-        boundary.affichageResultatDe(1, resultatDes[0], this);
+       
+        boundary.affichageResultatDe(resultatDes[0], resultatDes[1], this);
     }
     
     //Appele pour les fontion generales

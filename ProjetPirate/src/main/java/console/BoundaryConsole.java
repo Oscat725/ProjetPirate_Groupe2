@@ -75,8 +75,15 @@ public class BoundaryConsole implements IBoundary {
     @Override
     public void afficherFinDePartie(String nomGagnant, IFinDePartie callback) {
         System.out.println("\n\n--------------------FIN DE LA PARTIE !--------------------");
-        System.out.println("         Le gagnant est :" + nomGagnant);
-        callback.finPartie();
+        System.out.println("         Le gagnant est : " + nomGagnant);
+        
+        // On vérifie que callback n'est pas null avant de l'appeler
+        if (callback != null) {
+            callback.finPartie();
+        } else {
+            // Si on est en console et qu'on n'a pas de callback, on peut juste quitter
+            System.exit(0); 
+        }
     }
     
     @Override

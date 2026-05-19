@@ -37,8 +37,11 @@ public class ControlDeplacer implements IDeplacerPirate {
 	    	}
 	    	
 	    	if (nouvellePos != pos) {
-            plateau.getCase(pos).removeJoueur(indexJoueur);
-	    }
+	    	    // Vérifie si le joueur est bien enregistré sur la case avant de le retirer
+	    	    if (plateau.getCase(pos).getJoueur(indexJoueur) != null) {
+	    	        plateau.getCase(pos).removeJoueur(indexJoueur);
+	    	    }
+	    	}
 	    	
         plateau.getCase(nouvellePos).setJoueur(indexJoueur, joueur);
 	    
