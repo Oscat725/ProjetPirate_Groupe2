@@ -93,7 +93,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonLancerActionPerformed"/>
               </Events>
             </Component>
-            <Container class="boundary.PanelDe" name="de1">
+            <Container class="presentation.PanelDe" name="de1">
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -108,7 +108,7 @@
                 </DimensionLayout>
               </Layout>
             </Container>
-            <Container class="boundary.PanelDe" name="de2">
+            <Container class="presentation.PanelDe" name="de2">
 
               <Layout>
                 <DimensionLayout dim="0">

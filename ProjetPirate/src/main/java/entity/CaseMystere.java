@@ -14,7 +14,13 @@ public class CaseMystere extends Case {
 
 	public void activerCase() {
 		this.effect = random.nextInt(3); 
-		this.value = random.nextInt(4) + 1;  
+		if (effect == 2) {
+	        //PV : 1 à 2
+	        this.value = random.nextInt(2) + 1;
+	    } else {
+	        //déplacement : 1 à 4
+	        this.value = random.nextInt(4) + 1;
+	    }
 	}
 
 	public int getValue() {

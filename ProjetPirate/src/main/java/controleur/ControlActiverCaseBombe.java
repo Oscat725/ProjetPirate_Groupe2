@@ -32,6 +32,8 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 			int valeur = controlDe.lancerDesModif(1, 5, 1); 
 			caseB.activerBombe(valeur);
 			
+			//affichage de l'effet 
+			iBoundary.afficherEffetCase("Bombe", "Le pirate subit "+ valeur + " degats");			
 			// On utilise la "valeur" directement 
 			controlVie.perdrePointsDeVie(valeur, joueurs[joueurCourant]);
 		}

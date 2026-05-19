@@ -12,16 +12,18 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 	private ControlPointDeVie controlVie;
 	private ControlDeplacer controlDeplacerPirate;
 	private ControlJeuPirate controlJeuPirate;
+	private IBoundary iBoundary;
 	private int joueurCourant;
 
 	public ControlActiverCaseMystere(Joueur[] joueurs, int joueurCourant,
-			ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate) {
+			ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate, IBoundary iBoundary) {
 		super(joueurs);
 		this.joueurCourant = joueurCourant;
 		this.controlVie = controlVie;
 		this.controlJeuPirate = controlJeuPirate;
 		this.controlDeplacerPirate = new ControlDeplacer(controlJeuPirate.getJeu(), controlJeuPirate.getBoundary(),
 				controlJeuPirate);
+		this.iBoundary = iBoundary;
 	}
 
 	private void faireAvancerJoueur(int nb) {
@@ -43,14 +45,17 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 			switch (caseMystere.effect) {
 			case 0: 
 				faireAvancerJoueur(caseMystere.getValue());
+				iBoundary.afficherEffetCase(
+		                "MYSTERE","Le joueur avance de " + caseMystere.getValue() + " cases");
 				break;
 			case 1:
 				faireReculerJoueur(caseMystere.getValue());
+				iBoundary.afficherEffetCase(
+		                "MYSTERE","Le joueur recule de " + caseMystere.getValue() + " cases");
 				break;
 			case 2:
-				if (caseMystere.getValue()>2) {
-					throw new IllegalArgumentException("Unexpected value: " + caseMystere.getValue());
-				}
+				iBoundary.afficherEffetCase(
+		                "MYSTERE","Le joueur gagne " + caseMystere.getValue() + " PV");
 				modifPointDeVie(caseMystere.getValue());
 				break;
 			default:

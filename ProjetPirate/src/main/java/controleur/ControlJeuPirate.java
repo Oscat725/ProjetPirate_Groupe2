@@ -43,8 +43,8 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
 
         this.controlCacherDe = new ControlCacherDe(null); 
         this.controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, this, iBoundary);
-        this.controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe);
-        this.controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this);
+        this.controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe, iBoundary);
+        this.controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this, iBoundary);
 
         this.controlActiverCase = new ControlActiverCase(controlBombe, controlCoco, controlMystere);
     }

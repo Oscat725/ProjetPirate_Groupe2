@@ -60,10 +60,9 @@ public class BoundaryConsole implements IBoundary {
     
     
     @Override
-    public void afficherEffetCase(String typeCase, String message, IActiverCase callback) {
+    public void afficherEffetCase(String typeCase, String message) {
         System.out.println("Vous êtes tombés sur une case spéciale : <" + typeCase + ">");
         System.out.println(message + "\n"); // Le message represente les conséquences de la case spéciales
-        callback.finActiverCase();
     }
 
     @Override
