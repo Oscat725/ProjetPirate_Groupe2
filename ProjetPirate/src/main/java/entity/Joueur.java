@@ -58,8 +58,8 @@ public class Joueur {
 	    	return tabValDe;
     }
     
-    public int lancerDesGeneral(int nbDes, int ValeurMax, int ValeurMin) {
-    	return deUn.lancerDes(nbDes, ValeurMax, ValeurMin);
+    public int lancerDesGeneral(int nbDes, int min, int max) {
+    		return deUn.lancerDes(nbDes, min, max);
     }
     
     public int getValeurCoco() {

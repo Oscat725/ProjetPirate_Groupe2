@@ -32,18 +32,15 @@ public class Case {
 		contientJoueur = (joueursCase[0] != null || joueursCase[1] != null);
 	}
 	
-	public Joueur removeJoueur(int numJoueur) {
+	public void removeJoueur(int numJoueur) {
 		if (numJoueur != 0 && numJoueur != 1 ) {
 			throw new IllegalArgumentException("Le numéro du joueur est pas valide : " + numJoueur);
 		}
 		
 		if (joueursCase[numJoueur] == null) {
-			throw new NullPointerException("Le joueur avec le numéro "+ numJoueur+ " n'existe pas dans cette case");
+			throw new NullPointerException("Le joueur "+ numJoueur+ " n'est pas présent dans cette case");
 		}
-		
-		Joueur joueur = joueursCase[numJoueur];
 		joueursCase[numJoueur] = null;
-		return joueur;
 	}
 		
 

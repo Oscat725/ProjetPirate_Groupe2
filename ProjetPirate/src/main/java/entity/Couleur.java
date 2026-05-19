@@ -11,7 +11,7 @@ public enum Couleur {
 		this.numJ = numJ;
 	}
 	
-	public Couleur trouverCouleur(int numJ) { 
+	public static Couleur trouverCouleur(int numJ) { 
 		for (Couleur couleur : Couleur.values( )) {
 			if (couleur.numJ == numJ) {
 				return couleur;

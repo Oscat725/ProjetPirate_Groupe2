@@ -29,7 +29,7 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 	void activerCase(Case caseBombe,int joueurCourant) {
 		if (caseBombe instanceof CaseBombe caseB) {
 			// La bombe fait entre 1 et 5 de dégâts ( modif 0)
-			int valeur = controlDe.lancerDesModif(1, 5, 1); 
+			int valeur = controlDe.lancerDesModif(1, 1, 5); 
 			caseB.activerBombe(valeur);
 			
 			//affichage de l'effet 

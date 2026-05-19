@@ -26,8 +26,8 @@ public class ControleurDe implements ILancerDe {
     }
     
     //Appele pour les fontion generales
-    public int lancerDesModif(int nbDes, int valeurMax, int valeurMin) {
-		return jeu.getJoueurCourant().lancerDesGeneral(nbDes, valeurMax, valeurMin);
+    public int lancerDesModif(int nbDes, int min, int max) {
+		return jeu.getJoueurCourant().lancerDesGeneral(nbDes, min, max);
 	}
 
     @Override

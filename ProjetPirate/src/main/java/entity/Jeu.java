@@ -15,6 +15,10 @@ public class Jeu {
         //this.deUn = new De(); 
         //this.deDeux = new De(); modification de structure
     }
+    
+    public Plateau getPlateau() {
+		return plateau;
+	}
 
     public int getIndiceJoueurCourant() {
         return joueurCourant;
@@ -23,10 +27,6 @@ public class Jeu {
     public Joueur getJoueurCourant() {
         return joueurs[joueurCourant];
     }
-    
-    public Plateau getPlateau() {
-		return plateau;
-	}
 
     public void setJoueur(int index, Joueur joueur) {
         joueurs[index] = joueur;

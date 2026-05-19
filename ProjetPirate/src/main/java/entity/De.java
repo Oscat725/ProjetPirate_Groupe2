@@ -6,7 +6,6 @@ public class De {
 	
 	private static final Integer MIN = 1;
     private static final Integer MAX = 6;
-	private int valeur;
 	private final Random random;
 	
 	public De() {
@@ -14,17 +13,14 @@ public class De {
 	}
 	
 	public int getValeur() {
-		valeur = MIN + random.nextInt(MAX);
-		return valeur;
+		return MIN + random.nextInt(MAX);
 	}
 	
-	public int lancerDes(int nbDes, int valeurMax, int valeurMin) {
-		valeur = 0;
+	public int lancerDes(int nbDes, int min, int max) {
+		int valeur = 0;
 		for(int i=0; i<nbDes; i++) {
-			valeur+= random.nextInt(valeurMin,valeurMax+1);
+			valeur+= random.nextInt(min, max+1);
 		}
 		return valeur;
 	}
-	
-
 }
