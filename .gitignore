@@ -1,3 +1,6 @@
 /ProjetPirate/target/
 /ProjetPirate/bin/target/
 /bin/
+
+.metadata/
+.sonarlint/
