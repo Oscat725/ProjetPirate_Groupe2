@@ -11,7 +11,7 @@ import entity.Jeu;
 import entity.Joueur;
 import entity.Pion;
 
-class testControleurDe {
+class TestControleurDe {
 	
 	private Jeu jeu;
 	private Joueur joueur0;

@@ -33,9 +33,10 @@ public class ControlActiverCaseCoco extends ControlActiverCaseSpecial {
         derniersDegats = DEGATS_MIN + random.nextInt(DEGATS_MAX - DEGATS_MIN + 1);
         
         //affichage chute de noix de coco
+        if(iBoundary != null) {
         iBoundary.afficherEffetCase(
             "CHUTE DE NOIX DE COCO","Une noix de coco tombe : -" + derniersDegats + " PV");
-
+        }
         // 2) //On met les dégats sur le joueurs
         controlVie.perdrePointsDeVie(derniersDegats, joueurs[joueurCourant]);
         

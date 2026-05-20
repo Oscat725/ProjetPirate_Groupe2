@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Test;
 import boundary.interfaces.IBoundary;
 import controleur.ControlDeplacer;
 import controleur.ControlJeuPirate;
-import controleur.ControlPointDeVie;
 import entity.Jeu;
 import entity.Joueur;
 import entity.Pion;
 
-class testControlDeplacer {
+class TestControlDeplacer {
 	private IBoundary boundary;
     private ControlJeuPirate controlJeuPirate;
     private Jeu jeu;
