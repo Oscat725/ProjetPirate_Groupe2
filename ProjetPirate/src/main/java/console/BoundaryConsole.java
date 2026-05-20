@@ -87,7 +87,7 @@ public class BoundaryConsole implements IBoundary {
     
     @Override
     public void deplacerPirates(String nomPirate, int ancienneCase, int nouvelleCase, IDeplacerPirate callback) {
-        System.out.println(nomPirate + " avance de la case " + (ancienneCase + 1)
+        System.out.println(nomPirate + " se deplace de la case " + (ancienneCase + 1)
                          + " à la case " + (nouvelleCase + 1));
         callback.finDeplacerPirate(nouvelleCase);
     }

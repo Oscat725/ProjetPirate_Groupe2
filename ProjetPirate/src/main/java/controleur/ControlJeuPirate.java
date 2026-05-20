@@ -6,7 +6,7 @@ import console.BoundaryConsole;
 import entity.*;
 import interface_noyau_fonctionnel.INoyauFonctionnel;
 
-public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
+public class ControlJeuPirate implements IControlJeuPirate {
 
 	private Jeu jeu;
     private Joueur[] joueurs;
@@ -58,6 +58,10 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
     }
     
     //-----methodes appellees par les autres controleurs-----
+    
+    public void jouer() {
+        controlCommencerPartie.commencerPartie();
+    }
 	
     public void apresLancerDe(int sommeDes) {
         controlDeplacer.deplacerPirate(sommeDes);
@@ -100,76 +104,7 @@ public class ControlJeuPirate implements INoyauFonctionnel, IControlJeuPirate {
         }
     }
     
-	//-----methodes a implementer pour INoyau-----
-	
-    @Override
-    public void jouer() {
-        controlCommencerPartie.commencerPartie();
-    }
 
-	@Override
-	public void soumettreNoms(String nomJ1, String nomJ2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationCommencer() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationTourVu() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationDes() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationDeplacement() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationCaseSpeciale() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationPV() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void confirmationFinPartie() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	// -----main pour tester le deroulement d'une partie-----
-	public static void main(String[] args) {
-		IBoundary boundary = new BoundaryConsole(); 
-
-	    ControlJeuPirate controleur =
-	            new ControlJeuPirate(boundary);
-	    
-		controleur.controlCommencerPartie.commencerPartie();
-		
-	}
-	
-
-
-
-    //????
 	public void finDeTour() {
         jeu.passerAuJoueurSuivant();
         controlPirateCourant.changerJoueur();

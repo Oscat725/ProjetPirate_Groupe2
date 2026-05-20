@@ -32,8 +32,8 @@ public class ControlDeplacer implements IDeplacerPirate {
     		int pos = joueur.getPosition();
     		int nouvellePos = pos + somme;
     		
-	    	if (nouvellePos > 29) {
-	    		nouvellePos -= (nouvellePos%29);
+	    	if (nouvellePos > CASE_MAX) {
+	    		nouvellePos = CASE_MAX - (nouvellePos%29);
 	    	}
 	    	
 	    	if (nouvellePos != pos) {
