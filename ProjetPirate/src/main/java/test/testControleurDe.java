@@ -20,7 +20,7 @@ class testControleurDe {
 	private IBoundary boundary;
 	
 	@BeforeEach
-	void setUp() {
+	public void setUp() {
 		jeu = new Jeu();
 		joueur0 = new Joueur("Pirate1", new Pion(0));
         joueur1 = new Joueur("Pirate2",   new Pion(1));

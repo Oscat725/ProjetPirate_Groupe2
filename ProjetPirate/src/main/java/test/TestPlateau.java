@@ -54,3 +54,4 @@ public class TestPlateau {
         assertTrue(c instanceof CaseMystere);
     }
 }
+

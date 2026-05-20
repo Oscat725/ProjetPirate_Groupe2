@@ -89,7 +89,7 @@ public class ControlDeplacer {
         int nouvellePos = pos + somme;
         
         if (nouvellePos > CASE_MAX) {
-            nouvellePos = CASE_MAX - (nouvellePos%29);
+            nouvellePos = CASE_MAX - (nouvellePos% CASE_MAX);
         }
         
         if (nouvellePos != pos) {
@@ -101,9 +101,10 @@ public class ControlDeplacer {
         plateau.getCase(nouvellePos).setJoueur(indexJoueur, joueur);
         joueur.setPosition(nouvellePos);
         
-        // on utilise la lambda ici
+        if(boundary != null && controlJeuPirate != null) {
         boundary.deplacerPirates(joueur.getNom(), pos, nouvellePos, (numCase) -> {
             controlJeuPirate.apresDeplacer(numCase);
         });
+        };
     }
 }
