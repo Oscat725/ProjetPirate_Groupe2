@@ -44,14 +44,17 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
 			caseMystere.activerCase();
 			switch (caseMystere.effect) {
 			case 0: 
-				faireAvancerJoueur(caseMystere.getValue());
 				iBoundary.afficherEffetCase(
 		                "MYSTERE","Le joueur avance de " + caseMystere.getValue() + " cases");
+				faireAvancerJoueur(caseMystere.getValue());
+				
+				
 				break;
 			case 1:
-				faireReculerJoueur(caseMystere.getValue());
 				iBoundary.afficherEffetCase(
 		                "MYSTERE","Le joueur recule de " + caseMystere.getValue() + " cases");
+				faireReculerJoueur(caseMystere.getValue());
+				
 				break;
 			case 2:
 				iBoundary.afficherEffetCase(
