@@ -28,5 +28,7 @@ class TestJoueur {
         joueur.setPointDeVie(3);
         assertEquals(3, joueur.getPointDeVie());
     }
+	
+	
 
 }

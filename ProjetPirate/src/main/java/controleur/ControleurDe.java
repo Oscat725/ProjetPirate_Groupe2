@@ -4,7 +4,6 @@ import boundary.interfaces.ILancerDe;
 import boundary.interfaces.IBoundary;
 import entity.Jeu;
 
-// Nolawi
 public class ControleurDe implements ILancerDe {
 
     private Jeu jeu;
