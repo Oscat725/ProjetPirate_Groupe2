@@ -15,7 +15,6 @@ import entity.CaseMystere;
 public class TestPlateau {
 	
 	private Plateau plateau;
-    private Case c;
 	
 	@BeforeEach
 	public void setup() {
@@ -28,26 +27,30 @@ public class TestPlateau {
         assertNotNull(c);
         assertFalse(c.getEstCaseSpecial());
     }
+	
+	@Test
+	public void testDeuxCase() {
+		Case c1 = plateau.getCase(5);
+		Case c2 = plateau.getCase(5);
+		assertEquals("Deux cases ont le même type",c1,c2);
+	}
 
 	
 	@Test
     public void testGetCaseBombe() {
         Case c = plateau.getCase(4);
-        assertNotNull(c);
         assertTrue(c instanceof CaseBombe);
     }
 	
 	@Test
     public void testGetCaseCoco() {
         Case c = plateau.getCase(7);
-        assertNotNull(c);
         assertTrue(c instanceof CaseCoco);
     }
 	
 	@Test
     public void testGetCaseMystere() {
         Case c = plateau.getCase(9);
-        assertNotNull(c);
         assertTrue(c instanceof CaseMystere);
     }
 }
