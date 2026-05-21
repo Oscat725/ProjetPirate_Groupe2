@@ -10,6 +10,5 @@ public class MainConsole {
             frame.setDialogue(dialogue);
             frame.setVisible(true);
         });
-
     }
 }

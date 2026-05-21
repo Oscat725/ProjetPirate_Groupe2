@@ -4,6 +4,8 @@
  */
 package presentation;
 
+import javax.swing.JDialog;
+
 /**
  *
  * @author rtiam
@@ -28,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
         de1.setOnAnimationFinie(() -> dialogue.animationDeTerminee());
         de2.setOnAnimationFinie(() -> dialogue.animationDeTerminee());
         plateau.setOnPionPlace(caseNumero -> dialogue.pionPlaceCorrectement(caseNumero));
+        dialogue.demarrerJeu();
     }
 
     public void activerBouton(boolean actif) {
@@ -39,12 +42,22 @@ public class MainFrame extends javax.swing.JFrame {
         de2.lancerAnimation(r2);
     }
 
-    public void activerDrag(int cible) {
-        plateau.activerDrag(cible);
+    public void activerDrag(int joueurIndex, int cible) {
+        plateau.activerDrag(joueurIndex, cible);
     }
 
     public void deplacerPion(int joueur, int caseNumero, java.awt.Color couleur) {
         plateau.deplacerPion(joueur, caseNumero, couleur);
+    }
+    
+    public void afficherBombe(){
+        JDialog d = new JDialog(this,"gjnsdg",true);
+        d.add(de1);
+        d.setVisible(true);
+    }
+    
+    public void log(String message){
+        
     }
 
     /**
@@ -184,7 +197,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     //Melanie
     private void InfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoButtonActionPerformed
-       javax.swing.JOptionPane.showMessageDialog(
+    
+        
+        javax.swing.JOptionPane.showMessageDialog(
         this,
         "Règles du jeu des pirates :\n"
         + "-2 joueurs\n"
