@@ -2,8 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import entity.Plateau;
 import entity.Case;
@@ -16,7 +16,7 @@ public class TestPlateau {
 	
 	private Plateau plateau;
 	
-	@BeforeEach
+	@Before
 	public void setup() {
 		plateau =new Plateau();
 	}

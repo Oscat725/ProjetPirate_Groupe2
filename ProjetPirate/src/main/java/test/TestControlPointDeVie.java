@@ -1,12 +1,17 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import boundary.interfaces.IBoundary;
+import boundary.interfaces.ICommencerPartie;
+import boundary.interfaces.IDeplacerPirate;
+import boundary.interfaces.IFinDePartie;
+import boundary.interfaces.ILancerDe;
+import boundary.interfaces.IPointsDeVie;
 import controleur.ControlJeuPirate;
 import controleur.ControlPointDeVie;
 import entity.Jeu;
@@ -24,6 +29,16 @@ class TestControlPointDeVie {
 
     @BeforeEach
     public void setUp() {
+    	boundary = new IBoundary() {
+            @Override public void affichageResultatDe(int v1, int v2, boundary.interfaces.ILancerDe cb) {}
+            @Override public void deplacerPirates(String n, int a, int b, boundary.interfaces.IDeplacerPirate cb) {}
+            @Override public void afficherEffetCase(String t, String m) {}
+            @Override public void afficherPointDeVie(String n, int pv, boundary.interfaces.IPointsDeVie cb) {}
+            @Override public void afficherFinDePartie(String n, boundary.interfaces.IFinDePartie cb) {}
+            @Override public void afficherMessage(String m) {}
+            @Override public void changerJoueurActif(String n) {}
+            @Override public void commencerPartie(boundary.interfaces.ICommencerPartie cb) {}
+        };
         jeu = new Jeu();
         joueur0 = new Joueur("Pirate1", new Pion(0));
         joueur1 = new Joueur("Pirate2",   new Pion(1));
@@ -36,13 +51,13 @@ class TestControlPointDeVie {
 	@Test
 	public void testPerdrePoint() {
 		controlPointDeVie.perdrePointsDeVie(2, joueur0);
-        assertEquals("Le joueur doit perdre 2 PV",3, joueur0.getPointDeVie());
+		assertEquals(3, joueur0.getPointDeVie(), "Le joueur doit perdre 2 PV");
 	}
 	
 	@Test
 	public void TestperdrePointsDeVie_depasseMin_pvBloquéAZero() {
         controlPointDeVie.perdrePointsDeVie(10, joueur0); // PV max = 5
-        assertEquals("Le joueur ne diot pas avoir un PV négatif -> remis à 0",0, joueur0.getPointDeVie());
+        assertEquals(0, joueur0.getPointDeVie(), "Le joueur ne doit pas avoir un PV négatif -> remis à 0");
     }
 	
 	@Test
@@ -57,14 +72,14 @@ class TestControlPointDeVie {
 	public void testGagnerPointDevie() {
 		joueur0.setPointDeVie(2);
         controlPointDeVie.gagnerPointsDeVie(2, joueur0);
-        assertEquals("Le point de vie doit augmenter",4, joueur0.getPointDeVie());
+        assertEquals(4, joueur0.getPointDeVie(), "Le point de vie doit augmenter");
 	}
 	
 	@Test
 	public void testGagnerPointDeVieMex() {
         joueur0.setPointDeVie(4);
         controlPointDeVie.gagnerPointsDeVie(3, joueur0);
-        assertEquals("Les points de vie doivent pas dépasser 5",5, joueur0.getPointDeVie());
+        assertEquals(5, joueur0.getPointDeVie(), "Les points de vie ne doivent pas dépasser 5");
     }
 	
 	@Test

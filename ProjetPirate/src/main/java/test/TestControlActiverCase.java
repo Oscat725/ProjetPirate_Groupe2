@@ -1,7 +1,7 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import controleur.ControlActiverCase;
@@ -13,7 +13,11 @@ import entity.CaseMystere;
 class TestControlActiverCase {
 	
 	private ControlActiverCase control;
-
+	
+	@BeforeEach
+    public void setUp() {
+        control = new ControlActiverCase(null);
+    }
 
 	@Test
 	void testCaseNormale() {
