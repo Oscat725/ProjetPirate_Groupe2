@@ -12,6 +12,7 @@ public interface IBoundary {
     void afficherMessage(String message);                // pour les cases spéciales
     void changerJoueurActif(String nomPirate, IControlJeuPirate callback);		// indiquer à qui est le tour
     void commencerPartie(ICommencerPartie callback); 
+    void demanderUtilisationCoco(IControlCacherDe callback);
     
 	
 }

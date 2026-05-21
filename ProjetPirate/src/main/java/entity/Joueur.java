@@ -10,6 +10,7 @@ public class Joueur {
 	private boolean affecteCoco;
     private final De deUn;
     private final De deDeux;
+	private boolean hasCoco = false;
 	
 
 	public Joueur(String nom, Pion pion) {
@@ -43,7 +44,15 @@ public class Joueur {
 	public void setAffecteCoco(boolean estAffecte) {
 	    this.affecteCoco = estAffecte;
 	}
-    
+
+	public boolean hasCoco() {
+	    return hasCoco;
+	}
+
+	public void setHasCoco(boolean hasCoco) {
+	    this.hasCoco = hasCoco;
+	}
+
     public int[] lancerDe() {
 	    	int[] tabValDe =new int[] {0, 0};
 	    	tabValDe[0] = deUn.getValeur();

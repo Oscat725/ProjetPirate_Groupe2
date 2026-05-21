@@ -22,23 +22,22 @@ public class PanelPlateau extends JPanel {
 
     public PanelPlateau() {
         setLayout(new GridLayout(6, 5));
-        initialiserCases();
-        ajouterCasesEnSnake();
+        initialisertypes();
+        ajoutertypesEnSnake();
         initialiserDrag();
     }
 
-    private void initialiserCases() {
+    private void initialisertypes() {
         String[] types = new String[31];
         for (int i = 1; i <= 30; i++) types[i] = PanelCase.NORMALE;
 
-        types[5]  = PanelCase.BOMBE;
-        types[8]  = PanelCase.COCO;
-        types[10] = PanelCase.MYSTERE;
-        types[12] = PanelCase.BOMBE;
-        types[17] = PanelCase.COCO;
-        types[20] = PanelCase.BOMBE;
+        types[3]  = PanelCase.MYSTERE;    // case 3
+        types[4]  = PanelCase.COCO;
+        types[11] = PanelCase.COCO;
+        types[14] = PanelCase.MYSTERE;
+        types[18] = PanelCase.COCO;
         types[22] = PanelCase.MYSTERE;
-        types[25] = PanelCase.COCO;
+        types[26] = PanelCase.BOMBE;
         types[28] = PanelCase.MYSTERE;
 
         String[] directions = new String[31];
@@ -63,7 +62,7 @@ public class PanelPlateau extends JPanel {
         }
     }
 
-    private void ajouterCasesEnSnake() {
+    private void ajoutertypesEnSnake() {
         int cols = 5;
         for (int row = 0; row < 6; row++) {
             if (row % 2 == 0) {

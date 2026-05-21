@@ -174,4 +174,9 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
        dialogue.afficherMessage(message);
        // Pas d'attente pour un simple message textuel
    }
+
+    @Override
+    public void demanderUtilisationCoco(IControlCacherDe callback) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

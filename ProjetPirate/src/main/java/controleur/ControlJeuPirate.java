@@ -36,7 +36,7 @@ public class ControlJeuPirate implements IControlJeuPirate {
 		this.controlPointDeVie = new ControlPointDeVie(jeu, iBoundary, this);
 		this.controlVerifierFinPartie = new ControlVerifierFinPartie(joueurs);
 		this.controlDeplacer = new ControlDeplacer(jeu, iBoundary, this);
-		this.controlCacherDe = new ControlCacherDe(null);
+		this.controlCacherDe = new ControlCacherDe(joueurs, iBoundary, jeu, this);
 		this.controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, iBoundary);
 		this.controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe, iBoundary);
 		this.controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this, iBoundary);
@@ -63,6 +63,10 @@ public class ControlJeuPirate implements IControlJeuPirate {
 	}
 
 	public void jouerUnTour() {
+		controlCacherDe.demanderUtilisationCoco();
+	}
+
+	public void apresDemandeCoco(){
 		controleurDe.lancerDe();
 	}
 

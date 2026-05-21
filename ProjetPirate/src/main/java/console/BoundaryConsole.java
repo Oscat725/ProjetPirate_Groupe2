@@ -13,11 +13,9 @@ import boundary.interfaces.IPointsDeVie;
 public class BoundaryConsole implements IBoundary {
 
     private final Scanner scanner;
-    //private final ControlCommencerPartie controlCommencerPartie;
     
     public BoundaryConsole() {
         this.scanner = new Scanner(System.in);
-        //this.controlCommencerPartie = controlCommencerPartie;
     }
     
     // Initialisation de la partie
@@ -50,7 +48,7 @@ public class BoundaryConsole implements IBoundary {
         if (valeurDe2 != 0)
         		System.out.println("Dé 2 : " + valeurDe2);
         else
-        		System.out.println("Le joueur est affecté par le noix de coco donc : deux dé invalide X ");
+        		System.out.println("Vous etes affecté par le noix de coco de l'adversaire donc : Un dé invalide ");
         
         
         System.out.println("\nSomme Total : " + (valeurDe1 + valeurDe2) + "\n");
@@ -99,7 +97,19 @@ public class BoundaryConsole implements IBoundary {
         scanner.nextLine();
         callback.finAfficherTour();
     }
-    
+
+    public void demanderUtilisationCoco(IControlCacherDe callback) {
+        System.out.print("Voulez-vous utiliser votre noix de coco pour ce tour ? (oui/non) : ");
+        String reponse = scanner.nextLine().trim().toLowerCase();
+        if (reponse.equals("oui") || reponse.equals("o")) {
+            System.out.println("Vous avez choisi d'utiliser la noix de coco, l'adversaire lancera un seul dé le tour prochain.\n");
+            callback.finDemandeCoco("oui");
+        } else {
+            System.out.println("Vous avez choisi de ne pas utiliser la noix de coco.\n");
+            callback.finDemandeCoco("non"); // On appelle quand même le callback pour continuer le jeu
+        }
+    }
+
     //Methode IBoundary sans callback
     
     @Override

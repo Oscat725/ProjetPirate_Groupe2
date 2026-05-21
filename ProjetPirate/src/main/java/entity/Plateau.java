@@ -11,14 +11,13 @@ public class Plateau {
         
         // En choisit en avance les cases speciales
         // En coherance avec les cases speciales de PanelPlateau(Presentation)
-        cases[4]  = new CaseBombe(4);    // case 5
-        cases[7]  = new CaseCoco(7);     // case 8
-        cases[9]  = new CaseMystere(9);  // case 10
-        cases[11] = new CaseBombe(11);
-        cases[16] = new CaseCoco(16);
-        cases[19] = new CaseBombe(19);
+        cases[2]  = new CaseMystere(2);    // case 3
+        cases[3]  = new CaseCoco(3);
+        cases[10]  = new CaseCoco(10);
+        cases[13] = new CaseMystere(13);
+        cases[17] = new CaseCoco(17);
         cases[21] = new CaseMystere(21);
-        cases[24] = new CaseCoco(24);
+        cases[25] = new CaseBombe(25);
         cases[27] = new CaseMystere(27);
     }
 
