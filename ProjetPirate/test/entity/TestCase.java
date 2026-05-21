@@ -1,4 +1,4 @@
-package test;
+package entity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +9,7 @@ import entity.Case;
 import entity.Joueur;
 import entity.Pion;
 
-class TestRemoveJoueur {
+class TestCase {
 	private Case caseTest;
 	private Joueur joueur0;
 	@BeforeEach

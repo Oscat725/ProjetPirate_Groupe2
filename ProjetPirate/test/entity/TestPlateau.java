@@ -1,4 +1,4 @@
-package test;
+package entity;
 
 import static org.junit.Assert.*;
 
@@ -38,19 +38,19 @@ public class TestPlateau {
 	
 	@Test
     public void testGetCaseBombe() {
-        Case c = plateau.getCase(4);
+        Case c = plateau.getCase(25);
         assertTrue(c instanceof CaseBombe);
     }
 	
 	@Test
     public void testGetCaseCoco() {
-        Case c = plateau.getCase(7);
+        Case c = plateau.getCase(3);
         assertTrue(c instanceof CaseCoco);
     }
 	
 	@Test
     public void testGetCaseMystere() {
-        Case c = plateau.getCase(9);
+        Case c = plateau.getCase(2);
         assertTrue(c instanceof CaseMystere);
     }
 }

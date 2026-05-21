@@ -1,4 +1,4 @@
-package test;
+package controleur;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +12,7 @@ import boundary.interfaces.IDeplacerPirate;
 import boundary.interfaces.IFinDePartie;
 import boundary.interfaces.ILancerDe;
 import boundary.interfaces.IPointsDeVie;
+import console.BoundaryConsole;
 import controleur.ControlJeuPirate;
 import controleur.ControlPointDeVie;
 import entity.Jeu;
@@ -29,16 +30,7 @@ class TestControlPointDeVie {
 
     @BeforeEach
     public void setUp() {
-    	boundary = new IBoundary() {
-            @Override public void affichageResultatDe(int v1, int v2, boundary.interfaces.ILancerDe cb) {}
-            @Override public void deplacerPirates(String n, int a, int b, boundary.interfaces.IDeplacerPirate cb) {}
-            @Override public void afficherEffetCase(String t, String m) {}
-            @Override public void afficherPointDeVie(String n, int pv, boundary.interfaces.IPointsDeVie cb) {}
-            @Override public void afficherFinDePartie(String n, boundary.interfaces.IFinDePartie cb) {}
-            @Override public void afficherMessage(String m) {}
-            @Override public void changerJoueurActif(String n) {}
-            @Override public void commencerPartie(boundary.interfaces.ICommencerPartie cb) {}
-        };
+    	boundary = new BoundaryConsole();
         jeu = new Jeu();
         joueur0 = new Joueur("Pirate1", new Pion(0));
         joueur1 = new Joueur("Pirate2",   new Pion(1));
