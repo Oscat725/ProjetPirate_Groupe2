@@ -24,12 +24,11 @@ public class ControlCacherDe implements IControlCacherDe {
 
 	@Override
 	public void demanderUtilisationCoco() {
-		System.out.println("YESS");
 		if (jeu.getJoueurCourant().hasCoco()) {
-			System.out.println("entered");
 			iBoundary.demanderUtilisationCoco(this);
+		} else {
+			controlJeuPirate.apresDemandeCoco();
 		}
-		controlJeuPirate.apresDemandeCoco();
 	}
 
 	@Override
