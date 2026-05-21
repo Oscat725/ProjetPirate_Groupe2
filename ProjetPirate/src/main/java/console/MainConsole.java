@@ -1,6 +1,5 @@
 package console;
 
-import controleur.*;
 
 public class MainConsole {
     
@@ -11,10 +10,6 @@ public class MainConsole {
             frame.setDialogue(dialogue);
             frame.setVisible(true);
         });
-//        BoundaryConsole boundary = new BoundaryConsole();
-//        
-//        ControlJeuPirate controlJeu = new ControlJeuPirate(boundary);
-// 
-//        controlJeu.jouer();
+
     }
 }
