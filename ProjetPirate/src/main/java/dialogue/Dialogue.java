@@ -23,7 +23,7 @@ public class Dialogue implements IPirates {
     public void lancerDes() {
         mainFrame.activerBouton(false);
         if (noyau != null) {
-            noyau.lancerDes();
+           // noyau.lancerDes();
         } else { // on attendant que l'adaptateur soit fait
             r1 = (int)(Math.random() * 6) + 1;
             r2 = (int)(Math.random() * 6) + 1;
@@ -50,12 +50,48 @@ public class Dialogue implements IPirates {
     }
 
     @Override
-    public void permettreLancerDes(boolean actif) {
-        mainFrame.activerBouton(actif);
+    public void afficherSaisieNoms() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void setCaseCible(int caseNumero) {
-        mainFrame.activerDrag(caseNumero);
+    public void afficherQuiCommence(String nomPremier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void afficherResultatDes(int de1, int de2) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void afficherDeplacement(String nomPirate, int caseNumero) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void afficherCaseSpeciale(String type, String message) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void afficherPV(String nomPirate, int pv) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void afficherFinPartie(String nomGagnant) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void afficherMessage(String message) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void afficherTourJoueur(String nomJoueur, int position, int pv) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
