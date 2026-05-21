@@ -2,7 +2,6 @@ package controleur;
 
 import java.util.Arrays;
 import entity.Joueur;
-import entity.Plateau;
 
 public class ControlVerifierFinPartie {
 

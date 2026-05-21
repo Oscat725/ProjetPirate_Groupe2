@@ -2,14 +2,13 @@ package console;
 
 
 import java.util.Scanner;
-import boundary.interfaces.IBoundary;
+import boundary.interfaces.*;
 import boundary.interfaces.ICommencerPartie;
 import boundary.interfaces.IActiverCase;
 import boundary.interfaces.IDeplacerPirate;
 import boundary.interfaces.IFinDePartie;
 import boundary.interfaces.ILancerDe;
 import boundary.interfaces.IPointsDeVie;
-import controleur.ControlCommencerPartie;
 
 public class BoundaryConsole implements IBoundary {
 
@@ -60,9 +59,10 @@ public class BoundaryConsole implements IBoundary {
     
     
     @Override
-    public void afficherEffetCase(String typeCase, String message) {
+    public void afficherEffetCase(String typeCase, String message, IActiverCase callback) {
         System.out.println("Vous êtes tombés sur une case spéciale : <" + typeCase + ">");
-        System.out.println(message + "\n"); // Le message represente les conséquences de la case spéciales
+        System.out.println(message + "\n");
+        callback.finActiverCase();
     }
 
     @Override
@@ -92,6 +92,14 @@ public class BoundaryConsole implements IBoundary {
         callback.finDeplacerPirate(nouvelleCase);
     }
     
+    @Override
+    public void changerJoueurActif(String nomPirate, IControlJeuPirate callback) {
+        System.out.println("\n   ->  Au tour de :" + nomPirate + "\n");
+        System.out.print("Appuyez sur Entrée pour lancer les dés ...");
+        scanner.nextLine();
+        callback.finAfficherTour();
+    }
+    
     //Methode IBoundary sans callback
     
     @Override
@@ -99,12 +107,6 @@ public class BoundaryConsole implements IBoundary {
         System.out.println(message);
     }
     
-    @Override
-    public void changerJoueurActif(String nomPirate) {
-        System.out.println("\n   ->  Au tour de :" + nomPirate + "\n");
-        System.out.print("Appuyez sur Entrée pour lancer les dés ...");
-        scanner.nextLine();
-    }
 
     
     

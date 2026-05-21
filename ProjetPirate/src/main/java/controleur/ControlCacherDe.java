@@ -10,7 +10,6 @@ public class ControlCacherDe {
 	}
 	
 	public void setAffecteCoco(Joueur joueurAffecte, boolean estAffecte) {
-		// Décommente quand la méthode existera dans Joueur :
-		// joueurAffecte.setAffecteCoco(estAffecte); 
+		joueurAffecte.setAffecteCoco(estAffecte);
 	}
 }

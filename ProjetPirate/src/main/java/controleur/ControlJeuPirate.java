@@ -2,9 +2,7 @@ package controleur;
 
 import boundary.interfaces.IBoundary;
 import boundary.interfaces.IControlJeuPirate;
-import console.BoundaryConsole;
 import entity.*;
-import interface_noyau_fonctionnel.INoyauFonctionnel;
 
 public class ControlJeuPirate implements IControlJeuPirate {
 
@@ -19,7 +17,6 @@ public class ControlJeuPirate implements IControlJeuPirate {
 	private ControlPointDeVie controlPointDeVie;
 	private ControlVerifierFinPartie controlVerifierFinPartie;
 	private ControlActiverCase controlActiverCase;
-	private ControlPirateCourant controlPirateCourant;
 
 	// On déclare juste les variables ici, sans les initialiser
 	private ControlCacherDe controlCacherDe;
@@ -39,10 +36,8 @@ public class ControlJeuPirate implements IControlJeuPirate {
 		this.controlPointDeVie = new ControlPointDeVie(jeu, iBoundary, this);
 		this.controlVerifierFinPartie = new ControlVerifierFinPartie(joueurs);
 		this.controlDeplacer = new ControlDeplacer(jeu, iBoundary, this);
-		this.controlPirateCourant = new ControlPirateCourant(this.jeu);
-
 		this.controlCacherDe = new ControlCacherDe(null);
-		this.controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, this, iBoundary);
+		this.controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, iBoundary);
 		this.controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe, iBoundary);
 		this.controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this, iBoundary);
 
@@ -72,9 +67,13 @@ public class ControlJeuPirate implements IControlJeuPirate {
 	}
 
 	public void apresDeplacer(int numCase) {
-		controlActiverCase.activerCase(jeu.getPlateau().getCase(numCase), jeu.getIndiceJoueurCourant());
-
-		apresActiverCase();
+		Case c = jeu.getPlateau().getCase(numCase);
+		if (controlActiverCase.isCaseSpecial(c)) {
+			controlActiverCase.activerCase(c, jeu.getIndiceJoueurCourant());
+		} else {
+			iBoundary.afficherMessage("Case normale, aucun effet.");
+			apresActiverCase();
+		}
 	}
 
 	public void apresActiverCase() {
@@ -131,9 +130,12 @@ public class ControlJeuPirate implements IControlJeuPirate {
 
 	public void finDeTour() {
 		jeu.passerAuJoueurSuivant();
-		controlPirateCourant.changerJoueur();
-		iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
-		jouerUnTour(); // Démarre le tour du nouveau joueur
+		iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom(), this);
+	}
+
+	@Override
+	public void finAfficherTour() {
+		jouerUnTour();
 	}
 
 }

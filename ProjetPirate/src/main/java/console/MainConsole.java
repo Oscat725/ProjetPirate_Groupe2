@@ -1,6 +1,5 @@
 package console;
 
-import entity.Jeu;
 import controleur.*;
 
 public class MainConsole {

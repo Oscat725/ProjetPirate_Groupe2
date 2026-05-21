@@ -1,56 +1,37 @@
 package controleur;
 
-import java.lang.instrument.IllegalClassFormatException;
-
+import boundary.interfaces.IActiverCase;
 import boundary.interfaces.IBoundary;
-import boundary.interfaces.ICaseBombe;
 import entity.Case;
 import entity.CaseBombe;
 import entity.Joueur;
 
+public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implements IActiverCase {
 
-public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implements ICaseBombe{
-	private ControlJeuPirate controlJeuPirate;
-	private ControlPointDeVie controlVie;
-	private ControleurDe controlDe;
-	private IBoundary iBoundary;
+    private final ControlPointDeVie controlVie;
+    private final ControleurDe controlDe;
+    private final IBoundary iBoundary;
+    private int derniersDegats;
+    private int joueurCourantIndex;
 
+    public ControlActiverCaseBombe(Joueur[] joueurs, ControleurDe controleurDe, ControlPointDeVie controlVie, IBoundary iBoundary) {
+        super(joueurs);
+        this.controlDe = controleurDe;
+        this.controlVie = controlVie;
+        this.iBoundary = iBoundary;
+    }
 
+    @Override
+    void activerCase(Case caseBombe, int joueurCourant) {
+        if (caseBombe instanceof CaseBombe) {
+            this.joueurCourantIndex = joueurCourant;
+            derniersDegats = controlDe.lancerDesModif(1, 1, 5);
+            iBoundary.afficherEffetCase("BOMBE", "Le pirate subit " + derniersDegats + " degats", this);
+        }
+    }
 
-	public ControlActiverCaseBombe(Joueur[] joueurs,ControleurDe controleurDe,ControlPointDeVie controlVie, ControlJeuPirate controlJeuPirate, IBoundary iBoundary) {
-		super(joueurs);
-		this.controlDe = controleurDe;
-		this.controlVie = controlVie;
-		this.controlJeuPirate = controlJeuPirate;
-		this.iBoundary = iBoundary;
-	}
-
-	@Override
-	void activerCase(Case caseBombe,int joueurCourant) {
-		if (caseBombe instanceof CaseBombe caseB) {
-			// La bombe fait entre 1 et 5 de dégâts ( modif 0)
-			int valeur = controlDe.lancerDesModif(1, 1, 5); 
-			caseB.activerBombe(valeur);
-			
-			//affichage de l'effet 
-			iBoundary.afficherEffetCase("Bombe", "Le pirate subit "+ valeur + " degats");			
-			// On utilise la "valeur" directement 
-			controlVie.perdrePointsDeVie(valeur, joueurs[joueurCourant]);
-		}
-		finCaseBombe();
-	}
-	@Override
-	public void afficherBombe() {
-//		activerCase(int joueurCourant); //pourait renvoyer degats
-		//iBoundary.degatsBombe(degats, this);
-		
-	}
-
-	@Override
-	public void finCaseBombe() {
-		//controlJeuPirate.finCaseBombe();
-		
-	}
-	
-	
+    @Override
+    public void finActiverCase() {
+        controlVie.perdrePointsDeVie(derniersDegats, joueurs[joueurCourantIndex]);
+    }
 }
