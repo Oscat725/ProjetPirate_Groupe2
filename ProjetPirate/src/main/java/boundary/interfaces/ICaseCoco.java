@@ -4,5 +4,6 @@ public interface ICaseCoco {
 	
 	int resultatCaseCoco();
 	void finCaseCoco();
+	int getDegats();
 
 }

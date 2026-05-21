@@ -2,23 +2,20 @@ package console;
 
 
 import java.util.Scanner;
-import boundary.interfaces.IBoundary;
+import boundary.interfaces.*;
 import boundary.interfaces.ICommencerPartie;
 import boundary.interfaces.IActiverCase;
 import boundary.interfaces.IDeplacerPirate;
 import boundary.interfaces.IFinDePartie;
 import boundary.interfaces.ILancerDe;
 import boundary.interfaces.IPointsDeVie;
-import controleur.ControlCommencerPartie;
 
 public class BoundaryConsole implements IBoundary {
 
     private final Scanner scanner;
-    //private final ControlCommencerPartie controlCommencerPartie;
     
     public BoundaryConsole() {
         this.scanner = new Scanner(System.in);
-        //this.controlCommencerPartie = controlCommencerPartie;
     }
     
     // Initialisation de la partie
@@ -51,7 +48,7 @@ public class BoundaryConsole implements IBoundary {
         if (valeurDe2 != 0)
         		System.out.println("Dé 2 : " + valeurDe2);
         else
-        		System.out.println("Le joueur est affecté par le noix de coco donc : deux dé invalide X ");
+        		System.out.println("Vous etes affecté par le noix de coco de l'adversaire donc : Un dé invalide ");
         
         
         System.out.println("\nSomme Total : " + (valeurDe1 + valeurDe2) + "\n");
@@ -60,9 +57,10 @@ public class BoundaryConsole implements IBoundary {
     
     
     @Override
-    public void afficherEffetCase(String typeCase, String message) {
+    public void afficherEffetCase(String typeCase, String message, IActiverCase callback) {
         System.out.println("Vous êtes tombés sur une case spéciale : <" + typeCase + ">");
-        System.out.println(message + "\n"); // Le message represente les conséquences de la case spéciales
+        System.out.println(message + "\n");
+        callback.finActiverCase();
     }
 
     @Override
@@ -92,6 +90,26 @@ public class BoundaryConsole implements IBoundary {
         callback.finDeplacerPirate(nouvelleCase);
     }
     
+    @Override
+    public void changerJoueurActif(String nomPirate, IControlJeuPirate callback) {
+        System.out.println("\n   ->  Au tour de :" + nomPirate + "\n");
+        System.out.print("Appuyez sur Entrée pour lancer les dés ...");
+        scanner.nextLine();
+        callback.finAfficherTour();
+    }
+
+    public void demanderUtilisationCoco(IControlCacherDe callback) {
+        System.out.print("Voulez-vous utiliser votre noix de coco pour ce tour ? (oui/non) : ");
+        String reponse = scanner.nextLine().trim().toLowerCase();
+        if (reponse.equals("oui") || reponse.equals("o")) {
+            System.out.println("Vous avez choisi d'utiliser la noix de coco, l'adversaire lancera un seul dé le tour prochain.\n");
+            callback.finDemandeCoco("oui");
+        } else {
+            System.out.println("Vous avez choisi de ne pas utiliser la noix de coco.\n");
+            callback.finDemandeCoco("non"); // On appelle quand même le callback pour continuer le jeu
+        }
+    }
+
     //Methode IBoundary sans callback
     
     @Override
@@ -99,12 +117,6 @@ public class BoundaryConsole implements IBoundary {
         System.out.println(message);
     }
     
-    @Override
-    public void changerJoueurActif(String nomPirate) {
-        System.out.println("\n   ->  Au tour de :" + nomPirate + "\n");
-        System.out.print("Appuyez sur Entrée pour lancer les dés ...");
-        scanner.nextLine();
-    }
 
     
     
