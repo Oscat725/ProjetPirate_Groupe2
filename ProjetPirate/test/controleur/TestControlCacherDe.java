@@ -44,8 +44,8 @@ class TestControlCacherDe {
 
 	@Test
 	void testSetAffecteCoco() {
-		controlCacherDe.setAffecteCoco(joueurs[0], false);
-		assertTrue(joueurs[0].getAffecteCoco(), "Joueur affectet par coco");
+		controlCacherDe.setAffecteCoco(joueurs[0], true);
+		assertTrue(joueurs[0].getAffecteCoco(), "Joueur affecte par coco");
 	}
 
 

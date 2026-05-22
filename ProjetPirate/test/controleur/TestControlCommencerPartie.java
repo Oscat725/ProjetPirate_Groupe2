@@ -33,10 +33,6 @@ class TestControlCommencerPartie {
 		assertNotNull(controlJeuPirate);		
 	}
 
-	@Test
-	void testCommencerPartie() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testInitialiserJoueurs() {
@@ -46,14 +42,6 @@ class TestControlCommencerPartie {
         assertEquals(jeu.getJoueur(1).getNom(), "B");
 	}
 
-	@Test
-	void testDeterminerQuiCommence() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	void testFinCommencerPartie() {
-		fail("Not yet implemented");
-	}
 
 }
