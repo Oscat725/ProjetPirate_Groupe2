@@ -28,17 +28,16 @@ class TestControlActiverCaseBombe {
     @BeforeEach
     public void setUp() {
     	boundary = new BoundaryConsole();
-        
+        controlJeuPirate = new ControlJeuPirate(boundary);
+        jeu = controlJeuPirate.getJeu();
         joueur0 = new Joueur("Pirate1", new Pion(0));
         joueur1 = new Joueur("Pirate2",   new Pion(1));
         joueurs = new Joueur[]{joueur0, joueur1};
         jeu.setJoueur(0, joueur0);
         jeu.setJoueur(1, joueur1);
-        controlJeuPirate = new ControlJeuPirate(boundary);
-        jeu = controlJeuPirate.getJeu();
-        controlVie = new ControlPointDeVie(jeu, boundary, controlJeuPirate);
-        controlDe   = new ControleurDe(jeu, boundary, controlJeuPirate);
-        controlBombe = new ControlActiverCaseBombe(joueurs, controlDe, controlVie, boundary);
+        controlVie = controlJeuPirate.getControlPointDeVie();
+        controlDe   = controlJeuPirate.getControleurDe();
+        controlBombe = controlJeuPirate.getControlBombe();
     }
     
     @Test

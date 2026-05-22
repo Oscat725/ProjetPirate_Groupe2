@@ -29,19 +29,22 @@ class TestControlActiverCaseMystere {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		jeu = new Jeu();
-		joueurs = new Joueur[2];
+		boundary = new BoundaryConsole();
+		controlJeuPirate = new ControlJeuPirate(boundary);
+		jeu = controlJeuPirate.getJeu();
+		joueurs = jeu.getJoueurs();
 		pionJ1 = new Pion(0);
 		pionJ2 = new Pion(1);
 		joueurs[0] = new Joueur("A", pionJ1);
 		joueurs[1] = new Joueur("B", pionJ2);
-		boundary = new BoundaryConsole();
-		controlDeplacer = new ControlDeplacer(jeu, boundary, controlJeuPirate);
+		jeu.setJoueur(0, joueurs[0]);
+		jeu.setJoueur(1, joueurs[1]);
+		controlDeplacer = controlJeuPirate.getControlDeplacer();
 		caseMystere = new CaseMystere(2);
-		controlJeuPirate = new ControlJeuPirate(boundary);
-		controlPointDeVie = new ControlPointDeVie(jeu, boundary, controlJeuPirate);
+		
+		controlPointDeVie = controlJeuPirate.getControlPointDeVie();
 		joueurCourantIndex = 0;
-		controlActiverCaseMystere = new ControlActiverCaseMystere(joueurs, joueurCourantIndex, controlPointDeVie, controlJeuPirate, boundary);
+		controlActiverCaseMystere = controlJeuPirate.getControlMystere();
 		
 	}
 

@@ -20,22 +20,23 @@ class TestControlActiverCaseCoco {
 	private Jeu jeu;
 	private Joueur joueur1;
 	private Joueur joueur2;
-    private ControlActiverCaseCoco controlActiverCaseCoco;
+    static ControlActiverCaseCoco controlActiverCaseCoco;
     private IBoundary boundary;
     private ControlJeuPirate controlJeuPirate;
 
     @BeforeEach
     public void setup() {
     	boundary = new BoundaryConsole();
-    	jeu = new Jeu();
+    	controlJeuPirate = new ControlJeuPirate(boundary);
+    	jeu = controlJeuPirate.getJeu();
         joueur1 = new Joueur("Pirate1",new Pion(0));
         joueur2 = new Joueur("Pirate2",new Pion(1));
         jeu.setJoueur(0, joueur1);
         jeu.setJoueur(1, joueur2);
-        Joueur[] joueurs = {joueur1, joueur2};
-        ControlPointDeVie controlVie =new ControlPointDeVie(jeu, boundary,controlJeuPirate);
-        ControlCacherDe controlDe =new ControlCacherDe(joueurs, boundary, jeu, controlJeuPirate);
-        controlActiverCaseCoco = new ControlActiverCaseCoco(joueurs, new CaseCoco(7),controlVie,controlDe,null);
+        Joueur[] joueurs = jeu.getJoueurs();
+        ControlPointDeVie controlVie = controlJeuPirate.getControlPointDeVie();
+        ControlCacherDe controlDe = controlJeuPirate.getControlCacherDe();
+        controlActiverCaseCoco = new ControlActiverCaseCoco(joueurs, new CaseCoco(7),controlVie,controlDe,boundary);
     }
 	
     @Test
