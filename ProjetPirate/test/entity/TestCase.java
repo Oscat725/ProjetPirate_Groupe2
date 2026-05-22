@@ -10,8 +10,10 @@ import entity.Joueur;
 import entity.Pion;
 
 class TestCase {
-	private Case caseTest;
-	private Joueur joueur0;
+	static Case caseTest;
+	static Joueur joueur0;
+	static boolean contientJoueur;
+	static Jeu jeu;
 	@BeforeEach
 	void setUp() throws Exception {
 		caseTest = new Case(5);
@@ -24,5 +26,14 @@ class TestCase {
 		caseTest.removeJoueur(0);
 		assertNull(caseTest.getJoueur(0), "doit retourner 0");
 	}
+	
+	@Test
+	void testRemoveJoueurInvalide2() {
+
+	    assertThrows(IllegalArgumentException.class, () -> {
+	        caseTest.removeJoueur(2);
+	    });
+	}
+	
 
 }

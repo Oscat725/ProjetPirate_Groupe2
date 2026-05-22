@@ -24,40 +24,6 @@ class TestControlJeuPirate {
 		assertNotNull(controlJeuPirate);
 	}
 
-	@Test
-	void testJouer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testApresLancerDe() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testJouerUnTour() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testApresDemandeCoco() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testApresDeplacer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testApresActiverCase() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testApresAfficherPV() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testFinDeTour() {
