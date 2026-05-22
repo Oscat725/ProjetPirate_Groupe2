@@ -28,7 +28,7 @@ class TestControleurDe {
 	
 	@BeforeEach
 	public void setUp() {
-		boundary = new BoundaryConsole();
+		boundary = new BoundaryTest();
 		controlJeuPirate = new ControlJeuPirate(boundary);
 		jeu = controlJeuPirate.getJeu();
 		joueur0 = new Joueur("Pirate1", new Pion(0));

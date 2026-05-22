@@ -20,7 +20,7 @@ class TestControlCommencerPartie {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		jeu = new Jeu();
-		boundary = new BoundaryConsole();
+		boundary = new BoundaryTest();
 		controlJeuPirate = new ControlJeuPirate(boundary);
 		controlCommencerPartie = new ControlCommencerPartie(jeu, boundary, controlJeuPirate);
 		

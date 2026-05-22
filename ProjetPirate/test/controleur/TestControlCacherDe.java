@@ -27,7 +27,7 @@ class TestControlCacherDe {
 		pionJ2 = new Pion(1);
 		joueurs[0] = new Joueur("A", pionJ1);
 		joueurs[1] = new Joueur("B", pionJ2);
-		boundary = new BoundaryConsole();
+		boundary = new BoundaryTest();
 		jeu = new Jeu();
 		controlJeuPirate = new ControlJeuPirate(boundary);
 		controlCacherDe = new ControlCacherDe(joueurs, boundary, jeu, controlJeuPirate);

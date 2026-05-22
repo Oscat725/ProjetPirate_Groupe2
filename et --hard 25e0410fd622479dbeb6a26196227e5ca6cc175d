@@ -1,0 +1,421 @@
+[33mcommit 8e4572480bebe31547a789d23d5704319028c273[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mLauriana[m[33m, [m[1;31morigin/version_1[m[33m, [m[1;31morigin/Lauriana[m[33m, [m[1;32mversion_1[m[33m)[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Fri May 22 11:56:32 2026 +0200
+
+    resolution erreurs test
+
+[33mcommit b69177200d251bbd58fa58a15830cb86e8bd9fc8[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Fri May 22 11:24:52 2026 +0200
+
+    ajout de getters dans ControlJeuPirate
+
+[33mcommit 25e0410fd622479dbeb6a26196227e5ca6cc175d[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Fri May 22 11:09:09 2026 +0200
+
+    correction de tests failures
+
+[33mcommit 47c01f3fb3d4a50f48f28b2b41effb1a368ea561[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Fri May 22 02:57:06 2026 +0200
+
+    coverage 56,4% controleur , coverage 84,6% entity et coverate 34,5% projet
+
+[33mcommit 7c1470d3497e9294ec8e5ba98558ee9badc106c4[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Fri May 22 00:56:06 2026 +0200
+
+    ajout de test pour arriver à un coverage de 31,3%
+
+[33mcommit b3390739fe9ac46fcdf23379a48615d1c7ac8a50[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Thu May 21 23:37:10 2026 +0200
+
+    test unitaires corrigés pour que ça compile et déplacés dans ProjetPirate/test
+
+[33mcommit 964043319cdd8cf6a2876b15a018496e95335246[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Thu May 21 21:37:54 2026 +0200
+
+    ajout de la classe MainBoundaryConsole
+
+[33mcommit 7d132dac8d0c845b475a769ed5e65b3971dc6dfd[m
+Merge: ea80cee f2c8218
+Author: Nolawi23 <Nolex2005@gmail.com>
+Date:   Thu May 21 20:38:46 2026 +0200
+
+    merge avec nolawi
+
+[33mcommit f2c821844332293a25f023404fd427f401b650fa[m[33m ([m[1;31morigin/nolawi[m[33m)[m
+Author: Nolawi23 <Nolex2005@gmail.com>
+Date:   Thu May 21 20:35:20 2026 +0200
+
+    commentaire enlever dans IBoundary
+
+[33mcommit ea80cee8a7995de05f7b99b5818f1a6603676132[m
+Merge: 2aa86fb 32b417d
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Thu May 21 16:52:02 2026 +0200
+
+    Resolution conflit, merge Nolawi
+
+[33mcommit 32b417d6593dc658271094c059e3e61c79ef09dc[m
+Author: Nolawi23 <Nolex2005@gmail.com>
+Date:   Thu May 21 16:36:41 2026 +0200
+
+    Implementation d'utilisation de noix de coco et mise en place des cases speciaux
+
+[33mcommit 2aa86fb44cc52461728baf835aa59d1a01eaf815[m[33m ([m[1;31morigin/Melanie[m[33m)[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Thu May 21 15:09:40 2026 +0200
+
+    modification du package test
+
+[33mcommit 8205bfa5bda737415a1a66bf8d349ef739b15728[m
+Author: Nolawi23 <Nolex2005@gmail.com>
+Date:   Thu May 21 14:29:16 2026 +0200
+
+    Nettoyage des fichiers, modification des ControlActiverCaseSpeciaux et modif de la partie IHM
+
+[33mcommit 4cad75178326ddcfd94f7ed726843f10bac54c00[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Thu May 21 12:34:42 2026 +0200
+
+    exécution des test unitaire + modification de chaque test unitaire
+
+[33mcommit 0c5cf3de6ad77e1e09b8b21912be33dee8f2b3bc[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 23:25:23 2026 +0200
+
+    ajout du test pour le controlActiveCaseeBombe
+
+[33mcommit 4d4b68f8dc3418ca757a7038e2621149c9fbdd6f[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 22:55:24 2026 +0200
+
+    ajout de getAffecteCoco dans Joueur + ajout test pour controlActiverCaseCoco
+
+[33mcommit ef7c4358ede3abb90b0bf6f81c2e439a039c18f7[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 22:26:08 2026 +0200
+
+    ajout des test unitaire pour controlDeplacer
+
+[33mcommit 4a491c1a9eca4d4dae9432e42e757e6f4ab72022[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 22:14:59 2026 +0200
+
+    ajout du test pour controlLancerDe
+
+[33mcommit fb450665dd3c638bcadee0346c4a22b0bac818ed[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 22:01:55 2026 +0200
+
+    test controlPointDeVie
+
+[33mcommit 31784010af975367a8689a0d9cf76706e2f3909b[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 20:26:09 2026 +0200
+
+    ajout du test remove + et modification de testJoueur et testPlateau
+
+[33mcommit d4ac82c7a82f456885db36c29d64d5c5dff9fc8c[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 20:07:53 2026 +0200
+
+    ajout du test pour l'entité joueur
+
+[33mcommit 7dd392873d628544f57b62942f319cbdddaf9943[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 20:01:44 2026 +0200
+
+    mise a jour du gitignore
+
+[33mcommit acd3374e56c37e59352984503909b39511314242[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Wed May 20 19:58:11 2026 +0200
+
+    ajout du test pour l'entité plateau
+
+[33mcommit d53a77d3613813ea30b911775d2e69db2648f642[m
+Author: Eminblk <eminbelkheirpro@gmail.com>
+Date:   Wed May 20 17:52:35 2026 +0200
+
+     ajout lambda
+
+[33mcommit dfbc8d9f97c7072b8bd45153da2abe371dc445df[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Wed May 20 11:15:31 2026 +0200
+
+    suppression du package onepiece
+
+[33mcommit d8ba43ce7d741f52bdb78e15d8ed9d7603c25a7d[m
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Wed May 20 09:57:31 2026 +0200
+
+    Correction de l'affichage de la case mystere
+
+[33mcommit 54b85f594c38f4df698ac4f32583d78b0fa80246[m
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Wed May 20 09:45:42 2026 +0200
+
+    Modification de control deplacer et classpath
+
+[33mcommit 3e19b51284f5b3375f2688909c890e8ef6532c2f[m
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Wed May 20 08:54:15 2026 +0200
+
+    Correction du classpath
+
+[33mcommit 3944081a2c0f046cb37daf21c1d45f25ee09280e[m
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Wed May 20 08:07:26 2026 +0200
+
+    Elimination de package brouillon et mainConsole
+
+[33mcommit 3414b98a7a5e2e3c24d7000da9433df3a5e5782a[m
+Author: yoakin99 <yoakin11@gmail.com>
+Date:   Tue May 19 23:42:47 2026 +0200
+
+    Refactor + Correction + modification de structure d'entite
+
+[33mcommit ebff913e50b93a32ad80323102e0e82bab9d6b03[m
+Author: tiana-melanie <r.tiamela@gmail.com>
+Date:   Tue May 19 16:46:36 2026 +0200
+
+    affichage console des cases speciales
+
+[33mcommit d7eb15c3ceb1249bfec17a6e5661ab421f92cb07[m
+Author: Eminblk <eminbelkheirpro@gmail.com>
+Date:   Tue May 19 14:33:48 2026 +0200
+
+    Modif :
+    
+    ControlJeuPirata.java
+    Joueur.java
+    ControlCacheDe
+    BOundaryDeplacer
+    BoundaryConsole
+    
+    if (nouvellePos != pos) {
+        plateau.getCase(pos).removeJoueur(indexJoueur);
+    }
+    
+    par :
+    
+    if (nouvellePos != pos) {
+        // Vérifie si le joueur est bien enregistré sur la case avant de le retirer
+        if (plateau.getCase(pos).getJoueur(indexJoueur) != null) {
+            plateau.getCase(pos).removeJoueur(indexJoueur);
+        }
+    }
+    
+    ( verification )
+    
+    Modif de ça, ajout des 2 lignes
+    
+    @Override
+        public void initialiserJoueurs(String nomJ1, String nomJ2) {
+            jeu.setJoueur(0, new Joueur(nomJ1, new Pion()));
+            jeu.setJoueur(1, new Joueur(nomJ2, new Pion()));
+    
+            jeu.getPlateau().getCase(0).setJoueur(0, jeu.getJoueur(0));
+            jeu.getPlateau().getCase(0).setJoueur(1, jeu.getJoueur(1));
+        }
+    
+    Modif ici :
+    
+     public void lancerDe() {
+            resultatDes = jeu.getJoueurCourant().lancerDe();
+    
+            boundary.affichageResultatDe(resultatDes[0], resultatDes[1], this);
+        }
+    
+    Modif :         public void finDeTour() {
+            jeu.passerAuJoueurSuivant();
+            controlPirateCourant.changerJoueur();
+            iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom());
+            jouerUnTour(); // Démarre le tour du nouveau joueur
+        }
+    
+    Modif : public void apresAfficherPV() {
+           //On vérifie si la partie est terminée (victoire ou mort)
+            if(controlVerifierFinPartie.verifierFinPartie()) {
+    
+                // On détermine qui a gagné :
+                // Si le joueur courant a atteint la case 30 ou si l'autre est mort, c'est lui le gagnant.
+                String gagnant = jeu.getJoueurCourant().getNom();
+    
+                // Si le joueur courant vient de mourir (ex: case bombe), l'autre gagne.
+                if(jeu.getJoueurCourant().getPointDeVie() <= 0) {
+                    // Si courant = joueur 0, l'autre est joueur 1 (et inversement)
+                    int autreJoueurIndex = (jeu.getIndiceJoueurCourant() == 0) ? 1 : 0;
+                    gagnant = jeu.getJoueur(autreJoueurIndex).getNom();
+                }
+    
+                iBoundary.afficherFinDePartie(gagnant, null); // Fin de la boucle
+    
+            } else {
+                // La partie continue : on change de joueur et on relance le tour
+                finDeTour();
+            }
+        }
+    
+    modif :     public void apresDeplacer(int numCase) {
+            controlActiverCase.activerCase(jeu.getPlateau().getCase(numCase), jeu.getIndiceJoueurCourant());
+    
+    Probleme encoree : ControlPirateCourant est créé au tout début dans ControlJeuPirate, avant que les joueurs ne soient initialisés par commencerPartie(). Il reçoit donc des objets null.
+    
+    Modif ciomplète :
+    
+    ControlPirateCourant :
+    
+    package controleur;
+    
+    import entity.Jeu;
+    import entity.Joueur;
+    
+    public class ControlPirateCourant {
+            private Jeu jeu;
+            private int nbTour;
+    
+            public ControlPirateCourant(Jeu jeu) {
+                    this.jeu = jeu;
+                    this.nbTour = 1;
+            }
+    
+            public Joueur getJoueurcourant() {
+                    return jeu.getJoueurCourant();
+            }
+    
+            public int getNbTour() {
+                    return nbTour;
+            }
+    
+            public Joueur changerJoueur() {
+                    nbTour++;
+                    return jeu.getJoueurCourant();
+            }
+    }
+    
+    MODIF AfficherFinDePartie dans boundaryConsole :
+    
+     @Override
+        public void afficherFinDePartie(String nomGagnant, IFinDePartie callback) {
+            System.out.println("\n\n--------------------FIN DE LA PARTIE !--------------------");
+            System.out.println("         Le gagnant est : " + nomGagnant);
+    
+            // On vérifie que callback n'est pas null avant de l'appeler
+            if (callback != null) {
+                callback.finPartie();
+            } else {
+                // Si on est en console et qu'on n'a pas de callback, on peut juste quitter
+                System.exit(0);
+            }
+        }
+    
+    sinon erreur en fin car null en comme callback, mais on appelle .finpartie() sur ce callback.
+    
+    Novuelle erreur trouvé lros des case spéciales :
+    
+    ajout de ça : ControlCacherDe controlCacherDe = new ControlCacherDe(null);
+    
+    ControlActiverCaseBombe controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, this, iBoundary);
+    ControlActiverCaseCoco controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe);
+    ControlActiverCaseMystere controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this);
+    
+    this.controlActiverCase = new ControlActiverCase(controlBombe, controlCoco, controlMystere);
+    
+    Modification ordre car new dans attributs fait que c'est déclaré avant qu'il soit construit.
+    
+    private Jeu jeu;
+        private Joueur[] joueurs;
+        private IBoundary iBoundary;
+    
+        // Sous-controleurs
+        private ControlCommencerPartie controlCommencerPartie;
+        private ControleurDe controleurDe;
+        private ControlDeplacer controlDeplacer;
+        private ControlPointDeVie controlPointDeVie;
+        private ControlVerifierFinPartie controlVerifierFinPartie;
+        private ControlActiverCase controlActiverCase;
+        private ControlPirateCourant controlPirateCourant;
+    
+        // On déclare juste les variables ici, sans les initialiser
+        private ControlCacherDe controlCacherDe;
+        private ControlActiverCaseBombe controlBombe;
+        private ControlActiverCaseCoco controlCoco;
+        private ControlActiverCaseMystere controlMystere;
+    
+        public ControlJeuPirate(IBoundary iBoundary) {
+    
+            this.iBoundary = iBoundary;
+    
+            this.jeu = new Jeu();
+            this.joueurs = jeu.getJoueurs();
+    
+            this.controlCommencerPartie = new ControlCommencerPartie(jeu, iBoundary, this);
+            this.controleurDe = new ControleurDe(jeu, iBoundary, this);
+            this.controlPointDeVie = new ControlPointDeVie(jeu, iBoundary, this);
+            this.controlVerifierFinPartie = new ControlVerifierFinPartie(joueurs);
+            this.controlDeplacer = new ControlDeplacer(jeu, iBoundary, this);
+            this.controlPirateCourant = new ControlPirateCourant(this.jeu);
+    
+            // MAINTENANT que joueurs, controleurDe et controlPointDeVie existent, on peut créer les cases !
+            this.controlCacherDe = new ControlCacherDe(null);
+            this.controlBombe = new ControlActiverCaseBombe(joueurs, controleurDe, controlPointDeVie, this, iBoundary);
+            this.controlCoco = new ControlActiverCaseCoco(joueurs, null, controlPointDeVie, controlCacherDe);
+            this.controlMystere = new ControlActiverCaseMystere(joueurs, 0, controlPointDeVie, this);
+    
+            this.controlActiverCase = new ControlActiverCase(controlBombe, controlCoco, controlMystere);
+        }
+    
+    BUG DE case BOMBE : inflige des négats négatif / égal à 0, ce qui déclenche l'exceptiondans ControlPointDeVie.perdrePointsDeVie().
+    
+    Exception in thread "main" java.lang.IllegalArgumentException: La quantité de PV doit être positive
+    donc :
+    
+    @Override
+            void activerCase(Case caseBombe,int joueurCourant) {
+                    if (caseBombe instanceof CaseBombe caseB) {
+                            // La bombe fait entre 1 et 5 de dégâts ( modif 0)
+                            int valeur = controlDe.lancerDesModif(1, 5, 1);
+                            caseB.activerBombe(valeur);
+    
+                            // On utilise la "valeur" directement
+                            controlVie.perdrePointsDeVie(valeur, joueurs[joueurCourant]);
+                    }
+                    finCaseBombe();
+            }
+
+[33mcommit 0178643957b04423d6df3373102d03015c72c99a[m
+Merge: 2ed837c 8022578
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Tue May 19 00:23:50 2026 +0200
+
+    Merge branch 'Correction_Cases_Oscar' into version_1
+
+[33mcommit 2ed837c793e0eb4e0408e784a96f5441e0c3b12d[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Tue May 19 00:15:54 2026 +0200
+
+    ajout des methodes pour le deroulement d'une partie et contientdes lignes de code à décommenter après la modificaiton du controleur ControlActiverCase
+
+[33mcommit 802257865c6b1c78e42061e2abe76fea5956fc89[m[33m ([m[1;31morigin/Correction_Cases_Oscar[m[33m)[m
+Author: Oscat725 <oscarpuente2705@gmail.com>
+Date:   Mon May 18 23:56:01 2026 +0200
+
+    Correstion des Case et addition des metodes pour creer un lancer plus varie
+
+[33mcommit 1010371b882937540037c1ec1b565dd5b6bbb815[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Mon May 18 23:39:42 2026 +0200
+
+    modification de BoundaryConsole pour être conforme aux appels de ControJeuPirate
+
+[33mcommit 1ab52ec4f388639be4d7580d194b98c12c34a57b[m
+Author: Lauriana <lauriana.be-manantsoa@univ-tlse3.fr>
+Date:   Mon May 18 22:59:19 2026 +0200
+
+    initialisation des attributs de ControlJeuPirate

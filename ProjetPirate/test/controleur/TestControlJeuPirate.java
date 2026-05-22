@@ -17,7 +17,7 @@ class TestControlJeuPirate {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		iBoundary = new BoundaryConsole();
+		iBoundary = new BoundaryTest();
 		controlJeuPirate = new ControlJeuPirate(iBoundary);
 	}
 

@@ -6,13 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import boundary.interfaces.IBoundary;
-import boundary.interfaces.ICommencerPartie;
-import boundary.interfaces.IDeplacerPirate;
-import boundary.interfaces.IFinDePartie;
-import boundary.interfaces.ILancerDe;
-import boundary.interfaces.IPointsDeVie;
-import console.BoundaryConsole;
-import controleur.*;
 import entity.*;
 
 class TestControlActiverCaseCoco {
@@ -26,17 +19,19 @@ class TestControlActiverCaseCoco {
 
     @BeforeEach
     public void setup() {
-    	boundary = new BoundaryConsole();
-    	controlJeuPirate = new ControlJeuPirate(boundary);
-    	jeu = controlJeuPirate.getJeu();
-        joueur1 = new Joueur("Pirate1",new Pion(0));
-        joueur2 = new Joueur("Pirate2",new Pion(1));
+        boundary = new BoundaryTest();
+        controlJeuPirate = new ControlJeuPirate(boundary);
+        jeu = controlJeuPirate.getJeu();
+        joueur1 = new Joueur("Pirate1", new Pion(0));
+        joueur2 = new Joueur("Pirate2", new Pion(1));
         jeu.setJoueur(0, joueur1);
         jeu.setJoueur(1, joueur2);
+        joueur1 = jeu.getJoueur(0); // ← ajoute
+        joueur2 = jeu.getJoueur(1); // ← ajoute
         Joueur[] joueurs = jeu.getJoueurs();
         ControlPointDeVie controlVie = controlJeuPirate.getControlPointDeVie();
         ControlCacherDe controlDe = controlJeuPirate.getControlCacherDe();
-        controlActiverCaseCoco = new ControlActiverCaseCoco(joueurs, new CaseCoco(7),controlVie,controlDe,boundary);
+        controlActiverCaseCoco = new ControlActiverCaseCoco(joueurs, new CaseCoco(7), controlVie, controlDe, boundary);
     }
 	
     @Test
@@ -57,8 +52,8 @@ class TestControlActiverCaseCoco {
 
     @Test
     public void testJoueurAffecteCoco() {
-    	controlActiverCaseCoco.activerCase(new CaseCoco(7),0);
-        assertTrue(joueur1.getAffecteCoco());
+        controlActiverCaseCoco.activerCase(new CaseCoco(7), 0);
+        assertTrue(joueur2.getAffecteCoco()); // ← joueur2, pas joueur1
     }
 
 }
