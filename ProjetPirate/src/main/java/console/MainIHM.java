@@ -1,7 +1,7 @@
 package console;
 
 
-public class MainConsole {
+public class MainIHM {
     
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {

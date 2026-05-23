@@ -48,5 +48,4 @@ class TestControlCacherDe {
 		assertTrue(joueurs[0].getAffecteCoco(), "Joueur affecte par coco");
 	}
 
-
 }

@@ -1,28 +1,103 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentation;
 
-import javax.swing.JDialog;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
-/**
- *
- * @author rtiam
- */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends JFrame {
 
     private dialogue.Dialogue dialogue;
-    private presentation.PanelPlateau plateau;
 
-    /**
-     * Creates new form MainFrame
-     */
+    // Composants du jeu
+    private PanelPlateau plateau;
+    private PanelDe de1;
+    private PanelDe de2;
+    private JButton boutonLancer;
+    private JButton infoButton;
+    private JLabel titre;
+
     public MainFrame() {
-        initComponents();
-        plateau = new presentation.PanelPlateau();
-        PanelPlateau.setLayout(new java.awt.BorderLayout());
-        PanelPlateau.add(plateau, java.awt.BorderLayout.CENTER);
+        setTitle("Isla de la Muerte");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // On met directement le panel du jeu dans la fenêtre pour l'instant
+        // (Le CardLayout et le PanelDemarrage seront ajoutés par Yoakin plus tard)
+        JPanel panelJeu = setUpJeuPanel();
+        add(panelJeu);
+
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    // LA MÉTHODE QUI REGROUPE TOUT LE VISUEL ACTUEL(Géré par Yoakin)
+    private JPanel setUpJeuPanel() {
+        JPanel p = new JPanel(new BorderLayout());
+
+        JPanel panelHaut = new JPanel(new BorderLayout());
+
+        // --- Panel Dés (gauche) ---
+        JPanel panelDes = new JPanel();
+        panelDes.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+        panelDes.setPreferredSize(new Dimension(190, 150));
+        panelDes.setLayout(new BoxLayout(panelDes, BoxLayout.Y_AXIS));
+
+        JPanel ligneDes = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 6));
+        de1 = new PanelDe();
+        de2 = new PanelDe();
+        ligneDes.add(de1);
+        ligneDes.add(de2);
+
+        boutonLancer = new JButton("Lancer les dés");
+        boutonLancer.setAlignmentX(CENTER_ALIGNMENT);
+        boutonLancer.addActionListener(e -> {
+            if (dialogue != null)
+                dialogue.lancerDes();
+        });
+
+        JPanel panelBouton = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelBouton.add(boutonLancer);
+
+        panelDes.add(ligneDes);
+        panelDes.add(panelBouton);
+
+        panelHaut.add(panelDes, BorderLayout.WEST);
+
+        // --- Panel Info (centre) ---
+        JPanel panelInfo = new JPanel(new BorderLayout());
+        panelInfo.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+        panelInfo.setPreferredSize(new Dimension(300, 150));
+
+        JPanel panelTitre = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
+        panelTitre.setPreferredSize(new Dimension(300, 70));
+
+        titre = new JLabel("Isla de la muerte");
+        titre.setFont(new Font("Algerian", Font.BOLD | Font.ITALIC, 36));
+        titre.setForeground(new Color(10, 10, 10));
+        titre.setPreferredSize(new Dimension(350, 50));
+        panelTitre.add(titre);
+
+        infoButton = new JButton("?");
+        infoButton.setBackground(new Color(186, 224, 255));
+        infoButton.setFont(new Font("Segoe UI", Font.BOLD, 10));
+        infoButton.setToolTipText("Afficher les règles du jeu");
+        infoButton.addActionListener(e -> afficherRegles());
+        panelTitre.add(infoButton);
+
+        panelInfo.add(panelTitre, BorderLayout.NORTH);
+        panelHaut.add(panelInfo, BorderLayout.CENTER);
+
+        p.add(panelHaut, BorderLayout.NORTH);
+
+        // ===== PANEL PLATEAU (centre) =====
+        JPanel conteneurPlateau = new JPanel(new BorderLayout());
+        conteneurPlateau.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+
+        plateau = new PanelPlateau();
+        conteneurPlateau.add(plateau, BorderLayout.CENTER);
+
+        p.add(conteneurPlateau, BorderLayout.CENTER);
+
+        return p;
     }
 
     public void setDialogue(dialogue.Dialogue dialogue) {
@@ -49,223 +124,35 @@ public class MainFrame extends javax.swing.JFrame {
     public void deplacerPion(int joueur, int caseNumero, java.awt.Color couleur) {
         plateau.deplacerPion(joueur, caseNumero, couleur);
     }
-    
-    public void afficherBombe(){
-        JDialog d = new JDialog(this,"gjnsdg",true);
-        d.add(de1);
-        d.setVisible(true);
-    }
-    
-    public void log(String message){
-        
+
+    public void afficherBombe() {
+        JDialog d = new JDialog(this, "Bombe", true);
+        // (sera remplacé par Emin)
+
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        PanelHaut = new javax.swing.JPanel();
-        JPanelDes = new javax.swing.JPanel();
-        boutonLancer = new javax.swing.JButton();
-        de1 = new presentation.PanelDe();
-        de2 = new presentation.PanelDe();
-        JPanelInfo = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        Titre = new javax.swing.JLabel();
-        InfoButton = new javax.swing.JButton();
-        PanelPlateau = new javax.swing.JPanel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        PanelHaut.setLayout(new java.awt.BorderLayout());
-
-        JPanelDes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JPanelDes.setPreferredSize(new java.awt.Dimension(190, 150));
-
-        boutonLancer.setText("Lancer les dés");
-        boutonLancer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonLancerActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout de1Layout = new javax.swing.GroupLayout(de1);
-        de1.setLayout(de1Layout);
-        de1Layout.setHorizontalGroup(
-            de1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-        de1Layout.setVerticalGroup(
-            de1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout de2Layout = new javax.swing.GroupLayout(de2);
-        de2.setLayout(de2Layout);
-        de2Layout.setHorizontalGroup(
-            de2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-        de2Layout.setVerticalGroup(
-            de2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout JPanelDesLayout = new javax.swing.GroupLayout(JPanelDes);
-        JPanelDes.setLayout(JPanelDesLayout);
-        JPanelDesLayout.setHorizontalGroup(
-            JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelDesLayout.createSequentialGroup()
-                .addGroup(JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanelDesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(de1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(de2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPanelDesLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(boutonLancer)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        JPanelDesLayout.setVerticalGroup(
-            JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelDesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JPanelDesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(de1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(de2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boutonLancer)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-
-        PanelHaut.add(JPanelDes, java.awt.BorderLayout.WEST);
-
-        JPanelInfo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JPanelInfo.setPreferredSize(new java.awt.Dimension(300, 150));
-        JPanelInfo.setLayout(new java.awt.BorderLayout());
-
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 70));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
-
-        Titre.setFont(new java.awt.Font("Algerian", 3, 36)); // NOI18N
-        Titre.setForeground(new java.awt.Color(10, 10, 10));
-        Titre.setText("Isla de la muerte");
-        Titre.setPreferredSize(new java.awt.Dimension(350, 50));
-        jPanel1.add(Titre);
-
-        InfoButton.setBackground(new java.awt.Color(186, 224, 255));
-        InfoButton.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        InfoButton.setText("?");
-        InfoButton.setToolTipText("Afficher les règles du jeu");
-        InfoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InfoButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(InfoButton);
-
-        JPanelInfo.add(jPanel1, java.awt.BorderLayout.NORTH);
-
-        PanelHaut.add(JPanelInfo, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(PanelHaut, java.awt.BorderLayout.NORTH);
-
-        PanelPlateau.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout PanelPlateauLayout = new javax.swing.GroupLayout(PanelPlateau);
-        PanelPlateau.setLayout(PanelPlateauLayout);
-        PanelPlateauLayout.setHorizontalGroup(
-            PanelPlateauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 705, Short.MAX_VALUE)
-        );
-        PanelPlateauLayout.setVerticalGroup(
-            PanelPlateauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(PanelPlateau, java.awt.BorderLayout.CENTER);
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    
-    //Melanie
-    private void InfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoButtonActionPerformed
-    
-        
-        javax.swing.JOptionPane.showMessageDialog(
-        this,
-        "Règles du jeu des pirates :\n"
-        + "-2 joueurs\n"
-        + "-30 cases\n"
-        + "-5 points de vie maximum\n"
-        + "-Le premier à la dernière case gagne ou on gagne si l’adversaire n’a plus de vie\n\n"
-        + "Cases spéciales :\n"
-        + "-Case Bombe\n"
-        + "-Case mystère\n"
-        + "-Chute de noix de coco\n"
-        + "BONNE CHANCE",
-        "Règles du jeu",
-        javax.swing.JOptionPane.INFORMATION_MESSAGE
-    );
-    }//GEN-LAST:event_InfoButtonActionPerformed
-
-    private void boutonLancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonLancerActionPerformed
-        if (dialogue != null)
-            dialogue.lancerDes();
-    }//GEN-LAST:event_boutonLancerActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
+    public void log(String message) {
+        // Laissé vide, en attendant que Mélanie ajoute son JTextArea dans setUpJeuPanel
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton InfoButton;
-    private javax.swing.JPanel JPanelDes;
-    private javax.swing.JPanel JPanelInfo;
-    private javax.swing.JPanel PanelHaut;
-    private javax.swing.JPanel PanelPlateau;
-    private javax.swing.JLabel Titre;
-    private javax.swing.JButton boutonLancer;
-    private presentation.PanelDe de1;
-    private presentation.PanelDe de2;
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+    private void afficherRegles() {
+        JOptionPane.showMessageDialog(
+                this,
+                "Règles du jeu des pirates :\n"
+                        + "-2 joueurs\n"
+                        + "-30 cases\n"
+                        + "-5 points de vie maximum\n"
+                        + "-Le premier à la dernière case gagne ou on gagne si l’adversaire n’a plus de vie\n\n"
+                        + "Cases spéciales :\n"
+                        + "-Case Bombe\n"
+                        + "-Case mystère\n"
+                        + "-Chute de noix de coco\n"
+                        + "BONNE CHANCE",
+                "Règles du jeu",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
+    }
 }

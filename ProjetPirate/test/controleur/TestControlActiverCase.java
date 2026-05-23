@@ -4,28 +4,27 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import controleur.ControlActiverCase;
 import entity.Case;
 import entity.CaseBombe;
 import entity.CaseCoco;
 import entity.CaseMystere;
 
 class TestControlActiverCase {
-	
-	private ControlActiverCase control;
-	
-	@BeforeEach
+
+    private ControlActiverCase control;
+
+    @BeforeEach
     public void setUp() {
         control = new ControlActiverCase(null);
     }
 
-	@Test
-	void testCaseNormale() {
-		Case caseNormale = new Case(1);
+    @Test
+    void testCaseNormale() {
+        Case caseNormale = new Case(1);
         assertFalse(control.isCaseSpecial(caseNormale));
-	}
-	
-	@Test
+    }
+
+    @Test
     public void testCaseBombe() {
         Case caseBombe = new CaseBombe(4);
         assertTrue(control.isCaseSpecial(caseBombe));

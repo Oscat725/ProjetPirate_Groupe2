@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.function.Consumer;
 
+//Nolawi
 public class PanelPlateau extends JPanel {
 
     private static final Color COULEUR_ROUGE = new Color(200, 60, 60);
