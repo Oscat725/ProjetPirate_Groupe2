@@ -51,8 +51,61 @@ public class ControlJeuPirate implements IControlJeuPirate {
 	public IBoundary getBoundary() {
 		return this.iBoundary;
 	}
+	
 
 	// -----methodes appellees par les autres controleurs-----
+
+	public Joueur[] getJoueurs() {
+		return joueurs;
+	}
+
+	public IBoundary getiBoundary() {
+		return iBoundary;
+	}
+
+	public ControlCommencerPartie getControlCommencerPartie() {
+		return controlCommencerPartie;
+	}
+
+	public ControleurDe getControleurDe() {
+		return controleurDe;
+	}
+
+	public ControlDeplacer getControlDeplacer() {
+		return controlDeplacer;
+	}
+
+	public ControlPointDeVie getControlPointDeVie() {
+		return controlPointDeVie;
+	}
+
+	public ControlVerifierFinPartie getControlVerifierFinPartie() {
+		return controlVerifierFinPartie;
+	}
+
+	public ControlActiverCase getControlActiverCase() {
+		return controlActiverCase;
+	}
+
+	public ControlCacherDe getControlCacherDe() {
+		return controlCacherDe;
+	}
+
+	public ControlActiverCaseBombe getControlBombe() {
+		return controlBombe;
+	}
+
+	public ControlActiverCaseCoco getControlCoco() {
+		return controlCoco;
+	}
+
+	public ControlActiverCaseMystere getControlMystere() {
+		return controlMystere;
+	}
+
+	public void setJeu(Jeu jeu) {
+		this.jeu = jeu;
+	}
 
 	public void jouer() {
 		controlCommencerPartie.commencerPartie();

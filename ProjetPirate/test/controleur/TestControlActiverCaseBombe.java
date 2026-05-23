@@ -15,28 +15,29 @@ import entity.Pion;
 
 class TestControlActiverCaseBombe {
 	
-	private Jeu jeu;
-	private ControlPointDeVie controlVie;
-    private ControleurDe controlDe;
-    private IBoundary boundary;
-    private Joueur joueur0;
-    private Joueur joueur1;
-    private Joueur[] joueurs;
-    private ControlActiverCaseBombe controlBombe;
+	static Jeu jeu;
+	static ControlPointDeVie controlVie;
+	static ControleurDe controlDe;
+	static IBoundary boundary;
+	static Joueur joueur0;
+	static Joueur joueur1;
+	static Joueur[] joueurs;
+	static ControlActiverCaseBombe controlBombe;
+	static ControlJeuPirate controlJeuPirate;
 	
     @BeforeEach
     public void setUp() {
-    	jeu = new Jeu();
     	boundary = new BoundaryConsole();
-        
+        controlJeuPirate = new ControlJeuPirate(boundary);
+        jeu = controlJeuPirate.getJeu();
         joueur0 = new Joueur("Pirate1", new Pion(0));
         joueur1 = new Joueur("Pirate2",   new Pion(1));
         joueurs = new Joueur[]{joueur0, joueur1};
         jeu.setJoueur(0, joueur0);
         jeu.setJoueur(1, joueur1);
-        controlVie = new ControlPointDeVie(jeu, boundary, null);
-        controlDe   = new ControleurDe(jeu, boundary, null);
-        controlBombe = new ControlActiverCaseBombe(joueurs, controlDe, controlVie, null);
+        controlVie = controlJeuPirate.getControlPointDeVie();
+        controlDe   = controlJeuPirate.getControleurDe();
+        controlBombe = controlJeuPirate.getControlBombe();
     }
     
     @Test

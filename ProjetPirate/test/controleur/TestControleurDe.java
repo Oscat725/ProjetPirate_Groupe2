@@ -24,16 +24,18 @@ class TestControleurDe {
     private Joueur joueur1;
 	private ControleurDe controleur;
 	private IBoundary boundary;
+	private ControlJeuPirate controlJeuPirate;
 	
 	@BeforeEach
 	public void setUp() {
 		boundary = new BoundaryConsole();
-		jeu = new Jeu();
+		controlJeuPirate = new ControlJeuPirate(boundary);
+		jeu = controlJeuPirate.getJeu();
 		joueur0 = new Joueur("Pirate1", new Pion(0));
         joueur1 = new Joueur("Pirate2",   new Pion(1));
         jeu.setJoueur(0, joueur0);
         jeu.setJoueur(1, joueur1);
-	    controleur = new ControleurDe(jeu,boundary,null);
+	    controleur = controlJeuPirate.getControleurDe();
 	}
 
 	@Test
