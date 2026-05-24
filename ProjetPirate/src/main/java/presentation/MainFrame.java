@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
     private JButton boutonLancer;
     private JButton infoButton;
     private JLabel titre;
+    private JTextArea zoneTexte; //affichage des du deroulement du Jeu
 
     public MainFrame() {
         setTitle("Isla de la Muerte");
@@ -130,9 +131,14 @@ public class MainFrame extends JFrame {
         // (sera remplacé par Emin)
 
     }
-
+    
+    //Melanie
     public void log(String message) {
-        // Laissé vide, en attendant que Mélanie ajoute son JTextArea dans setUpJeuPanel
+        if(zoneTexte==null){
+            return;
+        }
+        zoneTexte.append(message + "\n");
+        zoneTexte.setCaretPosition(zoneTexte.getDocument().getLength());
     }
 
     private void afficherRegles() {
