@@ -19,13 +19,13 @@ class TestControlActiverCaseMystere {
 	static ControlActiverCaseMystere controlActiverCaseMystere;
 	static IBoundary boundary;
 	static int joueurCourantIndex;
-    static int storedEffect;
-    static int storedValue;
-    static CaseMystere caseMystere;
+	static int storedEffect;
+	static int storedValue;
+	static CaseMystere caseMystere;
 	static Joueur[] joueurs;
 	static Pion pionJ1;
 	static Pion pionJ2;
-    static Jeu jeu;
+	static Jeu jeu;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -41,11 +41,11 @@ class TestControlActiverCaseMystere {
 		jeu.setJoueur(1, joueurs[1]);
 		controlDeplacer = controlJeuPirate.getControlDeplacer();
 		caseMystere = new CaseMystere(2);
-		
+
 		controlPointDeVie = controlJeuPirate.getControlPointDeVie();
 		joueurCourantIndex = 0;
 		controlActiverCaseMystere = controlJeuPirate.getControlMystere();
-		
+
 	}
 
 	@Test
@@ -63,7 +63,6 @@ class TestControlActiverCaseMystere {
 	    assertNotNull(caseMystere.getValue());
 	    assertNotNull(storedEffect);
 	}
-	
 
 	@Test
 	void testFinActiverCase() {

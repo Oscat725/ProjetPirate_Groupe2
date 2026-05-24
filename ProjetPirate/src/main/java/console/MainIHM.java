@@ -1,7 +1,7 @@
 package console;
 
 
-public class MainConsole {
+public class MainIHM {
     
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -10,6 +10,5 @@ public class MainConsole {
             frame.setDialogue(dialogue);
             frame.setVisible(true);
         });
-
     }
 }

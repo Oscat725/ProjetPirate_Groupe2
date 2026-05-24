@@ -38,9 +38,9 @@ class TestControlActiverCaseBombe {
 	    controlVie = controlJeuPirate.getControlPointDeVie();
 	    controlDe = controlJeuPirate.getControleurDe();
 	    controlBombe = controlJeuPirate.getControlBombe();
-	    controlBombe.joueurs = joueurs; // ← force le tableau à jour
+	    controlBombe.joueurs = joueurs;
 	}
-    
+	
     @Test
     public void testPertePointsDeVie() {
         CaseBombe bombe = new CaseBombe(4);
@@ -48,6 +48,5 @@ class TestControlActiverCaseBombe {
         controlBombe.activerCase(bombe, 0);
         assertTrue(joueur0.getPointDeVie() < pv_Avant);
     }
-    
-    
+
 }

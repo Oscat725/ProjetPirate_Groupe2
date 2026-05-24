@@ -1,27 +1,19 @@
 package controleur;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import boundary.interfaces.IBoundary;
-import boundary.interfaces.ICommencerPartie;
-import boundary.interfaces.IDeplacerPirate;
-import boundary.interfaces.IFinDePartie;
-import boundary.interfaces.ILancerDe;
-import boundary.interfaces.IPointsDeVie;
 import console.BoundaryConsole;
-import controleur.ControlJeuPirate;
-import controleur.ControlPointDeVie;
 import entity.Jeu;
 import entity.Joueur;
 import entity.Pion;
 
 class TestControlPointDeVie {
-	
-	private IBoundary boundary;
+
+    private IBoundary boundary;
     private ControlJeuPirate controlJeuPirate;
     private Jeu jeu;
     private Joueur joueur0;
@@ -30,7 +22,9 @@ class TestControlPointDeVie {
 
     @BeforeEach
     public void setUp() {
+
         boundary = new BoundaryTest();
+
         controlJeuPirate = new ControlJeuPirate(boundary);
         jeu = controlJeuPirate.getJeu();
         
@@ -45,7 +39,7 @@ class TestControlPointDeVie {
         
         controlPointDeVie = controlJeuPirate.getControlPointDeVie();
     }
-    
+
     //----Perdre des points de Vie------
 	@Test
 	public void testPerdrePoint() {
@@ -76,6 +70,7 @@ class TestControlPointDeVie {
 	
 	@Test
 	public void testGagnerPointDeVieMex() {
+
         joueur0.setPointDeVie(4);
         controlPointDeVie.gagnerPointsDeVie(3, joueur0);
         assertEquals(5, joueur0.getPointDeVie(), "Les points de vie ne doivent pas dépasser 5");
@@ -85,16 +80,17 @@ class TestControlPointDeVie {
 	//le point de vie doit pas augmenter de 0
 	public void testgagnerPointsDeVieZero() {
         assertThrows(IllegalArgumentException.class,() -> controlPointDeVie.gagnerPointsDeVie(0, joueur0));
+
     }
-	
-	@Test
-	public void testVerifierPointsDeVie() {
+
+    @Test
+    public void testVerifierPointsDeVie() {
         joueur0.setPointDeVie(0);
         assertTrue(controlPointDeVie.verifierPointsDeVie(joueur0));
     }
-	
-	//---reset point de vie----
-	@Test
+
+    // ---reset point de vie----
+    @Test
     public void testResetPointsDeVie() {
         joueur0.setPointDeVie(1);
         joueur1.setPointDeVie(0);
@@ -102,12 +98,5 @@ class TestControlPointDeVie {
         assertEquals(Joueur.PV_MAX, joueur0.getPointDeVie());
         assertEquals(Joueur.PV_MAX, joueur1.getPointDeVie());
     }
-	
-	
-	
-	
-	
-	
-	
 
 }

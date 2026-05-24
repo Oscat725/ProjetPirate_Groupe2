@@ -3,12 +3,6 @@ package console;
 
 import java.util.Scanner;
 import boundary.interfaces.*;
-import boundary.interfaces.ICommencerPartie;
-import boundary.interfaces.IActiverCase;
-import boundary.interfaces.IDeplacerPirate;
-import boundary.interfaces.IFinDePartie;
-import boundary.interfaces.ILancerDe;
-import boundary.interfaces.IPointsDeVie;
 
 public class BoundaryConsole implements IBoundary {
 
@@ -19,6 +13,7 @@ public class BoundaryConsole implements IBoundary {
     }
     
     // Initialisation de la partie
+    @Override
     public void commencerPartie(ICommencerPartie controlCommencerPartie) {
     	
         System.out.println("\n     ISLA DE LA MUERTE - Jeu des Pirates\n\n");

@@ -33,8 +33,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ----------INoyauFonctionnel — appelé par le Dialogue----------
 
-	// Appelé par le Dialogue quand l'utilisateur clique sur "Jouer" après avoir
-	// saisi les noms
+	// Appelé par le Dialogue quand l'utilisateur clique sur "Jouer" 
 	@Override
 	public void soumettreNoms(String nomJ1, String nomJ2) {
 		if (ctrlCommencer != null) {

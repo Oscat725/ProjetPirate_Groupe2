@@ -1,0 +1,61 @@
+src/main/java/controleur/ControlJeuPirate.java:34: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+		this.controlCommencerPartie = new ControlCommencerPartie(jeu, iBoundary, this);
+		                                                                         ^
+src/main/java/presentation/MainFrame.java:13: warning: [serial] serializable class MainFrame has no definition of serialVersionUID
+public class MainFrame extends javax.swing.JFrame {
+       ^
+src/main/java/presentation/MainFrame.java:15: warning: [serial] non-transient instance field of a serializable class declared with a non-serializable type
+    private dialogue.Dialogue dialogue;
+                              ^
+src/main/java/presentation/MainFrame.java:22: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+        initComponents();
+                      ^
+src/main/java/presentation/MainFrame.java:83: warning: [this-escape] previous possible 'this' escape happens here via invocation
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                                ^
+src/main/java/presentation/PanelPlateau.java:8: warning: [serial] serializable class PanelPlateau has no definition of serialVersionUID
+public class PanelPlateau extends JPanel {
+       ^
+src/main/java/presentation/PanelPlateau.java:19: warning: [serial] non-transient instance field of a serializable class declared with a non-serializable type
+    private Consumer<Integer> onPionPlace;
+                              ^
+src/main/java/presentation/PanelPlateau.java:22: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+        setLayout(new GridLayout(6, 5));
+                 ^
+src/main/java/presentation/PanelDe.java:22: warning: [serial] serializable class PanelDe has no definition of serialVersionUID
+public class PanelDe extends JPanel {
+       ^
+src/main/java/presentation/PanelDe.java:29: warning: [serial] non-transient instance field of a serializable class declared with a non-serializable type
+    private Runnable onAnimationFinie;
+                     ^
+src/main/java/presentation/PanelDe.java:34: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+        setPreferredSize(new Dimension(80, 80));
+                        ^
+src/main/java/presentation/PanelCase.java:20: warning: [serial] serializable class PanelCase has no definition of serialVersionUID
+public class PanelCase extends javax.swing.JPanel {
+       ^
+src/main/java/presentation/PanelCase.java:46: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+        initComponents();
+                      ^
+src/main/java/presentation/PanelCase.java:66: warning: [this-escape] previous possible 'this' escape happens here via invocation
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                                                                     ^
+src/main/java/presentation/PanelCase.java:50: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+        initComponents();
+                      ^
+src/main/java/presentation/PanelCase.java:66: warning: [this-escape] previous possible 'this' escape happens here via invocation
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                                                                     ^
+src/main/java/presentation/PanelJeu.java:11: warning: [serial] serializable class PanelJeu has no definition of serialVersionUID
+public class PanelJeu extends javax.swing.JPanel {
+       ^
+src/main/java/presentation/PanelJeu.java:17: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+        initComponents();
+                      ^
+src/main/java/presentation/PanelJeu.java:49: warning: [this-escape] previous possible 'this' escape happens here via invocation
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                                                                     ^
+src/main/java/noyau_fonctionnel/AdaptateurNoyauFonctionel.java:25: warning: [this-escape] possible 'this' escape before subclass is fully initialized
+		this.controlJeuPirate = new ControlJeuPirate(this);
+		                                             ^
+20 warnings
