@@ -152,7 +152,7 @@ public class MainFrame extends JFrame {
                         + "Cases spéciales :\n"
                         + "-Case Bombe\n"
                         + "-Case mystère\n"
-                        + "-Chute de noix de coco\n"
+                        + "-Case Chute de noix de coco\n"
                         + "BONNE CHANCE",
                 "Règles du jeu",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
