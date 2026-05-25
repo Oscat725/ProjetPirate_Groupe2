@@ -26,31 +26,49 @@ public class TestFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelCarte2 = new presentation.PanelCarte();
+        panelCarte1 = new presentation.PanelCarte();
         panelCarte3 = new presentation.PanelCarte();
+        panelCarte2 = new presentation.PanelCarte();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout panelCarte2Layout = new javax.swing.GroupLayout(panelCarte2);
-        panelCarte2.setLayout(panelCarte2Layout);
-        panelCarte2Layout.setHorizontalGroup(
-            panelCarte2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+        panelCarte1.setPreferredSize(new java.awt.Dimension(200, 280));
+
+        javax.swing.GroupLayout panelCarte1Layout = new javax.swing.GroupLayout(panelCarte1);
+        panelCarte1.setLayout(panelCarte1Layout);
+        panelCarte1Layout.setHorizontalGroup(
+            panelCarte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
-        panelCarte2Layout.setVerticalGroup(
-            panelCarte2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        panelCarte1Layout.setVerticalGroup(
+            panelCarte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
         );
+
+        panelCarte3.setPreferredSize(new java.awt.Dimension(200, 280));
 
         javax.swing.GroupLayout panelCarte3Layout = new javax.swing.GroupLayout(panelCarte3);
         panelCarte3.setLayout(panelCarte3Layout);
         panelCarte3Layout.setHorizontalGroup(
             panelCarte3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 182, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         panelCarte3Layout.setVerticalGroup(
             panelCarte3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+
+        panelCarte2.setPreferredSize(new java.awt.Dimension(200, 280));
+
+        javax.swing.GroupLayout panelCarte2Layout = new javax.swing.GroupLayout(panelCarte2);
+        panelCarte2.setLayout(panelCarte2Layout);
+        panelCarte2Layout.setHorizontalGroup(
+            panelCarte2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        panelCarte2Layout.setVerticalGroup(
+            panelCarte2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -58,20 +76,23 @@ public class TestFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(panelCarte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(panelCarte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(panelCarte3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelCarte3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelCarte2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelCarte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelCarte3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelCarte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,7 +133,10 @@ public class TestFrame extends javax.swing.JFrame {
         });
     }
 
+   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private presentation.PanelCarte panelCarte1;
     private presentation.PanelCarte panelCarte2;
     private presentation.PanelCarte panelCarte3;
     // End of variables declaration//GEN-END:variables
