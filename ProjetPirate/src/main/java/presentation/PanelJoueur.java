@@ -72,6 +72,14 @@ public class PanelJoueur extends JPanel {
     public String getNom() {
         return nom;
     }
+    
+    //Yoakin
+    public void setNom(String nouveauNom) {
+        this.nom = nouveauNom;
+        labelNom.setText(nouveauNom);
+    }
+    
+    
 }
 
 
