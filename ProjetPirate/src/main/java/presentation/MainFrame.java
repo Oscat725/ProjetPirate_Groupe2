@@ -121,8 +121,12 @@ public class MainFrame extends JFrame {
         plateau.activerDrag(joueurIndex, cible);
     }
 
-    public void deplacerPion(int joueur, int caseNumero, java.awt.Color couleur) {
-        plateau.deplacerPion(joueur, caseNumero, couleur);
+    public void setCouleurs(Color j1, Color j2) {
+        plateau.setCouleurs(j1, j2);
+    }
+
+    public void deplacerPion(int joueur, int caseNumero) {
+        plateau.deplacerPion(joueur, caseNumero);
     }
 
     public void afficherBombe() {

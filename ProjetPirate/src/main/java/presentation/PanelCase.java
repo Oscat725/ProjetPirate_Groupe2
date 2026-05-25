@@ -1,5 +1,6 @@
 package presentation;
 
+import javax.swing.JPanel;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 // Nolawi
-public class PanelCase extends javax.swing.JPanel {
+public class PanelCase extends JPanel {
 
     public static final String NORMALE = "NORMALE";
     public static final String BOMBE = "BOMBE";
@@ -28,8 +29,10 @@ public class PanelCase extends javax.swing.JPanel {
     private int numero;
     private String type;
     private String direction;
-    private boolean contientJoueur;
-    private Color couleurPion;
+    private boolean contientJoueur1;
+    private Color couleurPion1;
+    private boolean contientJoueur2;
+    private Color couleurPion2;
     private Color highlight;
 
     public PanelCase() {
@@ -52,9 +55,17 @@ public class PanelCase extends javax.swing.JPanel {
         repaint();
     }
 
-    public void setContientJoueur(boolean contient, Color couleur) {
-        this.contientJoueur = contient;
-        this.couleurPion = couleur;
+    // Appelé une seule fois au début du jeu
+    public void setCouleurs(Color joueur1, Color joueur2) {
+        this.couleurPion1 = joueur1;
+        this.couleurPion2 = joueur2;
+    }
+
+    public void setContientJoueur(int joueur, boolean contient) {
+        if (joueur == 0)
+            contientJoueur1 = contient;
+        else
+            contientJoueur2 = contient;
         repaint();
     }
 
@@ -163,10 +174,27 @@ public class PanelCase extends javax.swing.JPanel {
                     break;
             }
 
-        // pion centered in the case
-        if (contientJoueur) {
-            int rayon = h / 6;
-            g2d.setColor(couleurPion);
+        int rayon = h / 6;
+        if (contientJoueur1 && contientJoueur2) {
+            g2d.setColor(couleurPion1);
+            g2d.fillOval(cx - rayon * 2, cy - rayon, 2 * rayon, 2 * rayon);
+            g2d.setColor(Color.BLACK);
+            g2d.setStroke(new BasicStroke(2));
+            g2d.drawOval(cx - rayon * 2, cy - rayon, 2 * rayon, 2 * rayon);
+
+            g2d.setColor(couleurPion2);
+            g2d.fillOval(cx + 2, cy - rayon, 2 * rayon, 2 * rayon);
+            g2d.setColor(Color.BLACK);
+            g2d.setStroke(new BasicStroke(2));
+            g2d.drawOval(cx + 2, cy - rayon, 2 * rayon, 2 * rayon);
+        } else if (contientJoueur1) {
+            g2d.setColor(couleurPion1);
+            g2d.fillOval(cx - rayon, cy - rayon, 2 * rayon, 2 * rayon);
+            g2d.setColor(Color.BLACK);
+            g2d.setStroke(new BasicStroke(2));
+            g2d.drawOval(cx - rayon, cy - rayon, 2 * rayon, 2 * rayon);
+        } else if (contientJoueur2) {
+            g2d.setColor(couleurPion2);
             g2d.fillOval(cx - rayon, cy - rayon, 2 * rayon, 2 * rayon);
             g2d.setColor(Color.BLACK);
             g2d.setStroke(new BasicStroke(2));

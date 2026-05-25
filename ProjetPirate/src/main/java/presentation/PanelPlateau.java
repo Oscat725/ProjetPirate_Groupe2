@@ -132,15 +132,21 @@ public class PanelPlateau extends JPanel {
         this.caseCible = cible;
     }
 
-    public void deplacerPion(int joueur, int nouvelleCaseNumero, Color couleur) {
-        // enlever le pion de l'ancienne case
-        if (positionJoueurs[joueur] >= 0) {
-            cases[positionJoueurs[joueur] - 1].setContientJoueur(false, null);
+    // Appelé une seule fois au début
+    public void setCouleurs(Color joueur1, Color joueur2) {
+        couleurJoueurs[0] = joueur1;
+        couleurJoueurs[1] = joueur2;
+        for (PanelCase c : cases) {
+            c.setCouleurs(joueur1, joueur2);
         }
-        // placer sur la nouvelle case
+    }
+
+    public void deplacerPion(int joueur, int nouvelleCaseNumero) {
+        if (positionJoueurs[joueur] >= 0) {
+            cases[positionJoueurs[joueur] - 1].setContientJoueur(joueur, false);
+        }
         positionJoueurs[joueur] = nouvelleCaseNumero;
-        couleurJoueurs[joueur] = couleur;
-        cases[nouvelleCaseNumero - 1].setContientJoueur(true, couleur);
+        cases[nouvelleCaseNumero - 1].setContientJoueur(joueur, true);
     }
 
     public void setOnPionPlace(Consumer<Integer> callback) {
