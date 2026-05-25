@@ -14,7 +14,7 @@ public class Dialogue implements IPirates {
     private String nomJoueur1, nomJoueur2;
     private int joueurActifIndex = 0;
 
-    public Dialogue(MainFrame2 mainFrame) {
+    public Dialogue(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 
@@ -24,7 +24,7 @@ public class Dialogue implements IPirates {
 
     public void demarrerJeu() {
         positionJoueur = 1;
-        mainFrame.deplacerPion(0, 1, java.awt.Color.RED);
+        mainFrame.deplacerPion(0, 1);
         mainFrame.activerBouton(true);
     }
 
@@ -52,7 +52,7 @@ public class Dialogue implements IPirates {
 
     public void pionPlaceCorrectement(int caseNumero) {
         positionJoueur = caseNumero;
-        mainFrame.deplacerPion(0, caseNumero, java.awt.Color.RED);
+        mainFrame.deplacerPion(0, caseNumero);
         mainFrame.activerBouton(true);
     }
 
@@ -70,11 +70,13 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherTourJoueur(String nomJoueur) {
+    	mainFrame.activerBouton(true);
         // Mettre en surbrillance le joueur actif, afficher son nom
     }
 
     @Override
     public void afficherResultatDes(int de1, int de2) {
+    	mainFrame.afficherDes(de1, de2);
         // Lancer l'animation des dés avec les valeurs de1 et de2
     }
 
@@ -87,7 +89,8 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherDeplacement(String nomPirate, int caseNumero) {
-        // Animer le déplacement du pion vers la case caseNumero
+    	mainFrame.activerDrag(joueurActifIndex, caseNumero);
+    	// Animer le déplacement du pion vers la case caseNumero
     }
 
     @Override
@@ -102,6 +105,7 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherMessage(String message) {
+    	mainFrame.log(message);
         // Afficher un message informatif dans la zone de texte
     }
 
