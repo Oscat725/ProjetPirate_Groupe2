@@ -234,10 +234,6 @@ public class MainFrame extends JFrame {
         // TODO
     }
 
-    public void afficherMystere(String message) {
-        // TODO
-    }
-
     public String afficherPopupChoixCoco() {
         // TODO
         return "oui";

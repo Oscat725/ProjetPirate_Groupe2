@@ -118,7 +118,7 @@ public class Dialogue implements IPirates {
         } else if (type.equals("Coco")) {
             mainFrame.afficherCoco(message);
         } else if (type.equals("Mystere")) {
-            mainFrame.afficherMystere(message);
+            //mainFrame.afficherMystere(message);
         }
     }
 
