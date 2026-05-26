@@ -115,10 +115,11 @@ public class Dialogue implements IPirates {
     public void afficherCaseSpeciale(String type, String message) {
         if (type.equals("Bombe")) {
             mainFrame.afficherBombe(message);
-        } else if (type.equals("Coco")) {
+        } else if (type.equals("CHUTE DE NOIX DE COCO")) {
             mainFrame.afficherCoco(message);
         } else if (type.equals("Mystere")) {
-            //mainFrame.afficherMystere(message);
+            // mainFrame.afficherMystere(message);
+            onPopupCaseSpecialeFermee();
         }
     }
 

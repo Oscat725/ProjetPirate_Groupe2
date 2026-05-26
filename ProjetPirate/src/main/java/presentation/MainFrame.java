@@ -214,14 +214,17 @@ public class MainFrame extends JFrame {
     public void afficherBombe(String message) {
         JDialog d = new JDialog(this, "Bombe", true);
         // (sera remplacé par Emin)
+        dialogue.onPopupCaseSpecialeFermee();
     }
-    
-    /* L'effect de cette methode est identique a leffect de la case mystere 
-        (0:avancer ; 1:reculer ; 2: gagner pv)
-       Le value aussi est pareil, la case mystere le determine
-       Il rajoute le panel mystere avec l'effect et la valeur correspondant au dialogue
-    */
-    public void afficherMystere(int effect, int value){
+
+    /*
+     * L'effect de cette methode est identique a leffect de la case mystere
+     * (0:avancer ; 1:reculer ; 2: gagner pv)
+     * Le value aussi est pareil, la case mystere le determine
+     * Il rajoute le panel mystere avec l'effect et la valeur correspondant au
+     * dialogue
+     */
+    public void afficherMystere(int effect, int value) {
         JDialog d = new JDialog(this, "Mystere", true);
         d.add(new PanelMystere(effect, value));
         d.pack();
@@ -231,7 +234,7 @@ public class MainFrame extends JFrame {
     }
 
     public void afficherCoco(String message) {
-        // TODO
+        dialogue.onPopupCaseSpecialeFermee();
     }
 
     public String afficherPopupChoixCoco() {

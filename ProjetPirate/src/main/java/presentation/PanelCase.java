@@ -1,12 +1,14 @@
 package presentation;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 
 // Nolawi
@@ -25,6 +27,18 @@ public class PanelCase extends JPanel {
 
     private static final Color COULEUR_BORD = new Color(173, 216, 230);
     private static final Color COULEUR_MILIEU = new Color(245, 225, 180);
+
+    // Images pour les cases spéciales (null si le fichier est absent)
+    private static final Image IMG_BOMBE = chargerImage("/images/bombe.png");
+    private static final Image IMG_COCO = chargerImage("/images/coco.png");
+    private static final Image IMG_MYSTERE = chargerImage("/images/mystere.png");
+
+    private static Image chargerImage(String path) {
+        java.net.URL url = PanelCase.class.getResource(path);
+        if (url == null)
+            return null;
+        return new ImageIcon(url).getImage();
+    }
 
     private int numero;
     private String type;
@@ -122,6 +136,7 @@ public class PanelCase extends JPanel {
         // center line dashes
         float dashLen = w * 0.12f;
         float gapLen = w * 0.10f;
+
         g2d.setColor(new Color(180, 160, 130));
         g2d.setStroke(new BasicStroke(
                 Math.max(1, h / 30f),
@@ -133,16 +148,16 @@ public class PanelCase extends JPanel {
                 g2d.drawLine(cx, cy, cx, 8 * h / 9); // vertical: center → bottom
                 break;
             case COIN_DROITE_BAS:
+                g2d.drawLine(w / 9, cy, cx, cy); // horizontal: center → left
                 g2d.drawLine(cx, h / 9, cx, cy); // vertical: top → center
-                g2d.drawLine(cx, cy, w / 9, cy); // horizontal: center → left
                 break;
             case COIN_GAUCHE_HAUT:
                 g2d.drawLine(8 * w / 9, cy, cx, cy); // horizontal: right → center
                 g2d.drawLine(cx, cy, cx, 8 * h / 9); // vertical: center → bottom
                 break;
             case COIN_GAUCHE_BAS:
+                g2d.drawLine(8 * w / 9, cy, cx, cy); // horizontal: center → right
                 g2d.drawLine(cx, h / 9, cx, cy); // vertical: top → center
-                g2d.drawLine(cx, cy, 8 * w / 9, cy); // horizontal: center → right
                 break;
             default:
                 g2d.drawLine(w / 9, cy, 8 * w / 9, cy);
@@ -162,13 +177,23 @@ public class PanelCase extends JPanel {
         if (null != type) // 6. icon centered in the case
             switch (type) {
                 case BOMBE:
-                    dessinerBombe(g2d, cx, cy, h / 2);
+                    if (IMG_BOMBE != null)
+                        g2d.drawImage(IMG_BOMBE, cx - h / 3, cy - h / 3, h * 2 / 3, h * 2 / 3, this);
+                    else
+                        dessinerBombe(g2d, cx, cy, h / 2); // ancien dessin géométrique
                     break;
                 case COCO:
-                    dessinerCoco(g2d, cx, cy, h / 2);
+                    if (IMG_COCO != null)
+                        g2d.drawImage(IMG_COCO, cx - h / 3, cy - h / 3, h * 2 / 3, h * 2 / 3, this);
+                    else
+                        dessinerCoco(g2d, cx, cy, h / 2); // ancien dessin géométrique
                     break;
                 case MYSTERE:
-                    dessinerMystere(g2d, cx, cy, h / 2, w);
+                    if (IMG_MYSTERE != null)
+                        g2d.drawImage(IMG_MYSTERE, cx - h / 3, cy - h / 3, h * 2 / 3, h * 2 / 3, this);
+
+                    else
+                        dessinerMystere(g2d, cx, cy, h / 2, w); // ancien dessin géométrique
                     break;
                 default:
                     break;
@@ -257,27 +282,4 @@ public class PanelCase extends JPanel {
         g2d.setColor(new Color(255, 215, 0));
         g2d.fillOval(cx - lockR, cy - lockR, lockR * 2, lockR * 2);
     }
-
-    public static void main(String[] args) {
-        javax.swing.JFrame frame = new javax.swing.JFrame("Test PanelCase");
-        frame.setLayout(new java.awt.GridLayout(2, 5, 0, 0));
-        frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
-        // row 1: straight cases
-        frame.add(new PanelCase(1, NORMALE, HORIZONTAL));
-        frame.add(new PanelCase(2, NORMALE, HORIZONTAL));
-        frame.add(new PanelCase(3, BOMBE, HORIZONTAL));
-        frame.add(new PanelCase(4, NORMALE, HORIZONTAL));
-        frame.add(new PanelCase(5, NORMALE, COIN_DROITE_HAUT));
-        // row 2: snake turn
-        frame.add(new PanelCase(10, MYSTERE, COIN_GAUCHE_HAUT));
-        frame.add(new PanelCase(9, NORMALE, HORIZONTAL));
-        frame.add(new PanelCase(8, COCO, HORIZONTAL));
-        frame.add(new PanelCase(7, NORMALE, HORIZONTAL));
-        frame.add(new PanelCase(6, NORMALE, COIN_DROITE_BAS));
-
-        frame.setSize(600, 240);
-        frame.setVisible(true);
-    }
-
 }

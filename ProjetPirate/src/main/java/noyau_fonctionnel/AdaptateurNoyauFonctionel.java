@@ -125,7 +125,13 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 	@Override
 	public void afficherEffetCase(String typeCase, String message, IActiverCase callback) {
 		this.ctrlActiverCase = callback;
-		dialogue.afficherCaseSpeciale(typeCase, message);
+		String type = switch (typeCase) {
+			case "BOMBE" -> "Bombe";
+			case "CHUTE DE NOIX DE COCO" -> "Coco";
+			case "MYSTERE" -> "Mystere";
+			default -> typeCase;
+		};
+		dialogue.afficherCaseSpeciale(type, message);
 	}
 
 	// Dialogue → Adaptateur : le popup de case spéciale est fermé
