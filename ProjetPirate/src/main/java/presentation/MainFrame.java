@@ -211,12 +211,11 @@ public class MainFrame extends JFrame {
         plateau.setCouleurs(j1, j2);
     }
 
-    public void afficherBombe(String message) {
+    public void afficherBombe(int value) {
         JDialog d = new JDialog(this, "Bombe", true);
         // (sera remplacé par Emin)
         dialogue.onPopupCaseSpecialeFermee();
     }
-
     /*
      * L'effect de cette methode est identique a leffect de la case mystere
      * (0:avancer ; 1:reculer ; 2: gagner pv)
@@ -230,10 +229,10 @@ public class MainFrame extends JFrame {
         d.pack();
         d.setLocationRelativeTo(this);
         d.setVisible(true);
-
+        dialogue.onPopupCaseSpecialeFermee();
     }
 
-    public void afficherCoco(String message) {
+    public void afficherCoco(int value) {
         dialogue.onPopupCaseSpecialeFermee();
     }
 

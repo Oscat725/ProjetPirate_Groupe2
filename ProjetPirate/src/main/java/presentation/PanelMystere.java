@@ -4,11 +4,16 @@
  */
 package presentation;
 
+import java.awt.Window;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+
 /**
  *
  * @author oscar
  */
 public class PanelMystere extends javax.swing.JPanel {
+
     private String endText = " NO ";
 
     /**
@@ -17,16 +22,16 @@ public class PanelMystere extends javax.swing.JPanel {
     public PanelMystere() {
         initComponents();
     }
-    
-    public PanelMystere(int effect, int value){
+
+    public PanelMystere(int effect, int value) {
         initComponents();
         this.panelCarte1.setEffectAndValue(effect, value);
         this.panelCarte2.setEffectAndValue(effect, value);
         this.panelCarte3.setEffectAndValue(effect, value);
         setEndText(effect, value);
     }
-    
-    public void setEffectAndValue(int effect, int value){
+
+    public void setEffectAndValue(int effect, int value) {
         this.panelCarte1.setEffectAndValue(effect, value);
         this.panelCarte2.setEffectAndValue(effect, value);
         this.panelCarte3.setEffectAndValue(effect, value);
@@ -151,40 +156,56 @@ public class PanelMystere extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelCarte1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCarte1MouseClicked
-        this.panelCarte1.flipCard();
-        this.panelCarte2.setFlip(false);
-        this.panelCarte3.setFlip(false);
-        showEndText();
+        handleCardClick(panelCarte1);
     }//GEN-LAST:event_panelCarte1MouseClicked
 
     private void panelCarte2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCarte2MouseClicked
-        this.panelCarte2.flipCard();
-        this.panelCarte1.setFlip(false);
-        this.panelCarte3.setFlip(false);
-        showEndText();
+        handleCardClick(panelCarte2);
     }//GEN-LAST:event_panelCarte2MouseClicked
 
     private void panelCarte3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCarte3MouseClicked
-        this.panelCarte3.flipCard();
-        this.panelCarte2.setFlip(false);
-        this.panelCarte1.setFlip(false);
-        showEndText();
+        handleCardClick(panelCarte3);
     }//GEN-LAST:event_panelCarte3MouseClicked
 
-    private void showEndText(){
-    this.jLabelEnd.setText(endText);
-}
+    private void handleCardClick(PanelCarte selectedCarte){
+        if (!selectedCarte.enableFlip) {
+            return;
+        }
+        selectedCarte.flipCard();
+        disableAllCards();
+        showEndText();
+        
+        //wait 1.5s, then close the window
+        javax.swing.Timer closeTime = new Timer(2000, e -> {
+            Window window = SwingUtilities.getWindowAncestor(this);
+            if(window!=null)
+                window.dispose();
+        });
+        
+        closeTime.setRepeats(false);
+        closeTime.start();
+    }
     
-    private void setEndText(int effect, int value){
+    private void showEndText() {
+        this.jLabelEnd.setText(endText);
+    }
+
+    private void disableAllCards() {
+        this.panelCarte3.enableFlip = false;
+        this.panelCarte2.enableFlip = (false);
+        this.panelCarte1.enableFlip = false;
+    }
+
+    private void setEndText(int effect, int value) {
         switch (effect) {
             case 2:
-                endText = "Vous gagnez "+String.valueOf(value)+" point(s) de vie.";
+                endText = "Vous gagnez " + String.valueOf(value) + " point(s) de vie.";
                 break;
             case 1:
-                endText = "Vous reculez de "+String.valueOf(value)+" case(s).";
+                endText = "Vous reculez de " + String.valueOf(value) + " case(s).";
                 break;
             case 0:
-                endText = "Vous avancez de "+String.valueOf(value)+" case(s).";
+                endText = "Vous avancez de " + String.valueOf(value) + " case(s).";
                 break;
             default:
                 throw new AssertionError();

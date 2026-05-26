@@ -123,15 +123,9 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// Noyau → Adaptateur : afficher l'effet de la case spéciale
 	@Override
-	public void afficherEffetCase(String typeCase, String message, IActiverCase callback) {
+	public void afficherEffetCase(String typeCase, String message, IActiverCase callback, int effect, int value) {
 		this.ctrlActiverCase = callback;
-		String type = switch (typeCase) {
-			case "BOMBE" -> "Bombe";
-			case "CHUTE DE NOIX DE COCO" -> "Coco";
-			case "MYSTERE" -> "Mystere";
-			default -> typeCase;
-		};
-		dialogue.afficherCaseSpeciale(type, message);
+		dialogue.afficherCaseSpeciale(typeCase, message, effect, value);
 	}
 
 	// Dialogue → Adaptateur : le popup de case spéciale est fermé
