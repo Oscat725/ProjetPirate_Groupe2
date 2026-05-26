@@ -17,22 +17,28 @@ public class PanelDemiCocoDroit extends JPanel{
  
     public PanelDemiCocoDroit() {
         setPreferredSize(new Dimension(200, 200));
-        setBackground(Color.WHITE);
+        setOpaque(false);
     }
- 
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
- 
-        int cx = getWidth() / 2 - 10;
-        int cy = getHeight() / 2;
- 
+
+        // Adaptation à la taille réelle du panel
+        double scaleX = getWidth() / 200.0;
+        double scaleY = getHeight() / 200.0;
+        g2.scale(scaleX, scaleY);
+
+        // Coordonnées de référence (pour 200x200)
+        int cx = 90;
+        int cy = 100;
+
         // Légère rotation comme dans le dessin original
         g2.rotate(Math.toRadians(-6), cx, cy);
- 
+
         // --- Coque (demi-ellipse, côté plat à gauche) ---
         Path2D coque = new Path2D.Double();
         coque.moveTo(cx, cy - 80);
@@ -41,7 +47,7 @@ public class PanelDemiCocoDroit extends JPanel{
         coque.closePath();
         g2.setColor(new Color(201, 122, 110));
         g2.fill(coque);
- 
+
         // --- Chair blanche (bande sur le côté plat) ---
         Path2D chair = new Path2D.Double();
         chair.moveTo(cx, cy - 80);
@@ -51,7 +57,7 @@ public class PanelDemiCocoDroit extends JPanel{
         chair.curveTo(cx - 12, cy - 44, cx - 11, cy - 76, cx, cy - 80);
         g2.setColor(new Color(242, 235, 227));
         g2.fill(chair);
- 
+
         // --- Cavité intérieure sombre ---
         Path2D cavite = new Path2D.Double();
         cavite.moveTo(cx, cy - 60);
@@ -61,7 +67,7 @@ public class PanelDemiCocoDroit extends JPanel{
         cavite.curveTo(cx - 7, cy - 32, cx - 6, cy - 57, cx, cy - 60);
         g2.setColor(new Color(46, 26, 8, 220));
         g2.fill(cavite);
- 
+
         // --- Hachures sur la coque ---
         g2.setColor(new Color(212, 132, 122, 180));
         g2.setStroke(new BasicStroke(1.1f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -79,7 +85,7 @@ public class PanelDemiCocoDroit extends JPanel{
         for (int[] h : hachuresCoque) {
             g2.drawLine(h[0], h[1], h[2], h[3]);
         }
- 
+
         // --- Hachures sur la chair ---
         g2.setColor(new Color(180, 160, 140, 130));
         int[][] hachurescChair = {
@@ -92,23 +98,24 @@ public class PanelDemiCocoDroit extends JPanel{
         for (int[] h : hachurescChair) {
             g2.drawLine(h[0], h[1], h[2], h[3]);
         }
- 
+
         // --- Contour de la coque ---
         g2.setColor(new Color(176, 90, 80));
         g2.setStroke(new BasicStroke(2.2f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2.draw(coque);
- 
+
         // --- Contour de la chair (côté gauche) ---
         Path2D contourChair = new Path2D.Double();
         contourChair.moveTo(cx, cy - 80);
         contourChair.curveTo(cx - 12, cy - 77, cx - 13, cy - 44, cx - 13, cy);
         contourChair.curveTo(cx - 13, cy + 44, cx - 12, cy + 77, cx, cy + 80);
         g2.draw(contourChair);
- 
+
         // --- Ligne plate (bord de coupe) ---
         g2.drawLine(cx, cy - 80, cx, cy + 80);
     }
- 
+    
+    //test pour le dessin
     public static void main(String[] args) {
         JFrame frame = new JFrame("Coco droite");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
