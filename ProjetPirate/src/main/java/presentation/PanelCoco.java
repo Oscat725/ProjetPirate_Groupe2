@@ -14,25 +14,16 @@ public class PanelCoco extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelCoco
+     * @param value
      */
-    public PanelCoco() {
+    public PanelCoco(int value) {
         initComponents();
+        setTextPV(value);
     }
     
-    public void setTextPV(String texte){
-        jLabel8.setText(texte);
-    }
-    
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("TEST Coco");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        PanelCoco panel = new PanelCoco();
-        panel.setTextPV("2");
-        frame.add(panel);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        panel.setVisible(true);
-        
+    private void setTextPV(int value){
+        String text = Integer.toString(value);
+        jLabel8.setText(text);
     }
 
     /**

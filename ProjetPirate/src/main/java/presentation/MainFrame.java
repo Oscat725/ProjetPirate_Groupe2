@@ -239,6 +239,11 @@ public class MainFrame extends JFrame {
     }
 
     public void afficherCoco(int value) {
+        JDialog d = new JDialog(this, "Coco", true);
+        d.add(new PanelCoco(value));
+        d.pack();
+        d.setLocationRelativeTo(this);
+        d.setVisible(true);
         dialogue.onPopupCaseSpecialeFermee();
     }
 
