@@ -32,6 +32,11 @@ public class PanelCarte extends javax.swing.JPanel {
         this.enableFlip = enableFlipBool;
     }
 
+    public void setEffectAndValue(int effect, int value) {
+        this.effect = effect;
+        this.value = value;
+    }
+
     /**
      * Creates new form PanelCarte
      */
@@ -53,44 +58,43 @@ public class PanelCarte extends javax.swing.JPanel {
         int fullY = margin;
         int fullW = getWidth() - margin * 2;
         int fullH = getHeight() - margin * 2;
-        
+
         int cardW = (int) (fullW * flipScale);
-        int cardX = fullX + (fullW - cardW)/2;
-        
+        int cardX = fullX + (fullW - cardW) / 2;
+
         cardW = Math.max(cardW, 1);
-        
+
         drawBoarder(g2D, cardX, fullY, cardW, fullH, arc);
-        
-        if (cardW>20) {
+
+        if (cardW > 20) {
             if (!fliped) {
-            drawSkull(g2D, cardX, fullY, cardW, fullH);
-        } else {
-            switch (effect) {
-                case 2:
-                    drawHeart(g2D, cardX, fullY, cardW, fullH);
-                    break;
-                case 1:
-                    drawForwardArrow(g2D, cardX, fullY, cardW, fullH);
-                    break;
-                case 0:
-                    drawBackwardArrow(g2D, cardX, fullY, cardW, fullH);
-                    break;
-                default:
-                    throw new AssertionError();
+                drawSkull(g2D, cardX, fullY, cardW, fullH);
+            } else {
+                switch (effect) {
+                    case 2:
+                        drawHeart(g2D, cardX, fullY, cardW, fullH);
+                        break;
+                    case 1:
+                        drawBackwardArrow(g2D, cardX, fullY, cardW, fullH);
+                        break;
+                    case 0:
+                        drawForwardArrow(g2D, cardX, fullY, cardW, fullH);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                drawValue(value, g2D, cardX, fullY, cardW, fullH);
             }
-            drawValue(value, g2D, cardX, fullY, cardW, fullH);
         }
-        }
-        
-        
+
     }
 
     public void flipCard() {
         if (flipping) {
             return;
         }
-        
-        if (!enableFlip){
+
+        if (!enableFlip) {
             return;
         }
 
@@ -430,10 +434,10 @@ public class PanelCarte extends javax.swing.JPanel {
 
     private void drawBoarder(Graphics2D g2D, int x, int y, int width, int height, int arc) {
         if (!fliped) {
-        g2D.setColor(Color.LIGHT_GRAY);
-    } else {
-        g2D.setColor(new Color(60, 60, 65));
-    }
+            g2D.setColor(Color.LIGHT_GRAY);
+        } else {
+            g2D.setColor(new Color(60, 60, 65));
+        }
         g2D.fillRoundRect(x, y, width, height, arc, arc);
 
         g2D.setColor(Color.DARK_GRAY);
@@ -592,6 +596,7 @@ public class PanelCarte extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setPreferredSize(new java.awt.Dimension(200, 280));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -611,11 +616,7 @@ public class PanelCarte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (enableFlip) {
-            flipCard();
-        }
-        this.enableFlip = false;
-        repaint();
+
     }//GEN-LAST:event_formMouseClicked
 
 
