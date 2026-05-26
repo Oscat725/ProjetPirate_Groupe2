@@ -163,6 +163,16 @@ public class MainFrame extends JFrame {
         //Yoakin -> plus besoin si on passe par la carte "Demarrage" (clique du bouton "Jouer" commence le jeu)
         //dialogue.demarrerJeu();
     }
+    
+	public void afficherSaisieNoms() {
+		// TODO Auto-generated method stub
+		
+	}
+    
+	public void afficherQuiCommence(String nomPremier) {
+		// TODO Auto-generated method stub
+		
+	}
 
     public void activerBouton(boolean actif) {
         boutonLancer.setEnabled(actif);
@@ -184,6 +194,11 @@ public class MainFrame extends JFrame {
     public void deplacerPion(int joueur, int caseNumero) {
         plateau.deplacerPion(joueur, caseNumero);
     }
+    
+	public void afficherPV(String nomPirate, int pv) {
+		// TODO Auto-generated method stub
+		
+	}
 
     public void afficherBombe() {
         JDialog d = new JDialog(this, "Bombe", true);
@@ -196,13 +211,17 @@ public class MainFrame extends JFrame {
         // Mettre à jour les noms dans les PanelJoueur
         panelJoueur1.setNom(nom1);
         panelJoueur2.setNom(nom2);
-
         
         if (dialogue != null) dialogue.onNomsSaisis(nom1, nom2);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); // mettre en plein ecran
         cardLayout.show(panelPrincipal, "JEU");
     }
+    
+    public void afficherFinPartie(String nomGagnant) {
+		// TODO Auto-generated method stub
+		
+	}
     
     public PanelJoueur getPanelJoueur1() {
         return panelJoueur1;

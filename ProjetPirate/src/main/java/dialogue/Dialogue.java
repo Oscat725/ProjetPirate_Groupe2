@@ -8,11 +8,15 @@ public class Dialogue implements IPirates {
 
     private MainFrame mainFrame;
     private INoyauFonctionnel noyau;
+
+    private String nomJoueur1;
+    private int joueurActifIndex = 0;
+
+    // ═══ ANCIENNES VARIABLES TEMPORAIRES (à supprimer quand le noyau sera
+    // connecté) ═══
     private int desTermines = 0;
     private int r1, r2;
     private int positionJoueur = 0;
-    private String nomJoueur1, nomJoueur2;
-    private int joueurActifIndex = 0;
 
     public Dialogue(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -21,6 +25,10 @@ public class Dialogue implements IPirates {
     public void setNoyau(INoyauFonctionnel noyau) {
         this.noyau = noyau;
     }
+
+    // ═══════════════════════════════════════════════════════════════
+    // ANCIENNES MÉTHODES TEMPORAIRES (à supprimer quand le noyau sera connecté)
+    // ═══════════════════════════════════════════════════════════════
 
     public void demarrerJeu() {
         positionJoueur = 1;
@@ -31,18 +39,111 @@ public class Dialogue implements IPirates {
     public void lancerDes() {
         mainFrame.activerBouton(false);
         if (noyau != null) {
-            // noyau.lancerDes();
-        } else { // on attendant que l'adaptateur soit fait
+            noyau.onBoutonLancerDesClique();
+        } else { // en attendant que l'adaptateur soit fait
             r1 = (int) (Math.random() * 6) + 1;
             r2 = (int) (Math.random() * 6) + 1;
             mainFrame.afficherDes(r1, r2);
         }
     }
 
-    public void animationDeTerminee() {
+    // ═══════════════════════════════════════════════════════════════
+    // PARTIE 1 : IPirates (Appels du Noyau -> Vers MainFrame)
+    // ═══════════════════════════════════════════════════════════════
+
+    @Override
+    public void afficherSaisieNoms() {
+        mainFrame.afficherEcranDemarrage(); // Nom plus descriptif du composant UI
+    }
+
+    @Override
+    public void afficherQuiCommence(String nomPremier) {
+        mainFrame.afficherPopupQuiCommence(nomPremier);
+    }
+
+    @Override
+    public void afficherTourJoueur(String nomJoueur) {
+        joueurActifIndex = nomJoueur.equals(nomJoueur1) ? 0 : 1;
+        mainFrame.mettreEnSurbrillanceJoueur(joueurActifIndex);
+        mainFrame.log("C'est au tour de " + nomJoueur);
+        mainFrame.activerBouton(true);
+    }
+
+    @Override
+    public void afficherResultatDes(int de1, int de2) {
+        mainFrame.afficherDes(de1, de2);
+    }
+
+    @Override
+    public void afficherDeplacement(String nomPirate, int caseNumero) {
+        mainFrame.activerDrag(joueurActifIndex, caseNumero);
+    }
+
+    @Override
+    public void afficherCaseSpeciale(String type, String message) {
+        if (type.equals("Bombe")) {
+            mainFrame.afficherBombe(message);
+        } else if (type.equals("Coco")) {
+            mainFrame.afficherCoco(message);
+        } else if (type.equals("Mystere")) {
+            mainFrame.afficherMystere(message);
+        }
+    }
+
+    @Override
+    public void afficherChoixCoco() {
+        String reponse = mainFrame.afficherPopupChoixCoco();
+        onReponseCoco(reponse);
+    }
+
+    @Override
+    public void afficherPV(String nomPirate, int pv) {
+        int indexJoueur = nomPirate.equals(nomJoueur1) ? 0 : 1;
+        mainFrame.mettreAJourPV(indexJoueur, pv);
+        mainFrame.log(nomPirate + " a maintenant " + pv + " PV");
+        onAffichagePVTermine();
+    }
+
+    @Override
+    public void afficherFinPartie(String nomGagnant) {
+        mainFrame.afficherEcranFinPartie(nomGagnant);
+    }
+
+    @Override
+    public void afficherMessage(String message) {
+        mainFrame.log(message);
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // PARTIE 2 : Callbacks / EventHandlers (Appels de MainFrame -> Vers Noyau)
+    // ═══════════════════════════════════════════════════════════════
+
+    public void onNomsSaisis(String nomJ1, String nomJ2) {
+        this.nomJoueur1 = nomJ1;
+        if (noyau != null)
+            noyau.soumettreNoms(nomJ1, nomJ2);
+    }
+
+    public void onPopupQuiCommenceFermee() {
+        if (noyau != null)
+            noyau.onPopupQuiCommenceFermee();
+    }
+
+    public void onBoutonLancerDesClique() {
+        mainFrame.activerBouton(false);
+        if (noyau != null) {
+            noyau.onBoutonLancerDesClique();
+        } else {
+            lancerDes();
+        }
+    }
+
+    public void onAnimationDesTerminee() {
         desTermines++;
         if (desTermines == 2) {
             desTermines = 0;
+        } else {
+            // Logique temporaire quand le noyau n'est pas branché
             int cible = positionJoueur + r1 + r2;
             if (cible > 30)
                 cible = 30;
@@ -50,107 +151,37 @@ public class Dialogue implements IPirates {
         }
     }
 
-    public void pionPlaceCorrectement(int caseNumero) {
-        positionJoueur = caseNumero;
-        mainFrame.deplacerPion(0, caseNumero);
-        mainFrame.activerBouton(true);
     }
 
-    // ---------IPirates — appelé par l'Adaptateur pour afficher des choses--------
+    // Callback venant de PanelPlateau (via MainFrame)
+    public void onAnimationDeplacementTerminee(int caseNumero) {
+        mainFrame.deplacerPion(joueurActifIndex, caseNumero);
 
-    @Override
-    public void afficherSaisieNoms() {
-        // Afficher le panneau de saisie des noms des joueurs
-    }
-
-    @Override
-    public void afficherQuiCommence(String nomPremier) {
-        // Afficher une popup indiquant quel joueur commence
-    }
-
-    @Override
-    public void afficherTourJoueur(String nomJoueur) {
-    	mainFrame.activerBouton(true);
-        // Mettre en surbrillance le joueur actif, afficher son nom
-    }
-
-    @Override
-    public void afficherResultatDes(int de1, int de2) {
-    	mainFrame.afficherDes(de1, de2);
-        // Lancer l'animation des dés avec les valeurs de1 et de2
-    }
-
-    @Override
-    public void afficherCaseSpeciale(String type, String message) {
-        // if (type == "Bombe"){
-        // mainFrame.afficherBombe(message);
-        // }
-    }
-
-    @Override
-    public void afficherDeplacement(String nomPirate, int caseNumero) {
-    	mainFrame.activerDrag(joueurActifIndex, caseNumero);
-    	// Animer le déplacement du pion vers la case caseNumero
-    }
-
-    @Override
-    public void afficherPV(String nomPirate, int pv) {
-        // Mettre à jour la barre / le compteur de PV du joueur nomPirate
-    }
-
-    @Override
-    public void afficherFinPartie(String nomGagnant) {
-        // Afficher l'écran de fin de partie avec le nom du gagnant
-    }
-
-    @Override
-    public void afficherMessage(String message) {
-    	mainFrame.log(message);
-        // Afficher un message informatif dans la zone de texte
-    }
-
-    // EventHandlers — appelé par MainFrame en réponse aux événements GUI
-    // Chaque handler notifie le noyau que l'action utilisateur est terminée.
-
-    public void onNomsSaisis(String nomJ1, String nomJ2) {
-        // ActionEvent : bouton "Jouer" cliqué dans le panel de saisie des noms
-        noyau.soumettreNoms(nomJ1, nomJ2);
-    }
-
-    public void onPopupQuiCommenceFermee() {
-        // ActionEvent : bouton OK de la popup "X commence" cliqué
-        noyau.onPopupQuiCommenceFermee();
-    }
-
-    public void onBoutonLancerDesClique() {
-        // ActionEvent : bouton "Lancer les dés" cliqué
-        noyau.onBoutonLancerDesClique();
-    }
-
-    public void onAnimationDesTerminee() {
-        // Événement fin d'animation : les dés ont fini de tourner
-        noyau.onAnimationDesTerminee();
-    }
-
-    public void onAnimationDeplacementTerminee() {
-        // Événement fin d'animation : le pion est arrivé sur sa case cible
-        noyau.onAnimationDeplacementTerminee();
+        if (noyau != null) {
+            noyau.onAnimationDeplacementTerminee();
+        } else {
+            positionJoueur = caseNumero;
+            mainFrame.activerBouton(true);
+        }
     }
 
     public void onPopupCaseSpecialeFermee() {
-        // ActionEvent : bouton OK de la popup de case spéciale cliqué
-        noyau.onPopupCaseSpecialeFermee();
+        if (noyau != null)
+            noyau.onPopupCaseSpecialeFermee();
+    }
+
+    public void onReponseCoco(String reponse) {
+        if (noyau != null)
+            noyau.onReponseCoco(reponse);
     }
 
     public void onAffichagePVTermine() {
-        // Événement fin d'affichage : la mise à jour des PV est terminée
-        noyau.onAffichagePVTermine();
+        if (noyau != null)
+            noyau.onAffichagePVTermine();
     }
 
     public void onPopupFinPartieFermee() {
-        // ActionEvent : bouton OK de l'écran de fin de partie cliqué
-        noyau.onPopupFinPartieFermee();
-
+        if (noyau != null)
+            noyau.onPopupFinPartieFermee();
     }
-
 }
