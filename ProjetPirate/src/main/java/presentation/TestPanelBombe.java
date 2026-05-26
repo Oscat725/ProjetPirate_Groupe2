@@ -12,18 +12,15 @@ import javax.swing.JDialog;
 
 public class TestPanelBombe {
     public static void main(String[] args) {
-        // Crée un faux dialogue pour le test
         JDialog dialogTest = new JDialog();
         dialogTest.setTitle("Test Visuel Bombe");
-        dialogTest.setSize(350, 150);
+        dialogTest.setSize(650, 650);
         dialogTest.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialogTest.setLocationRelativeTo(null); // Centre à l'écran
+        dialogTest.setLocationRelativeTo(null); 
 
-        // Ajoute ton panel dedans
-        PanelEffetBombe panel = new PanelEffetBombe(dialogTest);
+        PanelEffetBombe panel = new PanelEffetBombe(dialogTest, "tu perds 3 pv");
         dialogTest.add(panel);
 
-        // Affiche le tout
         dialogTest.setVisible(true);
     }
 }
