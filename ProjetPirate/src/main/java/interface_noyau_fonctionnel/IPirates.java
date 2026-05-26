@@ -12,7 +12,7 @@ public interface IPirates {
 
     void afficherDeplacement(String nomPirate, int caseNumero);
 
-    void afficherCaseSpeciale(String type, String message);
+    void afficherCaseSpeciale(String type, String message, int effect, int value);
 
     void afficherChoixCoco();
 

@@ -18,7 +18,7 @@ import javax.swing.Timer;
  */
 public class PanelCarte extends javax.swing.JPanel {
 
-    private boolean enableFlip = true;
+    public boolean enableFlip = true;
     private boolean fliped = false;
     private int value = 1;
     private int effect = 0;
@@ -27,9 +27,6 @@ public class PanelCarte extends javax.swing.JPanel {
     private double flipScale = 1.0;
     private boolean flipping = false;
 
-    public void setFlip(boolean enableFlipBool) {
-        this.enableFlip = enableFlipBool;
-    }
 
     public void setEffectAndValue(int effect, int value) {
         this.effect = effect;
@@ -90,10 +87,6 @@ public class PanelCarte extends javax.swing.JPanel {
 
     public void flipCard() {
         if (flipping) {
-            return;
-        }
-
-        if (!enableFlip) {
             return;
         }
 

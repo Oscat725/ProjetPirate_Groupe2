@@ -211,9 +211,10 @@ public class MainFrame extends JFrame {
         plateau.setCouleurs(j1, j2);
     }
 
-    public void afficherBombe(String message) {
+    public void afficherBombe(String message,int value) {
         JDialog d = new JDialog(this, "Bombe", true);
         // (sera remplacé par Emin)
+        dialogue.onPopupCaseSpecialeFermee();
     }
     
     /* L'effect de cette methode est identique a leffect de la case mystere 
@@ -221,17 +222,22 @@ public class MainFrame extends JFrame {
        Le value aussi est pareil, la case mystere le determine
        Il rajoute le panel mystere avec l'effect et la valeur correspondant au dialogue
     */
-    public void afficherMystere(int effect, int value){
+    public void afficherMystere(String message,int effect, int value){
         JDialog d = new JDialog(this, "Mystere", true);
         d.add(new PanelMystere(effect, value));
         d.pack();
         d.setLocationRelativeTo(this);
+        
         d.setVisible(true);
-
+        
+        this.log(message);
+        dialogue.onPopupCaseSpecialeFermee();
     }
 
-    public void afficherCoco(String message) {
+    public void afficherCoco(String message, int value) {
+        this.log(message);
         // TODO
+        dialogue.onPopupCaseSpecialeFermee();
     }
 
     public String afficherPopupChoixCoco() {

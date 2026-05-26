@@ -128,6 +128,7 @@ public class ControlJeuPirate implements IControlJeuPirate {
 
 	public void apresDeplacer(int numCase) {
 		Case c = jeu.getPlateau().getCase(numCase);
+                
 		if (controlActiverCase.isCaseSpecial(c)) {
 			controlActiverCase.activerCase(c, jeu.getIndiceJoueurCourant());
 		} else {

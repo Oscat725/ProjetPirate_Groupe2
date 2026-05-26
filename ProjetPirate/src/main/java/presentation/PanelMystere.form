@@ -59,11 +59,6 @@
   </Layout>
   <SubComponents>
     <Container class="presentation.PanelCarte" name="panelCarte1">
-      <Properties>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[200, 280]"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCarte1MouseClicked"/>
       </Events>
@@ -82,11 +77,6 @@
       </Layout>
     </Container>
     <Container class="presentation.PanelCarte" name="panelCarte2">
-      <Properties>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[200, 280]"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCarte2MouseClicked"/>
       </Events>
@@ -105,11 +95,6 @@
       </Layout>
     </Container>
     <Container class="presentation.PanelCarte" name="panelCarte3">
-      <Properties>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[200, 280]"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCarte3MouseClicked"/>
       </Events>
@@ -136,11 +121,6 @@
         <Property name="text" type="java.lang.String" value="Choisissez une carte..."/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="null"/>
-        </Property>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelEnd">
       <Properties>
