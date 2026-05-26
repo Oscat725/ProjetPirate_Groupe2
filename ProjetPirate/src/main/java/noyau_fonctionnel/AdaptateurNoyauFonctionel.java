@@ -32,9 +32,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		controlJeuPirate.jouer();
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 1 : Commencer la partie (saisie des noms)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : demande d'afficher la saisie des noms
 	@Override
@@ -63,9 +61,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 2 : Tour du joueur (afficher à qui c'est le tour)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : afficher le tour du joueur actif
 	@Override
@@ -84,9 +80,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 3 : Lancer les dés (animation)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : afficher le résultat des dés
 	@Override
@@ -105,16 +99,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 4 : Déplacer le pion (drag and drop)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : animer le déplacement du pion
 	@Override
 	public void deplacerPirates(String nomPirate, int ancienneCase, int nouvelleCase, IDeplacerPirate iDeplacerPirate) {
 		this.ctrlDeplacer = iDeplacerPirate;
 		this.dernierNumCase = nouvelleCase;
-		dialogue.afficherDeplacement(nomPirate, nouvelleCase);
+		dialogue.afficherDeplacement(nomPirate, nouvelleCase + 1);
 	}
 
 	// Dialogue → Adaptateur : le pion a été placé correctement
@@ -127,9 +119,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 5 : Case spéciale (popup effet)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : afficher l'effet de la case spéciale
 	@Override
@@ -148,9 +138,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 5b : Case Coco (demander si le joueur veut cacher un dé)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : demander au joueur s'il veut utiliser le coco
 	@Override
@@ -169,9 +157,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 6 : Points de vie (mise à jour PV)
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : mettre à jour les points de vie
 	@Override
@@ -190,9 +176,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// ÉTAPE 7 : Fin de partie
-	// ═══════════════════════════════════════════════════════════════
 
 	// Noyau → Adaptateur : afficher l'écran de fin de partie
 	@Override
@@ -211,9 +195,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// ═══════════════════════════════════════════════════════════════
 	// Messages simples (pas d'attente)
-	// ═══════════════════════════════════════════════════════════════
 
 	@Override
 	public void afficherMessage(String message) {

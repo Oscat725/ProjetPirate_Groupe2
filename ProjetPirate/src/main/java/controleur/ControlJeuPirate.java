@@ -51,7 +51,6 @@ public class ControlJeuPirate implements IControlJeuPirate {
 	public IBoundary getBoundary() {
 		return this.iBoundary;
 	}
-	
 
 	// -----methodes appellees par les autres controleurs-----
 
@@ -111,6 +110,10 @@ public class ControlJeuPirate implements IControlJeuPirate {
 		controlCommencerPartie.commencerPartie();
 	}
 
+	public void debuterPremierTour() {
+		iBoundary.changerJoueurActif(jeu.getJoueurCourant().getNom(), this);
+	}
+
 	public void apresLancerDe(int sommeDes) {
 		controlDeplacer.deplacerPirate(sommeDes);
 	}
@@ -119,7 +122,7 @@ public class ControlJeuPirate implements IControlJeuPirate {
 		controlCacherDe.demanderUtilisationCoco();
 	}
 
-	public void apresDemandeCoco(){
+	public void apresDemandeCoco() {
 		controleurDe.lancerDe();
 	}
 
@@ -137,28 +140,29 @@ public class ControlJeuPirate implements IControlJeuPirate {
 		controlPointDeVie.calculerPV();
 	}
 
-//    public void apresAfficherPV() {
-//       //On vérifie si la partie est terminée (victoire ou mort)
-//        if(controlVerifierFinPartie.verifierFinPartie()) {
-//            
-//            // On détermine qui a gagné :
-//            // Si le joueur courant a atteint la case 30 ou si l'autre est mort, c'est lui le gagnant.
-//            String gagnant = jeu.getJoueurCourant().getNom();
-//            
-//            // Si le joueur courant vient de mourir (ex: case bombe), l'autre gagne.
-//            if(jeu.getJoueurCourant().getPointDeVie() <= 0) {
-//                // Si courant = joueur 0, l'autre est joueur 1 (et inversement)
-//                int autreJoueurIndex = (jeu.getIndiceJoueurCourant() == 0) ? 1 : 0;
-//                gagnant = jeu.getJoueur(autreJoueurIndex).getNom();
-//            }
-//            
-//            iBoundary.afficherFinDePartie(gagnant, null); // Fin de la boucle
-//            
-//        } else {
-//            // La partie continue : on change de joueur et on relance le tour
-//            finDeTour(); 
-//        }
-//    }
+	// public void apresAfficherPV() {
+	// //On vérifie si la partie est terminée (victoire ou mort)
+	// if(controlVerifierFinPartie.verifierFinPartie()) {
+	//
+	// // On détermine qui a gagné :
+	// // Si le joueur courant a atteint la case 30 ou si l'autre est mort, c'est
+	// lui le gagnant.
+	// String gagnant = jeu.getJoueurCourant().getNom();
+	//
+	// // Si le joueur courant vient de mourir (ex: case bombe), l'autre gagne.
+	// if(jeu.getJoueurCourant().getPointDeVie() <= 0) {
+	// // Si courant = joueur 0, l'autre est joueur 1 (et inversement)
+	// int autreJoueurIndex = (jeu.getIndiceJoueurCourant() == 0) ? 1 : 0;
+	// gagnant = jeu.getJoueur(autreJoueurIndex).getNom();
+	// }
+	//
+	// iBoundary.afficherFinDePartie(gagnant, null); // Fin de la boucle
+	//
+	// } else {
+	// // La partie continue : on change de joueur et on relance le tour
+	// finDeTour();
+	// }
+	// }
 
 	public void apresAfficherPV() {
 		// On vérifie si la partie est terminée (victoire ou mort)
