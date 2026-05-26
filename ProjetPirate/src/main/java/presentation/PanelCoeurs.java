@@ -18,11 +18,12 @@ import javax.swing.JPanel;
 public class PanelCoeurs extends JPanel {
     private int pvMax = 5;
     private int pvActuels;
-    private Color couleurPlein = Color.RED;
+    private Color couleurPlein;
     private Color couleurVide = Color.GRAY;
 
-    public PanelCoeurs() {
+    public PanelCoeurs(Color couleurPlein) {
         this.pvActuels = pvMax;
+        this.couleurPlein =couleurPlein;
         setOpaque(false);
         setPreferredSize(new Dimension(pvMax * 26, 26));
     }

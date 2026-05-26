@@ -15,8 +15,7 @@ import javax.swing.border.*;
 
 //Melanie
 public class PanelJoueur extends JPanel {
- 
-    private Color COULEUR_ACTIF   = Color.green;
+
     private Color COULEUR_INACTIF;
     private String nom;
     private Color couleurJoueur;
@@ -33,7 +32,7 @@ public class PanelJoueur extends JPanel {
  
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         //la bordure est a la couleur du joueur pour separer les 2 joueurs
-        setBorder(BorderFactory.createLineBorder(couleurJoueur, 2, true));
+        setBorder(BorderFactory.createLineBorder(couleurJoueur, 3, true));
         setOpaque(true);
  
         //---Nom---
@@ -43,14 +42,16 @@ public class PanelJoueur extends JPanel {
         labelNom.setAlignmentX(Component.CENTER_ALIGNMENT);
  
         //---Coeurs PV---
-        coeurs = new PanelCoeurs();
+        coeurs = new PanelCoeurs(couleurJoueur);
         coeurs.setAlignmentX(Component.CENTER_ALIGNMENT);
  
         //--- Indicateur joueur actif ---
         indicateur = new JLabel("En jeu");
         indicateur.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        indicateur.setForeground(COULEUR_INACTIF); // inactif par défaut
+        indicateur.setForeground(COULEUR_INACTIF);
+        indicateur.setVisible(false);
         indicateur.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
 
         add(labelNom);
         add(coeurs);
@@ -64,8 +65,8 @@ public class PanelJoueur extends JPanel {
  
     // Active ou désactive l'indicateur visuel "joueur actif"
     public void setActif(boolean actif) {
-        indicateur.setForeground(actif ? COULEUR_ACTIF : COULEUR_INACTIF);
-        setBorder(BorderFactory.createLineBorder(actif ? COULEUR_ACTIF : COULEUR_INACTIF,3,true));
+        indicateur.setVisible(actif);
+        setBackground(actif ? new Color(220, 255, 220) : Color.WHITE);
         repaint();
     }
  
