@@ -4,6 +4,8 @@
  */
 package presentation;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author beman
@@ -22,9 +24,14 @@ public class PanelCoco extends javax.swing.JPanel {
     }
     
     public static void main(String[] args) {
-        PanelCoco fenetre = new PanelCoco();
-        fenetre.setTextPV("2");
-        fenetre.setVisible(true);
+        JFrame frame = new JFrame("TEST Coco");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        PanelCoco panel = new PanelCoco();
+        panel.setTextPV("2");
+        frame.add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        panel.setVisible(true);
         
     }
 
