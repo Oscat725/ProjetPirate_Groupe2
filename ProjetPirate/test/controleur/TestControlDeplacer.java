@@ -13,7 +13,7 @@ import entity.Joueur;
 import entity.Pion;
 
 class TestControlDeplacer {
-	private IBoundary boundary;
+    private IBoundary boundary;
     private ControlJeuPirate controlJeuPirate;
     private Jeu jeu;
     private Joueur joueur;
@@ -26,15 +26,15 @@ class TestControlDeplacer {
         jeu.setJoueur(0, joueur);
         controlDeplacer = new ControlDeplacer(jeu, boundary, controlJeuPirate);
     }
-    
-	@Test
-	void testDeplacerPirate() {
-		joueur.setPosition(0);
+
+    @Test
+    void testDeplacerPirate() {
+        joueur.setPosition(0);
         controlDeplacer.deplacerPirate(5);
         assertEquals(5, joueur.getPosition());
-	}
-	
-	@Test
+    }
+
+    @Test
     public void testDeplacementJeuLoie() {
         joueur.setPosition(28);
         controlDeplacer.deplacerPirate(4);

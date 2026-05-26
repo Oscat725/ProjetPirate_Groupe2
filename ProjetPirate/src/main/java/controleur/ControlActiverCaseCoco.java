@@ -27,12 +27,11 @@ public class ControlActiverCaseCoco extends ControlActiverCaseSpecial implements
 		derniersDegats = ((CaseCoco) caseCourant).getDegats();
 		joueurs[joueurCourantIndex].setHasCoco(true);
 		iBoundary.afficherEffetCase("CHUTE DE NOIX DE COCO", "Une noix de coco tombe : -" + derniersDegats + " PV",
-				this);
+				this,0,derniersDegats);
 	}
 
 	@Override
 	public void finActiverCase() {
-		joueurs[(joueurCourantIndex + 1) % 2].setAffecteCoco(true);
 		controlVie.perdrePointsDeVie(derniersDegats, joueurs[joueurCourantIndex]);
 	}
 

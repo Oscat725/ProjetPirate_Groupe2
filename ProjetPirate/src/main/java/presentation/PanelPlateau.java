@@ -15,6 +15,7 @@ public class PanelPlateau extends JPanel {
     private int caseCible = -1;
     private boolean isDraggingPion = false;
     private int joueurActif = 0;
+    private int dragX = -1, dragY = -1;
     private int[] positionJoueurs = { -1, -1 };
     private Color[] couleurJoueurs = { null, null };
     private Consumer<Integer> onPionPlace;
@@ -84,6 +85,9 @@ public class PanelPlateau extends JPanel {
             public void mouseDragged(MouseEvent e) {
                 if (!isDraggingPion || caseCible < 0)
                     return;
+                dragX = e.getX();
+                dragY = e.getY();
+                repaint();
                 clearAllHighlights();
                 PanelCase c = getCaseAt(e.getX(), e.getY());
                 if (c != null) {
@@ -104,6 +108,7 @@ public class PanelPlateau extends JPanel {
                 PanelCase c = getCaseAt(e.getX(), e.getY());
                 if (c != null && c.getNumero() == positionJoueurs[joueurActif]) {
                     isDraggingPion = true;
+                    cases[positionJoueurs[joueurActif] - 1].setContientJoueur(joueurActif, false);
                 }
             }
 
@@ -114,15 +119,19 @@ public class PanelPlateau extends JPanel {
                     return;
                 }
                 isDraggingPion = false;
+                dragX = -1;
+                dragY = -1;
+                clearAllHighlights();
                 PanelCase c = getCaseAt(e.getX(), e.getY());
                 if (c != null && c.getNumero() == caseCible) {
-                    clearAllHighlights();
                     int cible = caseCible;
                     caseCible = -1;
                     if (onPionPlace != null)
                         onPionPlace.accept(cible);
+                } else {
+                    cases[positionJoueurs[joueurActif] - 1].setContientJoueur(joueurActif, true);
+                    repaint();
                 }
-                clearAllHighlights();
             }
         });
     }
@@ -132,15 +141,21 @@ public class PanelPlateau extends JPanel {
         this.caseCible = cible;
     }
 
-    public void deplacerPion(int joueur, int nouvelleCaseNumero, Color couleur) {
-        // enlever le pion de l'ancienne case
-        if (positionJoueurs[joueur] >= 0) {
-            cases[positionJoueurs[joueur] - 1].setContientJoueur(false, null);
+    // Appelé une seule fois au début
+    public void setCouleurs(Color joueur1, Color joueur2) {
+        couleurJoueurs[0] = joueur1;
+        couleurJoueurs[1] = joueur2;
+        for (PanelCase c : cases) {
+            c.setCouleurs(joueur1, joueur2);
         }
-        // placer sur la nouvelle case
+    }
+
+    public void deplacerPion(int joueur, int nouvelleCaseNumero) {
+        if (positionJoueurs[joueur] >= 0) {
+            cases[positionJoueurs[joueur] - 1].setContientJoueur(joueur, false);
+        }
         positionJoueurs[joueur] = nouvelleCaseNumero;
-        couleurJoueurs[joueur] = couleur;
-        cases[nouvelleCaseNumero - 1].setContientJoueur(true, couleur);
+        cases[nouvelleCaseNumero - 1].setContientJoueur(joueur, true);
     }
 
     public void setOnPionPlace(Consumer<Integer> callback) {
@@ -157,5 +172,21 @@ public class PanelPlateau extends JPanel {
     private void clearAllHighlights() {
         for (PanelCase c : cases)
             c.clearHighlight();
+    }
+
+    @Override
+    protected void paintChildren(Graphics g) {
+        super.paintChildren(g);
+        if (isDraggingPion && dragX >= 0) {
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            int r = 15;
+            g2d.setColor(couleurJoueurs[joueurActif]);
+            g2d.fillOval(dragX - r, dragY - r, 2 * r, 2 * r);
+            g2d.setColor(Color.BLACK);
+            g2d.setStroke(new BasicStroke(2));
+            g2d.drawOval(dragX - r, dragY - r, 2 * r, 2 * r);
+            g2d.dispose();
+        }
     }
 }

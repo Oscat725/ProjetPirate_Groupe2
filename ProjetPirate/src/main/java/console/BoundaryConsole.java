@@ -52,7 +52,7 @@ public class BoundaryConsole implements IBoundary {
     
     
     @Override
-    public void afficherEffetCase(String typeCase, String message, IActiverCase callback) {
+    public void afficherEffetCase(String typeCase, String message, IActiverCase callback,int effect, int value) {
         System.out.println("Vous êtes tombés sur une case spéciale : <" + typeCase + ">");
         System.out.println(message + "\n");
         callback.finActiverCase();
@@ -93,6 +93,7 @@ public class BoundaryConsole implements IBoundary {
         callback.finAfficherTour();
     }
 
+    @Override
     public void demanderUtilisationCoco(IControlCacherDe callback) {
         System.out.print("Voulez-vous utiliser votre noix de coco pour ce tour ? (oui/non) : ");
         String reponse = scanner.nextLine().trim().toLowerCase();
