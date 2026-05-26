@@ -286,4 +286,23 @@ public class MainFrame extends JFrame {
                 "Règles du jeu",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void afficherEffetBombe() {
+    JDialog dialogBombe = new JDialog(this, "Case Bombe", true);
+    PanelEffetBombe panelBombe = new PanelEffetBombe(dialogBombe);
+    
+    dialogBombe.add(panelBombe);
+    dialogBombe.setSize(350, 150);
+    dialogBombe.setLocationRelativeTo(this); 
+    
+    // écoutuer qui prévient quand le jeu se termine
+    dialogBombe.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosed(java.awt.event.WindowEvent e) {
+            dialogue.onPopupCaseSpecialeFermee();
+        }
+    });
+
+    dialogBombe.setVisible(true); // Affiche le dialogue et bloque le reste (car modal = true)
+}
 }
