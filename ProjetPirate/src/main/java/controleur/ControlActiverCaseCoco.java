@@ -32,7 +32,6 @@ public class ControlActiverCaseCoco extends ControlActiverCaseSpecial implements
 
 	@Override
 	public void finActiverCase() {
-		joueurs[(joueurCourantIndex + 1) % 2].setAffecteCoco(true);
 		controlVie.perdrePointsDeVie(derniersDegats, joueurs[joueurCourantIndex]);
 	}
 

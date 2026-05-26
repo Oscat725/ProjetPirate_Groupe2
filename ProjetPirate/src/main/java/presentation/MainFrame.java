@@ -195,8 +195,13 @@ public class MainFrame extends JFrame {
     }
 
     public void afficherDes(int r1, int r2) {
+        de2.setEnabled(r2 > 0);
         de1.lancerAnimation(r1);
-        de2.lancerAnimation(r2);
+        if (r2 > 0) {
+            de2.lancerAnimation(r2);
+        } else {
+            dialogue.onAnimationDesTerminee();
+        }
     }
 
     public void activerDrag(int joueurIndex, int cible) {
@@ -216,6 +221,7 @@ public class MainFrame extends JFrame {
         // (sera remplacé par Emin)
         dialogue.onPopupCaseSpecialeFermee();
     }
+
     /*
      * L'effect de cette methode est identique a leffect de la case mystere
      * (0:avancer ; 1:reculer ; 2: gagner pv)
