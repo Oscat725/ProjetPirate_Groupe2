@@ -17,9 +17,15 @@ public class PanelCoco extends javax.swing.JPanel {
         initComponents();
     }
     
+    public void setTextPV(String texte){
+        jLabel8.setText(texte);
+    }
+    
     public static void main(String[] args) {
         PanelCoco fenetre = new PanelCoco();
+        fenetre.setTextPV("2");
         fenetre.setVisible(true);
+        
     }
 
     /**
@@ -49,6 +55,8 @@ public class PanelCoco extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout panelDemiCocoGauche1Layout = new javax.swing.GroupLayout(panelDemiCocoGauche1);
         panelDemiCocoGauche1.setLayout(panelDemiCocoGauche1Layout);
@@ -191,7 +199,7 @@ public class PanelCoco extends javax.swing.JPanel {
         jLabel2.setText("Une noix de coco vous est tombée sur la tête!");
 
         jLabel3.setForeground(new java.awt.Color(102, 204, 0));
-        jLabel3.setText("Vous perdez ... points de vie.");
+        jLabel3.setText("Vous perdez");
 
         jLabel4.setForeground(new java.awt.Color(153, 102, 0));
         jLabel4.setText("Vous gagnez une noix de coco :");
@@ -201,6 +209,12 @@ public class PanelCoco extends javax.swing.JPanel {
 
         jLabel6.setForeground(new java.awt.Color(153, 102, 0));
         jLabel6.setText("(Valable pour un seul tour.)");
+
+        jLabel7.setForeground(new java.awt.Color(102, 204, 0));
+        jLabel7.setText("points de vie.");
+
+        jLabel8.setForeground(new java.awt.Color(102, 204, 0));
+        jLabel8.setText("...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -222,11 +236,15 @@ public class PanelCoco extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(jLabel3))))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +260,10 @@ public class PanelCoco extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,6 +289,8 @@ public class PanelCoco extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private presentation.PanelDemiCocoDroit panelDemiCocoDroit1;
     private presentation.PanelDemiCocoDroit panelDemiCocoDroit2;
     private presentation.PanelDemiCocoDroit panelDemiCocoDroit3;
