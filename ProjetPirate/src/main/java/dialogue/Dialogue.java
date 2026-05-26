@@ -60,11 +60,13 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherSaisieNoms() {
+    	mainFrame.afficherSaisieNoms();
         // Afficher le panneau de saisie des noms des joueurs
     }
 
     @Override
     public void afficherQuiCommence(String nomPremier) {
+    	mainFrame.afficherQuiCommence(nomPremier);
         // Afficher une popup indiquant quel joueur commence
     }
 
@@ -82,9 +84,15 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherCaseSpeciale(String type, String message) {
-        // if (type == "Bombe"){
-        // mainFrame.afficherBombe(message);
-        // }
+//    	if (type == "Bombe"){
+//    		mainFrame.afficherBombe(message);
+//    		} 
+//    	if (type == "Coco"){
+//    			mainFrame.afficherCoco(message);
+//    			}
+//    	if (type == "Mystere") {
+//    		mainFrame.afficherMystere(message);
+//    		}
     }
 
     @Override
@@ -95,11 +103,13 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherPV(String nomPirate, int pv) {
+    	mainFrame.afficherPV(nomPirate, pv);
         // Mettre à jour la barre / le compteur de PV du joueur nomPirate
     }
 
     @Override
     public void afficherFinPartie(String nomGagnant) {
+    	mainFrame.afficherFinPartie(nomGagnant);
         // Afficher l'écran de fin de partie avec le nom du gagnant
     }
 

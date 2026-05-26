@@ -107,6 +107,16 @@ public class MainFrame extends JFrame {
         plateau.setOnPionPlace(caseNumero -> dialogue.pionPlaceCorrectement(caseNumero));
         dialogue.demarrerJeu();
     }
+    
+	public void afficherSaisieNoms() {
+		// TODO Auto-generated method stub
+		
+	}
+    
+	public void afficherQuiCommence(String nomPremier) {
+		// TODO Auto-generated method stub
+		
+	}
 
     public void activerBouton(boolean actif) {
         boutonLancer.setEnabled(actif);
@@ -128,12 +138,22 @@ public class MainFrame extends JFrame {
     public void deplacerPion(int joueur, int caseNumero) {
         plateau.deplacerPion(joueur, caseNumero);
     }
+    
+	public void afficherPV(String nomPirate, int pv) {
+		// TODO Auto-generated method stub
+		
+	}
 
     public void afficherBombe() {
         JDialog d = new JDialog(this, "Bombe", true);
         // (sera remplacé par Emin)
 
     }
+    
+	public void afficherFinPartie(String nomGagnant) {
+		// TODO Auto-generated method stub
+		
+	}
 
     public void log(String message) {
         // Laissé vide, en attendant que Mélanie ajoute son JTextArea dans setUpJeuPanel
@@ -159,4 +179,6 @@ public class MainFrame extends JFrame {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
+
+
 }
