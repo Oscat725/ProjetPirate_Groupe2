@@ -11,7 +11,7 @@ import java.awt.geom.*;
 
 /**
  *
- * @author beman
+ * @author Lauriana
  */
 public class PanelDemiCocoDroit extends JPanel{
  

@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author beman
+ * @author Lauriana
  */
 public class PanelDemiCocoGauche extends JPanel{
 

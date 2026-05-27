@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author beman
+ * @author Lauriana
  */
 public class PanelCoco extends javax.swing.JPanel {
 
