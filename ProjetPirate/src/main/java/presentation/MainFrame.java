@@ -99,11 +99,24 @@ public class MainFrame extends JFrame {
         panelHaut.add(panelDes, BorderLayout.WEST);
 
         // Titre du jeu + bouton "?"
-        JPanel panelTitre = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
+        JPanel panelTitre = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5)) {
+            @Override
+            // On passe par paintComponent pour avoir un arrière plan élégant avec des couleurs lisses
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                GradientPaint gradient = new GradientPaint(
+                    0, 0, new Color(255, 150, 0),
+                    0, getHeight(), Color.YELLOW
+                );
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
 
-        titre = new JLabel("Isla de la muerte");
-        titre.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 36));
-        titre.setForeground(new Color(10, 10, 10));
+        titre = new JLabel("ISLA DE LA MUERTE");
+        titre.setFont(new Font("Calibri", Font.ITALIC | Font.BOLD, 36));
+        //titre.setForeground(new Color(10, 10, 10));
         panelTitre.add(titre);
 
         infoButton = new JButton("?");
@@ -116,19 +129,42 @@ public class MainFrame extends JFrame {
         // Infos (CENTER) : titre + bouton règles + panels joueurs
         JPanel panelInfo = new JPanel(new BorderLayout());
         panelInfo.add(panelTitre, BorderLayout.NORTH);
+        
+        
+        // Boite de texte du déroulement de jeu
+        zoneTexte = new JTextArea(5, 40);
+        zoneTexte.setEditable(false);
+        zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 12));
+        JScrollPane texteDeroulement = new JScrollPane(zoneTexte) {
+            @Override
+            // On passe par paintComponent pour avoir un arrière plan élégant avec des couleurs lisses
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                GradientPaint gradient = new GradientPaint(
+                    0, 0, Color.YELLOW,
+                    0, getHeight(), new Color(255, 150, 0)
+                );
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        texteDeroulement.setBorder(BorderFactory.createTitledBorder("Déroulement du jeu"));
+        panelInfo.add(texteDeroulement, BorderLayout.CENTER);
+
+        
+        panelHaut.add(panelInfo, BorderLayout.CENTER);
 
         // Panels des 2 joueurs
         panelJoueur1 = new PanelJoueur("Joueur 1", Color.RED);
         panelJoueur2 = new PanelJoueur("Joueur 2", Color.BLUE);
 
-        JPanel panelJoueurs = new JPanel(new GridLayout(1, 2, 5, 0));
+        JPanel panelJoueurs = new JPanel(new GridLayout(2, 1));
+        panelJoueurs.setPreferredSize(new Dimension(300, 150));
         panelJoueurs.add(panelJoueur1);
         panelJoueurs.add(panelJoueur2);
-
-        panelInfo.add(panelJoueurs, BorderLayout.CENTER);
-
-        panelHaut.add(panelInfo, BorderLayout.CENTER);
-
+        panelHaut.add(panelJoueurs, BorderLayout.EAST);
+        
         panelGeneral.add(panelHaut, BorderLayout.NORTH);
 
         // PANEL PLATEAU (en bas au centre)
@@ -139,15 +175,12 @@ public class MainFrame extends JFrame {
         plateau.setCouleurs(Color.RED, Color.BLUE);
         conteneurPlateau.add(plateau, BorderLayout.CENTER);
 
+        // On rend les panels transparents pour voir les belles couleurs en arrière plan du titre et de la TextArea
+        panelTitre.setOpaque(false);
+        texteDeroulement.setOpaque(false);
+
+        
         panelGeneral.add(conteneurPlateau, BorderLayout.CENTER);
-
-        zoneTexte = new JTextArea(5, 40);
-        zoneTexte.setEditable(false);
-        zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 12));
-        JScrollPane scrollTexte = new JScrollPane(zoneTexte);
-        scrollTexte.setBorder(BorderFactory.createTitledBorder("Déroulement du jeu"));
-        panelGeneral.add(scrollTexte, BorderLayout.SOUTH);
-
         return panelGeneral;
     }
 
