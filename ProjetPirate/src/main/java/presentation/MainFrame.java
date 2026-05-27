@@ -117,18 +117,27 @@ public class MainFrame extends JFrame {
         JPanel panelInfo = new JPanel(new BorderLayout());
         panelInfo.add(panelTitre, BorderLayout.NORTH);
 
+        // Boite de texte du déroulement de jeu
+        zoneTexte = new JTextArea(5, 40);
+        zoneTexte.setEditable(false);
+        zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 12));
+        JScrollPane texteDeroulement = new JScrollPane(zoneTexte);
+        texteDeroulement.setBorder(BorderFactory.createTitledBorder("Déroulement du jeu"));
+        panelInfo.add(texteDeroulement, BorderLayout.CENTER);
+
+        
+        panelHaut.add(panelInfo, BorderLayout.CENTER);
+
         // Panels des 2 joueurs
         panelJoueur1 = new PanelJoueur("Joueur 1", Color.RED);
         panelJoueur2 = new PanelJoueur("Joueur 2", Color.BLUE);
 
-        JPanel panelJoueurs = new JPanel(new GridLayout(1, 2, 5, 0));
+        JPanel panelJoueurs = new JPanel(new GridLayout(2, 1));
+        panelJoueurs.setPreferredSize(new Dimension(300, 150));
         panelJoueurs.add(panelJoueur1);
         panelJoueurs.add(panelJoueur2);
-
-        panelInfo.add(panelJoueurs, BorderLayout.CENTER);
-
-        panelHaut.add(panelInfo, BorderLayout.CENTER);
-
+        panelHaut.add(panelJoueurs, BorderLayout.EAST);
+        
         panelGeneral.add(panelHaut, BorderLayout.NORTH);
 
         // PANEL PLATEAU (en bas au centre)
@@ -140,14 +149,6 @@ public class MainFrame extends JFrame {
         conteneurPlateau.add(plateau, BorderLayout.CENTER);
 
         panelGeneral.add(conteneurPlateau, BorderLayout.CENTER);
-
-        zoneTexte = new JTextArea(5, 40);
-        zoneTexte.setEditable(false);
-        zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 12));
-        JScrollPane scrollTexte = new JScrollPane(zoneTexte);
-        scrollTexte.setBorder(BorderFactory.createTitledBorder("Déroulement du jeu"));
-        panelGeneral.add(scrollTexte, BorderLayout.SOUTH);
-
         return panelGeneral;
     }
 
