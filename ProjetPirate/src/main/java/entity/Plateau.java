@@ -5,7 +5,7 @@ public class Plateau {
 	
 	public Plateau() {
         for (int i = 0; i < 30; i++) {
-            cases[i] = new Case(i);
+            cases[i] = new CaseCoco(i);
         }
         
         

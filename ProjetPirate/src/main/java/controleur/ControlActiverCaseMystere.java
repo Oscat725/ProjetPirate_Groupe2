@@ -44,7 +44,7 @@ public class ControlActiverCaseMystere extends ControlActiverCaseSpecial impleme
                 default:
 					throw new IllegalArgumentException("Effet mystere inconnu : " + storedEffect);		 
             }
-            iBoundary.afficherEffetCase("MYSTERE", message, this,storedEffect,storedValue);
+            iBoundary.afficherEffetCase("MYSTERE", message, this,storedEffect,storedValue,joueurCourant);
         }
     }
 

@@ -52,7 +52,7 @@ public class BoundaryConsole implements IBoundary {
     
     
     @Override
-    public void afficherEffetCase(String typeCase, String message, IActiverCase callback,int effect, int value) {
+    public void afficherEffetCase(String typeCase, String message, IActiverCase callback,int effect, int value, int joueurCourant) {
         System.out.println("Vous êtes tombés sur une case spéciale : <" + typeCase + ">");
         System.out.println(message + "\n");
         callback.finActiverCase();

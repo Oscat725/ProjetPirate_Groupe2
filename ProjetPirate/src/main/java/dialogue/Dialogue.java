@@ -111,7 +111,7 @@ public class Dialogue implements IPirates {
 
     // ÉTAPE 6 : Résolution de la case (Spéciale / Coco)
 
-    public void afficherCaseSpeciale(String type, String message,int effect, int value) {
+    public void afficherCaseSpeciale(String type, String message,int effect, int value, int joueurCourant) {
         switch (type) {
             case "BOMBE":
                 afficherMessage("Case special bombe");
@@ -119,7 +119,7 @@ public class Dialogue implements IPirates {
                 break;
             case "CHUTE DE NOIX DE COCO":
                 afficherMessage("Case special coco");
-                mainFrame.afficherCoco(value);
+                mainFrame.afficherCoco(value, joueurCourant);
                 break;
             case "MYSTERE":
                 afficherMessage("Case special mystere");
@@ -138,7 +138,7 @@ public class Dialogue implements IPirates {
 
     @Override
     public void afficherChoixCoco(int joueurCourant) {
-        String reponse = mainFrame.afficherPopupChoixCoco(JoueurCourant);
+        String reponse = mainFrame.afficherPopupChoixCoco(joueurCourant);
         onReponseCoco(reponse);
     }
 

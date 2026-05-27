@@ -218,9 +218,10 @@ public class MainFrame extends JFrame {
 
     public void afficherBombe(int value, String message) {
         JDialog d = new JDialog(this, "Bombe", true);
-        d.add(new PanelEffetBombe(d,message));
+        d.add(new PanelEffetBombe(d, message));
         d.pack();
         d.setLocationRelativeTo(this);
+        d.setResizable(false);
         d.setVisible(true);
         dialogue.onPopupCaseSpecialeFermee();
     }
@@ -241,33 +242,39 @@ public class MainFrame extends JFrame {
         dialogue.onPopupCaseSpecialeFermee();
     }
 
-    public void afficherCoco(int value) {
-        JDialog d = new JDialog(this, "Coco", true);
-        d.add(new PanelCoco(value));
-        d.pack();
-        d.setLocationRelativeTo(this);
-        d.setVisible(true);
-        switch (dialogue.) {;
-            case val:
-                
-                break;
-            default:
-                throw new AssertionError();
-        }
-        dialogue.onPopupCaseSpecialeFermee();
-    }
-
-    public String afficherPopupChoixCoco(int joueurCourant) {
-        int res = JOptionPane.showConfirmDialog(this, "Voulez vous utiliser votre noix de coco ?", "Affeter Coco", JOptionPane.YES_NO_OPTION);
-        if (res == JOptionPane.NO_OPTION){
-          return "non";
-        }
+    public void afficherCoco(int value, int joueurCourant) {
         switch (joueurCourant) {
             case 0:
                 panelJoueur1.setCoco(true);
                 break;
             case 1:
                 panelJoueur2.setCoco(true);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        JDialog d = new JDialog(this, "Coco", true);
+        d.add(new PanelCoco(value));
+        d.pack();
+        d.setLocationRelativeTo(this);
+        d.setResizable(false);
+        d.setVisible(true);
+        dialogue.onPopupCaseSpecialeFermee();
+    }
+
+    public String afficherPopupChoixCoco(int joueurCourant) {
+        int res = JOptionPane.showConfirmDialog(this, "Voulez vous utiliser votre noix de coco ?", "Affeter Coco",
+                JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.NO_OPTION) {
+            return "non";
+        }
+        switch (joueurCourant) {
+            case 0:
+                panelJoueur1.setCoco(false);
+                break;
+            case 1:
+                panelJoueur2.setCoco(false);
+                break;
             default:
                 throw new AssertionError();
         }
@@ -284,14 +291,16 @@ public class MainFrame extends JFrame {
 
     public void afficherEcranFinPartie(String nomGagnant) {
         /*
-        JDialog d = new JDialog(this, "FinDePartie", true);
-        d.add(new PanelFinDePartie(nomGagnant));
-        d.pack();
-        d.setLocationRelativeTo(this);
-        d.setVisible(true);
-        dialogue.onPopupCaseSpecialeFermee();*/    
-        JOptionPane.showMessageDialog(this, "LA PARTIE EST TERMINE !\nBravo au gagnant : " + nomGagnant, "Victoire", + JOptionPane.WARNING_MESSAGE);
-      // System.exit(0); // fermer le jeu à la fin
+         * JDialog d = new JDialog(this, "FinDePartie", true);
+         * d.add(new PanelFinDePartie(nomGagnant));
+         * d.pack();
+         * d.setLocationRelativeTo(this);
+         * d.setVisible(true);
+         * dialogue.onPopupCaseSpecialeFermee();
+         */
+        JOptionPane.showMessageDialog(this, "LA PARTIE EST TERMINE !\nBravo au gagnant : " + nomGagnant, "Victoire",
+                +JOptionPane.WARNING_MESSAGE);
+        // System.exit(0); // fermer le jeu à la fin
     }
 
     // Melanie
@@ -329,23 +338,23 @@ public class MainFrame extends JFrame {
                 "Règles du jeu",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    public void afficherEffetBombe(String message) {
-    JDialog dialogBombe = new JDialog(this, "Case Bombe", true);
-    PanelEffetBombe panelBombe = new PanelEffetBombe(dialogBombe, message);
-    
-    dialogBombe.add(panelBombe);
-    dialogBombe.setSize(650, 650);
-    dialogBombe.setLocationRelativeTo(this); 
-    
-    // écoutuer qui prévient quand le jeu se termine
-    dialogBombe.addWindowListener(new java.awt.event.WindowAdapter() {
-        @Override
-        public void windowClosed(java.awt.event.WindowEvent e) {
-            dialogue.onPopupCaseSpecialeFermee();
-        }
-    });
 
-    dialogBombe.setVisible(true); // affiche le dialogue 
-}
+    public void afficherEffetBombe(String message) {
+        JDialog dialogBombe = new JDialog(this, "Case Bombe", true);
+        PanelEffetBombe panelBombe = new PanelEffetBombe(dialogBombe, message);
+
+        dialogBombe.add(panelBombe);
+        dialogBombe.setSize(650, 650);
+        dialogBombe.setLocationRelativeTo(this);
+
+        // écoutuer qui prévient quand le jeu se termine
+        dialogBombe.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                dialogue.onPopupCaseSpecialeFermee();
+            }
+        });
+
+        dialogBombe.setVisible(true); // affiche le dialogue
+    }
 }
