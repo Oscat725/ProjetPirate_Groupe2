@@ -25,7 +25,7 @@ public class ControlCacherDe implements IControlCacherDe {
 	@Override
 	public void demanderUtilisationCoco() {
 		if (jeu.getJoueurCourant().hasCoco()) {
-			iBoundary.demanderUtilisationCoco(this);
+			iBoundary.demanderUtilisationCoco(this,jeu.getIndiceJoueurCourant());
 		} else {
 			controlJeuPirate.apresDemandeCoco();
 		}

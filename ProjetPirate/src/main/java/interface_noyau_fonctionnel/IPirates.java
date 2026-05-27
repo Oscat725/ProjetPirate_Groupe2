@@ -14,7 +14,7 @@ public interface IPirates {
 
     void afficherCaseSpeciale(String type, String message, int effect, int value);
 
-    void afficherChoixCoco();
+    void afficherChoixCoco(int joueurCourant);
 
     void afficherPV(String nomPirate, int pv);
 

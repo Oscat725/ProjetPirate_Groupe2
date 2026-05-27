@@ -9,5 +9,5 @@ public interface IBoundary {
     void afficherMessage(String message);                
     void changerJoueurActif(String nomPirate, IControlJeuPirate callback);		
     void commencerPartie(ICommencerPartie callback); 
-    void demanderUtilisationCoco(IControlCacherDe callback);
+    void demanderUtilisationCoco(IControlCacherDe callback, int joueurCourant);
 }

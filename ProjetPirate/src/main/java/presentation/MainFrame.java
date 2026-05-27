@@ -216,9 +216,12 @@ public class MainFrame extends JFrame {
         plateau.setCouleurs(j1, j2);
     }
 
-    public void afficherBombe(int value) {
+    public void afficherBombe(int value, String message) {
         JDialog d = new JDialog(this, "Bombe", true);
-        // (sera remplacé par Emin)
+        d.add(new PanelEffetBombe(d,message));
+        d.pack();
+        d.setLocationRelativeTo(this);
+        d.setVisible(true);
         dialogue.onPopupCaseSpecialeFermee();
     }
 
@@ -244,11 +247,30 @@ public class MainFrame extends JFrame {
         d.pack();
         d.setLocationRelativeTo(this);
         d.setVisible(true);
+        switch (dialogue.) {;
+            case val:
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
         dialogue.onPopupCaseSpecialeFermee();
     }
 
-    public String afficherPopupChoixCoco() {
-        // TODO
+    public String afficherPopupChoixCoco(int joueurCourant) {
+        int res = JOptionPane.showConfirmDialog(this, "Voulez vous utiliser votre noix de coco ?", "Affeter Coco", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.NO_OPTION){
+          return "non";
+        }
+        switch (joueurCourant) {
+            case 0:
+                panelJoueur1.setCoco(true);
+                break;
+            case 1:
+                panelJoueur2.setCoco(true);
+            default:
+                throw new AssertionError();
+        }
         return "oui";
     }
 
@@ -261,6 +283,13 @@ public class MainFrame extends JFrame {
     }
 
     public void afficherEcranFinPartie(String nomGagnant) {
+        /*
+        JDialog d = new JDialog(this, "FinDePartie", true);
+        d.add(new PanelFinDePartie(nomGagnant));
+        d.pack();
+        d.setLocationRelativeTo(this);
+        d.setVisible(true);
+        dialogue.onPopupCaseSpecialeFermee();*/    
         JOptionPane.showMessageDialog(this, "LA PARTIE EST TERMINE !\nBravo au gagnant : " + nomGagnant, "Victoire", + JOptionPane.WARNING_MESSAGE);
       // System.exit(0); // fermer le jeu à la fin
     }

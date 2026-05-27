@@ -20,6 +20,7 @@ public class PanelEffetBombe extends JPanel {
     public PanelEffetBombe(JDialog dialogueParent, String messageDegats) {
         this.dialogueParent = dialogueParent;
         this.messageDegats = messageDegats;
+        setPreferredSize(new Dimension(400, 400));
         setLayout(new BorderLayout());
         setBackground(new Color(240, 240, 240)); // Fond neutre
 

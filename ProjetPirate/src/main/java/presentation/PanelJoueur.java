@@ -6,7 +6,7 @@ package presentation;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.*;
+
 
 /**
  *
@@ -22,6 +22,8 @@ public class PanelJoueur extends JPanel {
     private JLabel labelNom;
     private PanelCoeurs coeurs;
     private JLabel indicateur;
+    
+    PanelDemiCocoDroit coco;
  
     //dans le main on récupére le nom du pirate choisit par le joueur
     //La couleur on verra en fonction de si depuis la mainframe on choisit nous même ou si 
@@ -51,11 +53,17 @@ public class PanelJoueur extends JPanel {
         indicateur.setForeground(COULEUR_INACTIF);
         indicateur.setVisible(false);
         indicateur.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-
+        coco = new PanelDemiCocoDroit();
+        coco.setVisible(false);
         add(labelNom);
         add(coeurs);
         add(indicateur);
+        add(coco);
+        
+    }
+    
+    public void setCoco(boolean hasCoco){
+        coco.setVisible(hasCoco);
     }
  
     //met à jour les points de vie affichés (0 à 5)

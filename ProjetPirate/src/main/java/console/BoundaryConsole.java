@@ -94,7 +94,7 @@ public class BoundaryConsole implements IBoundary {
     }
 
     @Override
-    public void demanderUtilisationCoco(IControlCacherDe callback) {
+    public void demanderUtilisationCoco(IControlCacherDe callback, int joueuerCourant) {
         System.out.print("Voulez-vous utiliser votre noix de coco pour ce tour ? (oui/non) : ");
         String reponse = scanner.nextLine().trim().toLowerCase();
         if (reponse.equals("oui") || reponse.equals("o")) {

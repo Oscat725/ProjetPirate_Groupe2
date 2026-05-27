@@ -142,9 +142,9 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// Noyau → Adaptateur : demander au joueur s'il veut utiliser le coco
 	@Override
-	public void demanderUtilisationCoco(IControlCacherDe callback) {
+	public void demanderUtilisationCoco(IControlCacherDe callback, int joueurCourant) {
 		this.ctrlCoco = callback;
-		dialogue.afficherChoixCoco();
+		dialogue.afficherChoixCoco(joueurCourant);
 	}
 
 	// Dialogue → Adaptateur : le joueur a répondu à la question du coco

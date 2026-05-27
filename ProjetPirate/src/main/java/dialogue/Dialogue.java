@@ -115,7 +115,7 @@ public class Dialogue implements IPirates {
         switch (type) {
             case "BOMBE":
                 afficherMessage("Case special bombe");
-                mainFrame.afficherBombe(value);
+                mainFrame.afficherBombe(value,message);
                 break;
             case "CHUTE DE NOIX DE COCO":
                 afficherMessage("Case special coco");
@@ -137,8 +137,8 @@ public class Dialogue implements IPirates {
     }
 
     @Override
-    public void afficherChoixCoco() {
-        String reponse = mainFrame.afficherPopupChoixCoco();
+    public void afficherChoixCoco(int joueurCourant) {
+        String reponse = mainFrame.afficherPopupChoixCoco(JoueurCourant);
         onReponseCoco(reponse);
     }
 
