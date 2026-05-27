@@ -261,7 +261,8 @@ public class MainFrame extends JFrame {
     }
 
     public void afficherEcranFinPartie(String nomGagnant) {
-        // TODO
+        JOptionPane.showMessageDialog(this, "LA PARTIE EST TERMINE !\nBravo au gagnant : " + nomGagnant, "Victoire", + JOptionPane.WARNING_MESSAGE);
+      // System.exit(0); // fermer le jeu à la fin
     }
 
     // Melanie
@@ -299,4 +300,23 @@ public class MainFrame extends JFrame {
                 "Règles du jeu",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void afficherEffetBombe(String message) {
+    JDialog dialogBombe = new JDialog(this, "Case Bombe", true);
+    PanelEffetBombe panelBombe = new PanelEffetBombe(dialogBombe, message);
+    
+    dialogBombe.add(panelBombe);
+    dialogBombe.setSize(650, 650);
+    dialogBombe.setLocationRelativeTo(this); 
+    
+    // écoutuer qui prévient quand le jeu se termine
+    dialogBombe.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosed(java.awt.event.WindowEvent e) {
+            dialogue.onPopupCaseSpecialeFermee();
+        }
+    });
+
+    dialogBombe.setVisible(true); // affiche le dialogue 
+}
 }
