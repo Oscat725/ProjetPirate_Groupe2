@@ -230,7 +230,7 @@ public class MainFrame extends JFrame {
      * dialogue
      */
     public void afficherMystere(int effect, int value) {
-        JDialog d = new JDialog(this, "Mystere", true);
+        JWindow d = new JWindow(this);
         d.add(new PanelMystere(effect, value));
         d.pack();
         d.setLocationRelativeTo(this);

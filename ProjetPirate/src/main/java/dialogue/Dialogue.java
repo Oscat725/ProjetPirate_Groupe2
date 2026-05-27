@@ -112,7 +112,6 @@ public class Dialogue implements IPirates {
     // ÉTAPE 6 : Résolution de la case (Spéciale / Coco)
 
     public void afficherCaseSpeciale(String type, String message,int effect, int value) {
-        afficherMessage("Case special");
         switch (type) {
             case "BOMBE":
                 afficherMessage("Case special bombe");
