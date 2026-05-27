@@ -26,15 +26,12 @@ public class ControlActiverCase {
 	public void activerCase(Case caseCourante, int joueurCourant) {
 		if (isCaseSpecial(caseCourante)) {
 			if (caseCourante.isCaseBombe()) {
-                                System.out.println("controleur.ControlActiverCase.activerCase() bombe");
 				controlCasesSpeciales[0].activerCase(caseCourante, joueurCourant);
 			}
 			if (caseCourante.isCaseCoco()) {
-                            System.out.println("controleur.ControlActiverCase.activerCase() coco");
 				controlCasesSpeciales[1].activerCase(caseCourante, joueurCourant);
 			}
 			if (caseCourante.isCaseMystere()) {
-                            System.out.println("controleur.ControlActiverCase.activerCase() mystere");
 				controlCasesSpeciales[2].activerCase(caseCourante, joueurCourant);
 			}
 		}
