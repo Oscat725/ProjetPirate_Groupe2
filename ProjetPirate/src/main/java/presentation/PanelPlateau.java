@@ -40,6 +40,7 @@ public class PanelPlateau extends JPanel {
         types[22] = PanelCase.MYSTERE;
         types[26] = PanelCase.BOMBE;
         types[28] = PanelCase.MYSTERE;
+        types[30] = PanelCase.ARRIVEE;
 
         String[] directions = new String[31];
         for (int i = 1; i <= 30; i++)

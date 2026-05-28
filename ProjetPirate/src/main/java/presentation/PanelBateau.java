@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 public class PanelBateau extends JPanel {
 
-
     private static final Image IMG_BATEAU = chargerImage("/images/bateau.png");
 
     private static Image chargerImage(String path) {
@@ -32,12 +31,12 @@ public class PanelBateau extends JPanel {
         super.paintComponent(g);
 
         g.drawImage(
-            IMG_BATEAU,
-            0, 0,
-            getWidth(), getHeight(),
-            this
-        );
+                IMG_BATEAU,
+                0, 0,
+                getWidth(), getHeight(),
+                this);
     }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Bateau");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +44,6 @@ public class PanelBateau extends JPanel {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-    } 
+    }
 
 }

@@ -164,6 +164,8 @@ public class MainFrame extends JFrame {
             }
         };
         texteDeroulement.setBorder(BorderFactory.createTitledBorder("Déroulement du jeu"));
+        texteDeroulement.setPreferredSize(new Dimension(400, 100));
+
         panelInfo.add(texteDeroulement, BorderLayout.CENTER);
 
         panelHaut.add(panelInfo, BorderLayout.CENTER);

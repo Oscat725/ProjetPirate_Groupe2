@@ -1,15 +1,7 @@
 package presentation;
 
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+import javax.swing.*;
+import java.awt.*;
 
 // Nolawi
 public class PanelCase extends JPanel {
@@ -18,6 +10,7 @@ public class PanelCase extends JPanel {
     public static final String BOMBE = "BOMBE";
     public static final String COCO = "COCO";
     public static final String MYSTERE = "MYSTERE";
+    public static final String ARRIVEE = "ARRIVEE";
 
     public static final String HORIZONTAL = "HORIZONTAL";
     public static final String COIN_DROITE_HAUT = "COIN_DROITE_HAUT";
@@ -32,6 +25,7 @@ public class PanelCase extends JPanel {
     private static final Image IMG_BOMBE = chargerImage("/images/bombe.png");
     private static final Image IMG_COCO = chargerImage("/images/coco.png");
     private static final Image IMG_MYSTERE = chargerImage("/images/mystere.png");
+    private static final Image IMG_ARRIVEE = chargerImage("/images/arrivee2.png");
 
     private static Image chargerImage(String path) {
         java.net.URL url = PanelCase.class.getResource(path);
@@ -133,15 +127,17 @@ public class PanelCase extends JPanel {
                 break;
         }
 
-        // tirets de la ligne centrale
-        float dashLen = w * 0.12f;
-        float gapLen = w * 0.10f;
+        if (!ARRIVEE.equals(type)) {
+            // tirets de la ligne centrale
+            float dashLen = w * 0.12f;
+            float gapLen = w * 0.10f;
 
-        g2d.setColor(new Color(180, 160, 130));
-        g2d.setStroke(new BasicStroke(
-                Math.max(1, h / 30f),
-                BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
-                10, new float[] { dashLen, gapLen }, 0));
+            g2d.setColor(new Color(180, 160, 130));
+            g2d.setStroke(new BasicStroke(
+                    Math.max(1, h / 30f),
+                    BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+                    10, new float[] { dashLen, gapLen }, 0));
+        }
         switch (direction == null ? HORIZONTAL : direction) {
             case COIN_DROITE_HAUT:
                 g2d.drawLine(w / 9, cy, cx, cy); // horizontal : gauche → centre
@@ -195,6 +191,46 @@ public class PanelCase extends JPanel {
                     else
                         dessinerMystere(g2d, cx, cy, h / 2, w); // ancien dessin géométrique
                     break;
+                case ARRIVEE:
+                    // --- OPTION 1 : TEXTE "FIN" AGRANDI ---
+                    // 1. Définir une belle police cursive, taille très grande pour remplir la case
+                    Font anciennePolice = g2d.getFont();
+                    int taillePolice = (int) (h * 0.65); // 65% de la hauteur de la case !
+                    Font policeFin = new Font("Brush Script MT", Font.BOLD | Font.ITALIC, taillePolice);
+
+                    // Si Brush Script n'est pas dispo, on rabat sur du Serif classique
+                    if (!policeFin.getFamily().equals("Brush Script MT")) {
+                        policeFin = new Font("Serif", Font.BOLD | Font.ITALIC, taillePolice);
+                    }
+                    g2d.setFont(policeFin);
+
+                    String texteFin = "FIN";
+                    FontMetrics fmFin = g2d.getFontMetrics();
+                    // Centrage parfait du texte
+                    int texteX = cx - fmFin.stringWidth(texteFin) / 2;
+                    int texteY = cy + fmFin.getAscent() / 3;
+
+                    // 2. Dessiner une ombre portée plus prononcée (noir transparent)
+                    g2d.setColor(new Color(0, 0, 0, 150));
+                    g2d.drawString(texteFin, texteX + 3, texteY + 3);
+
+                    // 3. Dessiner le texte principal (rouge écarlate ou or)
+                    g2d.setColor(new Color(200, 20, 20)); // Rouge sombre pirate
+                    g2d.drawString(texteFin, texteX, texteY);
+
+                    // On restaure la police normale par sécurité
+                    g2d.setFont(anciennePolice);
+
+                    // --- OPTION 2 : IMAGE ARRIVEE AGRANDIE ---
+                    // if (IMG_ARRIVEE != null) {
+                    // // On affiche l'image sur 90% de la taille de la case au lieu de 66% (h *
+                    // 2/3)
+                    // int tailleImg = (int) (h * 0.9);
+                    // g2d.drawImage(IMG_ARRIVEE, cx - tailleImg / 2, cy - tailleImg / 2, tailleImg,
+                    // tailleImg, this);
+                    // }
+                    break;
+
                 default:
                     break;
             }
