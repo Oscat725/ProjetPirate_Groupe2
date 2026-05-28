@@ -21,4 +21,6 @@ public interface INoyauFonctionnel {
     void onAffichagePVTermine();
 
     void onPopupFinPartieFermee();
+
+    void reinitialiserJeu();
 }

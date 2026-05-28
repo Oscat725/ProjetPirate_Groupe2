@@ -12,9 +12,6 @@ import javax.swing.*;
  * @author Yoakin
  */
 
-
-
-
 //Yoakin
 public class PanelDemarrage extends javax.swing.JPanel {
     private JTextField champNomJoueur1;

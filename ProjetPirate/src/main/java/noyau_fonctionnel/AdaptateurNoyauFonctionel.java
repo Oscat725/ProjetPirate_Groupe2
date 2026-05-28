@@ -5,8 +5,9 @@ import controleur.ControlJeuPirate;
 import interface_noyau_fonctionnel.INoyauFonctionnel;
 import interface_noyau_fonctionnel.IPirates;
 
-// Adaptateur qui connecte l'IHM au noyau fonctionnel (contrôleurs).
+// Nolawi
 
+// Adaptateur qui connecte l'IHM au noyau fonctionnel (contrôleurs).
 public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	private IPirates dialogue;
@@ -34,14 +35,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 1 : Commencer la partie (saisie des noms)
 
-	// Noyau → Adaptateur : demande d'afficher la saisie des noms
+	// Noyau -> Adaptateur : demande d'afficher la saisie des noms
 	@Override
 	public void commencerPartie(ICommencerPartie ctrl) {
 		this.ctrlCommencer = ctrl;
 		dialogue.afficherSaisieNoms();
 	}
 
-	// Dialogue → Adaptateur : l'utilisateur a saisi les noms et cliqué "Jouer"
+	// Dialogue -> Adaptateur : l'utilisateur a saisi les noms et cliqué "Jouer"
 	@Override
 	public void soumettreNoms(String nomJ1, String nomJ2) {
 		if (ctrlCommencer != null) {
@@ -51,7 +52,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		}
 	}
 
-	// Dialogue → Adaptateur : la popup "X commence" est fermée
+	// Dialogue -> Adaptateur : la popup "X commence" est fermée
 	@Override
 	public void onPopupQuiCommenceFermee() {
 		if (ctrlCommencer != null) {
@@ -63,14 +64,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 2 : Tour du joueur (afficher à qui c'est le tour)
 
-	// Noyau → Adaptateur : afficher le tour du joueur actif
+	// Noyau -> Adaptateur : afficher le tour du joueur actif
 	@Override
 	public void changerJoueurActif(String nomPirate, IControlJeuPirate callback) {
 		this.controlJeuPirate = callback;
 		dialogue.afficherTourJoueur(nomPirate);
 	}
 
-	// Dialogue → Adaptateur : le joueur a cliqué sur "Lancer les dés"
+	// Dialogue -> Adaptateur : le joueur a cliqué sur "Lancer les dés"
 	@Override
 	public void onBoutonLancerDesClique() {
 		if (controlJeuPirate != null) {
@@ -82,14 +83,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 3 : Lancer les dés (animation)
 
-	// Noyau → Adaptateur : afficher le résultat des dés
+	// Noyau -> Adaptateur : afficher le résultat des dés
 	@Override
 	public void affichageResultatDe(int valeurDe1, int valeurDe2, ILancerDe ilancerDe) {
 		this.ctrlDe = ilancerDe;
 		dialogue.afficherResultatDes(valeurDe1, valeurDe2);
 	}
 
-	// Dialogue → Adaptateur : l'animation des dés est terminée
+	// Dialogue -> Adaptateur : l'animation des dés est terminée
 	@Override
 	public void onAnimationDesTerminee() {
 		if (ctrlDe != null) {
@@ -101,7 +102,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 4 : Déplacer le pion (drag and drop)
 
-	// Noyau → Adaptateur : animer le déplacement du pion
+	// Noyau -> Adaptateur : animer le déplacement du pion
 	@Override
 	public void deplacerPirates(String nomPirate, int ancienneCase, int nouvelleCase, IDeplacerPirate iDeplacerPirate) {
 		this.ctrlDeplacer = iDeplacerPirate;
@@ -109,7 +110,7 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 		dialogue.afficherDeplacement(nomPirate, nouvelleCase + 1);
 	}
 
-	// Dialogue → Adaptateur : le pion a été placé correctement
+	// Dialogue -> Adaptateur : le pion a été placé correctement
 	@Override
 	public void onAnimationDeplacementTerminee() {
 		if (ctrlDeplacer != null) {
@@ -121,14 +122,15 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 5 : Case spéciale (popup effet)
 
-	// Noyau → Adaptateur : afficher l'effet de la case spéciale
+	// Noyau -> Adaptateur : afficher l'effet de la case spéciale
 	@Override
-	public void afficherEffetCase(String typeCase, String message, IActiverCase callback, int effect, int value, int joueurCourant) {
+	public void afficherEffetCase(String typeCase, String message, IActiverCase callback, int effect, int value,
+			int joueurCourant) {
 		this.ctrlActiverCase = callback;
 		dialogue.afficherCaseSpeciale(typeCase, message, effect, value, joueurCourant);
 	}
 
-	// Dialogue → Adaptateur : le popup de case spéciale est fermé
+	// Dialogue -> Adaptateur : le popup de case spéciale est fermé
 	@Override
 	public void onPopupCaseSpecialeFermee() {
 		if (ctrlActiverCase != null) {
@@ -140,14 +142,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 5b : Case Coco (demander si le joueur veut cacher un dé)
 
-	// Noyau → Adaptateur : demander au joueur s'il veut utiliser le coco
+	// Noyau -> Adaptateur : demander au joueur s'il veut utiliser le coco
 	@Override
 	public void demanderUtilisationCoco(IControlCacherDe callback, int joueurCourant) {
 		this.ctrlCoco = callback;
 		dialogue.afficherChoixCoco(joueurCourant);
 	}
 
-	// Dialogue → Adaptateur : le joueur a répondu à la question du coco
+	// Dialogue -> Adaptateur : le joueur a répondu à la question du coco
 	@Override
 	public void onReponseCoco(String reponse) {
 		if (ctrlCoco != null) {
@@ -159,14 +161,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 6 : Points de vie (mise à jour PV)
 
-	// Noyau → Adaptateur : mettre à jour les points de vie
+	// Noyau -> Adaptateur : mettre à jour les points de vie
 	@Override
 	public void afficherPointDeVie(String nomPirate, int pv, IPointsDeVie iPointDeVie) {
 		this.ctrlPV = iPointDeVie;
 		dialogue.afficherPV(nomPirate, pv);
 	}
 
-	// Dialogue → Adaptateur : l'affichage des PV est terminé
+	// Dialogue -> Adaptateur : l'affichage des PV est terminé
 	@Override
 	public void onAffichagePVTermine() {
 		if (ctrlPV != null) {
@@ -178,14 +180,14 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 
 	// ÉTAPE 7 : Fin de partie
 
-	// Noyau → Adaptateur : afficher l'écran de fin de partie
+	// Noyau -> Adaptateur : afficher l'écran de fin de partie
 	@Override
 	public void afficherFinDePartie(String nomGagnant, IFinDePartie iFinDePartie) {
 		this.ctrlFin = iFinDePartie;
 		dialogue.afficherFinPartie(nomGagnant);
 	}
 
-	// Dialogue → Adaptateur : l'écran de fin de partie est fermé
+	// Dialogue -> Adaptateur : l'écran de fin de partie est fermé
 	@Override
 	public void onPopupFinPartieFermee() {
 		if (ctrlFin != null) {
@@ -200,5 +202,18 @@ public class AdaptateurNoyauFonctionel implements IBoundary, INoyauFonctionnel {
 	@Override
 	public void afficherMessage(String message) {
 		dialogue.afficherMessage(message);
+	}
+
+	@Override
+	public void reinitialiserJeu() {
+		this.controlJeuPirate = new ControlJeuPirate(this);
+		this.ctrlCommencer = null;
+		this.ctrlDe = null;
+		this.ctrlDeplacer = null;
+		this.ctrlActiverCase = null;
+		this.ctrlPV = null;
+		this.ctrlFin = null;
+		this.ctrlCoco = null;
+		this.jouer();
 	}
 }

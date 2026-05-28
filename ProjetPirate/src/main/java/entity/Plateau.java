@@ -5,12 +5,13 @@ public class Plateau {
 	
 	public Plateau() {
         for (int i = 0; i < 30; i++) {
-            cases[i] = new Case(i);
+            cases[i] = new CaseBombe(i);
         }
         
         
         // En choisit en avance les cases speciales
         // En coherance avec les cases speciales de PanelPlateau(Presentation)
+        
         cases[2]  = new CaseMystere(2);    // case 3
         cases[3]  = new CaseCoco(3);
         cases[10]  = new CaseCoco(10);

@@ -23,7 +23,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 1 : Démarrage et Saisie des noms
-    //Lauriana
+    // Lauriana
+
     @Override
     public void afficherSaisieNoms() {
         mainFrame.afficherEcranDemarrage();
@@ -40,7 +41,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 2 : Déterminer qui commence
-    //Lauriana
+    // Lauriana
+
     @Override
     public void afficherQuiCommence(String nomPremier) {
         mainFrame.afficherPopupQuiCommence(nomPremier);
@@ -56,7 +58,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 3 : Début du tour d'un joueur
-    //Lauriana
+    // Lauriana
+
     @Override
     public void afficherTourJoueur(String nomJoueur) {
         joueurActifIndex = nomJoueur.equals(nomJoueur1) ? 0 : 1;
@@ -75,7 +78,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 4 : Lancer et Animation des dés
-    //Lauriana
+    // Lauriana
+
     @Override
     public void afficherResultatDes(int de1, int de2) {
         mainFrame.afficherDes(de1, de2);
@@ -94,7 +98,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 5 : Déplacement (Drag & Drop) du pion
-    //Lauriana
+    // Lauriana
+
     @Override
     public void afficherDeplacement(String nomPirate, int caseNumero) {
         mainFrame.activerDrag(joueurActifIndex, caseNumero);
@@ -110,20 +115,21 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 6 : Résolution de la case (Spéciale / Coco)
-    //Lauriana
-    public void afficherCaseSpeciale(String type, String message,int effect, int value, int joueurCourant) {
+    // Lauriana
+
+    public void afficherCaseSpeciale(String type, String message, int effect, int value, int joueurCourant) {
         switch (type) {
             case "BOMBE":
                 afficherMessage("Case special bombe");
-                mainFrame.afficherBombe(value,message);
+                mainFrame.afficherEffetBombe(message);
                 break;
             case "CHUTE DE NOIX DE COCO":
                 afficherMessage("Case special coco");
-                mainFrame.afficherCoco(value, joueurCourant);
+                mainFrame.afficherEffetCoco(value, joueurCourant);
                 break;
             case "MYSTERE":
                 afficherMessage("Case special mystere");
-                mainFrame.afficherMystere(effect,value);
+                mainFrame.afficherEffetMystere(effect, value);
                 break;
             default:
                 break;
@@ -135,7 +141,8 @@ public class Dialogue implements IPirates {
         if (adaptateur != null)
             adaptateur.onPopupCaseSpecialeFermee();
     }
-    //Lauriana
+
+    // Lauriana
     @Override
     public void afficherChoixCoco(int joueurCourant) {
         String reponse = mainFrame.afficherPopupChoixCoco(joueurCourant);
@@ -148,7 +155,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 7 : Mise à jour des Points de Vie
-    //Lauriana
+    // Lauriana
+
     @Override
     public void afficherPV(String nomPirate, int pv) {
         int indexJoueur = nomPirate.equals(nomJoueur1) ? 0 : 1;
@@ -165,7 +173,8 @@ public class Dialogue implements IPirates {
     }
 
     // ÉTAPE 8 : Fin de partie
-    //Lauriana
+
+    // Lauriana
     @Override
     public void afficherFinPartie(String nomGagnant) {
         mainFrame.afficherEcranFinPartie(nomGagnant);
@@ -179,10 +188,19 @@ public class Dialogue implements IPirates {
     }
 
     // MÉTHODES UTILITAIRES
-    //Lauriana
+
+    // Lauriana
     @Override
     public void afficherMessage(String message) {
         mainFrame.log(message);
         // Afficher un message informatif dans la zone de texte
+    }
+
+    // Nolawi
+    public void reinitialiserJeu() {
+        desTermines = 0;
+        if (adaptateur != null) {
+            adaptateur.reinitialiserJeu();
+        }
     }
 }

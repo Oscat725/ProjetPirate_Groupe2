@@ -181,7 +181,7 @@ public class ControlJeuPirate implements IControlJeuPirate {
 			// on utilise une lambda pour le callback
 			// On remplace le 'null' par une lambda de IFinDePartie
 			iBoundary.afficherFinDePartie(gagnant, () -> {
-				System.exit(0);
+				// System.exit(0); enlevé car géré par PanelFinDePartie
 			});
 
 		} else {

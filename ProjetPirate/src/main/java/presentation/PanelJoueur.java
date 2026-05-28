@@ -7,10 +7,6 @@ package presentation;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author rtiam
- */
 
 // Melanie
 public class PanelJoueur extends JPanel {

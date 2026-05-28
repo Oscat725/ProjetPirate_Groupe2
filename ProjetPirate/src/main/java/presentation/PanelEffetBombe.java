@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+//Emin
 public class PanelEffetBombe extends JPanel {
 
     private JDialog dialogueParent;

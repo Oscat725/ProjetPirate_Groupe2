@@ -101,14 +101,14 @@ public class MainFrame extends JFrame {
         // Titre du jeu + bouton "?"
         JPanel panelTitre = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5)) {
             @Override
-            // On passe par paintComponent pour avoir un arrière plan élégant avec des couleurs lisses
+            // On passe par paintComponent pour avoir un arrière plan élégant avec des
+            // couleurs lisses
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 GradientPaint gradient = new GradientPaint(
-                    0, 0, new Color(255, 150, 0),
-                    0, getHeight(), Color.YELLOW
-                );
+                        0, 0, new Color(255, 150, 0),
+                        0, getHeight(), Color.YELLOW);
                 g2d.setPaint(gradient);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -116,7 +116,7 @@ public class MainFrame extends JFrame {
 
         titre = new JLabel("ISLA DE LA MUERTE");
         titre.setFont(new Font("Calibri", Font.ITALIC | Font.BOLD, 36));
-        //titre.setForeground(new Color(10, 10, 10));
+        // titre.setForeground(new Color(10, 10, 10));
         panelTitre.add(titre);
 
         infoButton = new JButton("?");
@@ -129,22 +129,21 @@ public class MainFrame extends JFrame {
         // Infos (CENTER) : titre + bouton règles + panels joueurs
         JPanel panelInfo = new JPanel(new BorderLayout());
         panelInfo.add(panelTitre, BorderLayout.NORTH);
-        
-        
+
         // Boite de texte du déroulement de jeu
         zoneTexte = new JTextArea(5, 40);
         zoneTexte.setEditable(false);
         zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 12));
         JScrollPane texteDeroulement = new JScrollPane(zoneTexte) {
             @Override
-            // On passe par paintComponent pour avoir un arrière plan élégant avec des couleurs lisses
+            // On passe par paintComponent pour avoir un arrière plan élégant avec des
+            // couleurs lisses
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 GradientPaint gradient = new GradientPaint(
-                    0, 0, Color.YELLOW,
-                    0, getHeight(), new Color(255, 150, 0)
-                );
+                        0, 0, Color.YELLOW,
+                        0, getHeight(), new Color(255, 150, 0));
                 g2d.setPaint(gradient);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -152,7 +151,6 @@ public class MainFrame extends JFrame {
         texteDeroulement.setBorder(BorderFactory.createTitledBorder("Déroulement du jeu"));
         panelInfo.add(texteDeroulement, BorderLayout.CENTER);
 
-        
         panelHaut.add(panelInfo, BorderLayout.CENTER);
 
         // Panels des 2 joueurs
@@ -164,7 +162,7 @@ public class MainFrame extends JFrame {
         panelJoueurs.add(panelJoueur1);
         panelJoueurs.add(panelJoueur2);
         panelHaut.add(panelJoueurs, BorderLayout.EAST);
-        
+
         panelGeneral.add(panelHaut, BorderLayout.NORTH);
 
         // PANEL PLATEAU (en bas au centre)
@@ -175,11 +173,11 @@ public class MainFrame extends JFrame {
         plateau.setCouleurs(Color.RED, Color.BLUE);
         conteneurPlateau.add(plateau, BorderLayout.CENTER);
 
-        // On rend les panels transparents pour voir les belles couleurs en arrière plan du titre et de la TextArea
+        // On rend les panels transparents pour voir les belles couleurs en arrière plan
+        // du titre et de la TextArea
         panelTitre.setOpaque(false);
         texteDeroulement.setOpaque(false);
 
-        
         panelGeneral.add(conteneurPlateau, BorderLayout.CENTER);
         return panelGeneral;
     }
@@ -189,9 +187,6 @@ public class MainFrame extends JFrame {
         de1.setOnAnimationFinie(() -> dialogue.onAnimationDesTerminee());
         de2.setOnAnimationFinie(() -> dialogue.onAnimationDesTerminee());
         plateau.setOnPionPlace(caseNumero -> dialogue.onAnimationDeplacementTerminee(caseNumero));
-        // Yoakin -> plus besoin si on passe par la carte "Demarrage" (clique du bouton
-        // "Jouer" commence le jeu)
-        // dialogue.demarrerJeu();
     }
 
     // Yoakin
@@ -218,15 +213,18 @@ public class MainFrame extends JFrame {
         JOptionPane.showMessageDialog(this, nomPremier + " commence ! ");
     }
 
+    // Nolawi
     public void mettreEnSurbrillanceJoueur(int joueurActifIndex) {
         panelJoueur1.setActif(joueurActifIndex == 0);
         panelJoueur2.setActif(joueurActifIndex == 1);
     }
 
+    // Nolawi
     public void activerBouton(boolean actif) {
         boutonLancer.setEnabled(actif);
     }
 
+    // Nolawi
     public void afficherDes(int r1, int r2) {
         de2.setEnabled(r2 > 0);
         de1.lancerAnimation(r1);
@@ -249,14 +247,18 @@ public class MainFrame extends JFrame {
         plateau.setCouleurs(j1, j2);
     }
 
-    public void afficherBombe(int value, String message) {
-        JDialog d = new JDialog(this, "Bombe", true);
-        d.add(new PanelEffetBombe(d, message));
-        d.pack();
-        d.setLocationRelativeTo(this);
-        d.setResizable(false);
-        d.setVisible(true);
+    // Emin
+    public void afficherEffetBombe(String message) {
+        JDialog dialogBombe = new JDialog(this, "Case Bombe", true);
+        PanelEffetBombe panelBombe = new PanelEffetBombe(dialogBombe, message);
+
+        dialogBombe.add(panelBombe);
+        dialogBombe.setSize(650, 650);
+        dialogBombe.setResizable(false);
+        dialogBombe.setLocationRelativeTo(this);
+        dialogBombe.setVisible(true); // affiche le dialogue
         dialogue.onPopupCaseSpecialeFermee();
+
     }
 
     /*
@@ -266,7 +268,8 @@ public class MainFrame extends JFrame {
      * Il rajoute le panel mystere avec l'effect et la valeur correspondant au
      * dialogue
      */
-    public void afficherMystere(int effect, int value) {
+    // Oscar
+    public void afficherEffetMystere(int effect, int value) {
         JWindow d = new JWindow(this);
         d.add(new PanelMystere(effect, value));
         d.pack();
@@ -275,7 +278,8 @@ public class MainFrame extends JFrame {
         dialogue.onPopupCaseSpecialeFermee();
     }
 
-    public void afficherCoco(int value, int joueurCourant) {
+    // Lauriana
+    public void afficherEffetCoco(int value, int joueurCourant) {
         switch (joueurCourant) {
             case 0:
                 panelJoueur1.setCoco(true);
@@ -322,35 +326,18 @@ public class MainFrame extends JFrame {
         }
     }
 
-    public void afficherEffetBombe(String message) {
-        JDialog dialogBombe = new JDialog(this, "Case Bombe", true);
-        PanelEffetBombe panelBombe = new PanelEffetBombe(dialogBombe, message);
-
-        dialogBombe.add(panelBombe);
-        dialogBombe.setSize(650, 650);
-        dialogBombe.setLocationRelativeTo(this);
-
-        // écoutuer qui prévient quand le jeu se termine
-        dialogBombe.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosed(java.awt.event.WindowEvent e) {
-                dialogue.onPopupCaseSpecialeFermee();
-            }
-        });
-
-        dialogBombe.setVisible(true); // affiche le dialogue
-    }
-
     public void afficherEcranFinPartie(String nomGagnant) {
         JDialog d = new JDialog(this, "FinDePartie", true);
         d.add(new PanelFinDePartie(nomGagnant, this, d));
+        d.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         d.pack();
         d.setLocationRelativeTo(this);
         d.setResizable(false);
         d.setVisible(true);
-        dialogue.onPopupCaseSpecialeFermee();
+        dialogue.onPopupFinPartieFermee();
     }
 
+    // Nolawi
     public void rejouer() {
         if (zoneTexte != null)
             zoneTexte.setText("");
@@ -358,6 +345,10 @@ public class MainFrame extends JFrame {
         panelJoueur2.setPointsDeVie(5);
         panelJoueur1.setCoco(false);
         panelJoueur2.setCoco(false);
+
+        if (dialogue != null) {
+            dialogue.reinitialiserJeu();
+        }
 
         cardLayout.show(panelPrincipal, "Demarrage");
     }
