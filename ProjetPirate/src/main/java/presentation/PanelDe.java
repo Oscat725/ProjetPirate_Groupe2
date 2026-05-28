@@ -28,6 +28,7 @@ public class PanelDe extends JPanel {
         this.valeur = 1;
         this.random = new Random();// generateur aleatoire
         setPreferredSize(new Dimension(80, 80));
+        setOpaque(false); // Rend le fond transparent pour voir le dégradé en dessous
         // un timer pour l'animation du de
         timerAnimation = new Timer(100, e -> animerDe());
     }

@@ -99,41 +99,41 @@ public class PanelCase extends JPanel {
         int cx = w / 2;
         int cy = h / 2;
 
-        // fill everything beige first
+        // remplit tout en beige d'abord
         g2d.setColor(COULEUR_MILIEU);
         g2d.fillRect(0, 0, w, h);
 
-        // draw the two strips based on direction
+        // dessine les deux bandes en fonction de la direction
         g2d.setColor(COULEUR_BORD);
         switch (direction == null ? HORIZONTAL : direction) {
             case COIN_DROITE_HAUT:
-                g2d.fillRect(0, 0, w, s); // top
-                g2d.fillRect(w - s, 0, s, h); // right
-                g2d.fillRect(0, h - s, s, h - s); // left-bottom
+                g2d.fillRect(0, 0, w, s); // haut
+                g2d.fillRect(w - s, 0, s, h); // droite
+                g2d.fillRect(0, h - s, s, h - s); // bas-gauche
                 break;
             case COIN_DROITE_BAS:
-                g2d.fillRect(w - s, 0, s, h); // right
-                g2d.fillRect(0, h - s, w, s); // bottom
-                g2d.fillRect(0, 0, s, s); // left-up
+                g2d.fillRect(w - s, 0, s, h); // droite
+                g2d.fillRect(0, h - s, w, s); // bas
+                g2d.fillRect(0, 0, s, s); // haut-gauche
 
                 break;
             case COIN_GAUCHE_HAUT:
-                g2d.fillRect(0, 0, w, s); // top
-                g2d.fillRect(0, 0, s, h); // left
+                g2d.fillRect(0, 0, w, s); // haut
+                g2d.fillRect(0, 0, s, h); // gauche
                 g2d.fillRect(w - s, h - s, s, s);
                 break;
             case COIN_GAUCHE_BAS:
-                g2d.fillRect(0, 0, s, h); // left
+                g2d.fillRect(0, 0, s, h); // gauche
                 g2d.fillRect(0, h - s, w, s);
-                g2d.fillRect(w - s, 0, s, s); // bottom
+                g2d.fillRect(w - s, 0, s, s); // bas-droite
                 break;
             default: // HORIZONTAL
-                g2d.fillRect(0, 0, w, s); // top
-                g2d.fillRect(0, h - s, w, s); // bottom
+                g2d.fillRect(0, 0, w, s); // haut
+                g2d.fillRect(0, h - s, w, s); // bas
                 break;
         }
 
-        // center line dashes
+        // tirets de la ligne centrale
         float dashLen = w * 0.12f;
         float gapLen = w * 0.10f;
 
@@ -144,20 +144,20 @@ public class PanelCase extends JPanel {
                 10, new float[] { dashLen, gapLen }, 0));
         switch (direction == null ? HORIZONTAL : direction) {
             case COIN_DROITE_HAUT:
-                g2d.drawLine(w / 9, cy, cx, cy); // horizontal: left → center
-                g2d.drawLine(cx, cy, cx, 8 * h / 9); // vertical: center → bottom
+                g2d.drawLine(w / 9, cy, cx, cy); // horizontal : gauche → centre
+                g2d.drawLine(cx, cy, cx, 8 * h / 9); // vertical : centre → bas
                 break;
             case COIN_DROITE_BAS:
-                g2d.drawLine(w / 9, cy, cx, cy); // horizontal: center → left
-                g2d.drawLine(cx, h / 9, cx, cy); // vertical: top → center
+                g2d.drawLine(w / 9, cy, cx, cy); // horizontal : centre → gauche
+                g2d.drawLine(cx, h / 9, cx, cy); // vertical : haut → centre
                 break;
             case COIN_GAUCHE_HAUT:
-                g2d.drawLine(8 * w / 9, cy, cx, cy); // horizontal: right → center
-                g2d.drawLine(cx, cy, cx, 8 * h / 9); // vertical: center → bottom
+                g2d.drawLine(8 * w / 9, cy, cx, cy); // horizontal : droite → centre
+                g2d.drawLine(cx, cy, cx, 8 * h / 9); // vertical : centre → bas
                 break;
             case COIN_GAUCHE_BAS:
-                g2d.drawLine(8 * w / 9, cy, cx, cy); // horizontal: center → right
-                g2d.drawLine(cx, h / 9, cx, cy); // vertical: top → center
+                g2d.drawLine(8 * w / 9, cy, cx, cy); // horizontal : centre → droite
+                g2d.drawLine(cx, h / 9, cx, cy); // vertical : haut → centre
                 break;
             default:
                 g2d.drawLine(w / 9, cy, 8 * w / 9, cy);
@@ -174,7 +174,7 @@ public class PanelCase extends JPanel {
         g2d.setColor(Color.WHITE);
         g2d.drawString(String.valueOf(numero), 3, s - 2);
 
-        if (null != type) // 6. icon centered in the case
+        if (null != type) // 6. icône centrée dans la case
             switch (type) {
                 case BOMBE:
                     if (IMG_BOMBE != null)
@@ -226,7 +226,7 @@ public class PanelCase extends JPanel {
             g2d.drawOval(cx - rayon, cy - rayon, 2 * rayon, 2 * rayon);
         }
 
-        // highlight border
+        // bordure de surbrillance
         if (highlight != null) {
             int b = 4;
             g2d.setColor(highlight);

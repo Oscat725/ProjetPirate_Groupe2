@@ -7,7 +7,6 @@ package presentation;
 import javax.swing.*;
 import java.awt.*;
 
-
 // Melanie
 public class PanelJoueur extends JPanel {
 
@@ -49,7 +48,8 @@ public class PanelJoueur extends JPanel {
         coco.setPreferredSize(new Dimension(30, 30));
         coco.setVisible(false);
 
-        // Composant fantôme pour équilibrer la gauche et garder les cœurs PARFAITEMENT centrés
+        // Composant fantôme pour équilibrer la gauche et garder les cœurs PARFAITEMENT
+        // centrés
         Component fantomeGauche = Box.createRigidArea(new Dimension(30, 30));
         fantomeGauche.setVisible(false);
 
@@ -79,7 +79,8 @@ public class PanelJoueur extends JPanel {
 
     public void setCoco(boolean hasCoco) {
         coco.setVisible(hasCoco);
-        // Si on affiche le coco, on affiche aussi l'espace fantôme à gauche pour garder le centrage
+        // Si on affiche le coco, on affiche aussi l'espace fantôme à gauche pour garder
+        // le centrage
         BorderLayout layout = (BorderLayout) coco.getParent().getLayout();
         Component fantome = layout.getLayoutComponent(BorderLayout.WEST);
         if (fantome != null)
@@ -93,7 +94,8 @@ public class PanelJoueur extends JPanel {
 
     // Active ou désactive l'indicateur visuel "joueur actif"
     public void setActif(boolean actif) {
-        // Au lieu de setVisible qui détruit la symétrie, on rend le texte transparent ou visible
+        // Au lieu de setVisible qui détruit la symétrie, on rend le texte transparent
+        // ou visible
         indicateur.setForeground(actif ? COULEUR_INACTIF : new Color(0, 0, 0, 0));
         setBackground(actif ? new Color(220, 255, 220) : Color.WHITE);
         repaint();

@@ -15,7 +15,8 @@ public class MainFrame extends JFrame {
     private JButton boutonLancer;
     private JButton infoButton;
     private JLabel titre;
-    private JTextArea zoneTexte; // affichage des du deroulement du Jeu
+    private JTextPane zoneTexte; // affichage des du deroulement du Jeu
+    private Color couleurActuelle = Color.BLACK;
 
     // CardLayout pour naviguer entre les écrans
     private CardLayout cardLayout;
@@ -70,13 +71,26 @@ public class MainFrame extends JFrame {
         JPanel panelHaut = new JPanel(new BorderLayout());
 
         // Panel Dés (en haut à gauche)
-        JPanel panelDes = new JPanel();
+        JPanel panelDes = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                // Dégradé jaune-orange (même que le titre)
+                GradientPaint gradient = new GradientPaint(
+                        0, 0, new Color(255, 150, 0),
+                        0, getHeight(), Color.YELLOW);
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         panelDes.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         panelDes.setPreferredSize(new Dimension(190, 150));
         panelDes.setLayout(new BoxLayout(panelDes, BoxLayout.Y_AXIS));
 
         // Ligne contenant les 2 dés ensembles
         JPanel ligneDes = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 6));
+        ligneDes.setOpaque(false);
         de1 = new PanelDe();
         de2 = new PanelDe();
         ligneDes.add(de1);
@@ -91,6 +105,7 @@ public class MainFrame extends JFrame {
         });
 
         JPanel panelBouton = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelBouton.setOpaque(false);
         panelBouton.add(boutonLancer);
 
         panelDes.add(ligneDes);
@@ -131,9 +146,9 @@ public class MainFrame extends JFrame {
         panelInfo.add(panelTitre, BorderLayout.NORTH);
 
         // Boite de texte du déroulement de jeu
-        zoneTexte = new JTextArea(5, 40);
+        zoneTexte = new JTextPane();
         zoneTexte.setEditable(false);
-        zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 12));
+        zoneTexte.setFont(new Font("Calibri Light", Font.ITALIC, 18));
         JScrollPane texteDeroulement = new JScrollPane(zoneTexte) {
             @Override
             // On passe par paintComponent pour avoir un arrière plan élégant avec des
@@ -217,6 +232,7 @@ public class MainFrame extends JFrame {
     public void mettreEnSurbrillanceJoueur(int joueurActifIndex) {
         panelJoueur1.setActif(joueurActifIndex == 0);
         panelJoueur2.setActif(joueurActifIndex == 1);
+        couleurActuelle = (joueurActifIndex == 0) ? new Color(200, 0, 0) : new Color(0, 0, 200);
     }
 
     // Nolawi
@@ -358,8 +374,16 @@ public class MainFrame extends JFrame {
         if (zoneTexte == null) {
             return;
         }
-        zoneTexte.append(message + "\n");
-        zoneTexte.setCaretPosition(zoneTexte.getDocument().getLength());
+        javax.swing.text.StyledDocument doc = zoneTexte.getStyledDocument();
+        javax.swing.text.Style style = zoneTexte.addStyle("StyleCouleur", null);
+        javax.swing.text.StyleConstants.setForeground(style, couleurActuelle);
+
+        try {
+            doc.insertString(doc.getLength(), message + "\n", style);
+        } catch (javax.swing.text.BadLocationException e) {
+            e.printStackTrace();
+        }
+        zoneTexte.setCaretPosition(doc.getLength());
     }
 
     // AUTRES MÉTHODES UTILITAIRES
