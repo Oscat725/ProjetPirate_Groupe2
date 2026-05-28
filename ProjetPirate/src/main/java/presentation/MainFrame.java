@@ -133,7 +133,8 @@ public class MainFrame extends JFrame {
         titre.setFont(new Font("Calibri", Font.ITALIC | Font.BOLD, 36));
         // titre.setForeground(new Color(10, 10, 10));
         panelTitre.add(titre);
-
+        
+        //Melanie
         infoButton = new JButton("?");
         infoButton.setBackground(new Color(186, 224, 255));
         infoButton.setFont(new Font("Segoe UI", Font.BOLD, 10));
@@ -397,7 +398,8 @@ public class MainFrame extends JFrame {
     public PanelJoueur getPanelJoueur2() {
         return panelJoueur2;
     }
-
+    
+    //Melanie
     private void afficherRegles() {
         JOptionPane.showMessageDialog(
                 this,
