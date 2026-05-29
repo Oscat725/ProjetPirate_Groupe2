@@ -69,9 +69,9 @@ ProjetPirate/src/main/java/
 │   ├── ControleurDe.java           
 │   ├── ControlActiverCase.java      
 │   ├── ControlActiverCaseSpecial.java   
-│   ├── ControlActiverCaseBombe.java     # Effet bombe
-│   ├── ControlActiverCaseCoco.java      # Effet noix de coco
-│   ├── ControlActiverCaseMystere.java   # Effet mystère
+│   ├── ControlActiverCaseBombe.java     #case bombe
+│   ├── ControlActiverCaseCoco.java      #case chute de noix de coco
+│   ├── ControlActiverCaseMystere.java   #case mystère
 │   ├── ControlCacherDe.java         # Utilisation de l'accessoire coco (cacher dé)
 │   ├── ControlPointDeVie.java       
 │   └── ControlVerifierFinPartie.java   
@@ -154,12 +154,3 @@ ProjetPirate/test/
 
 ---
 
-## 📐 Patron de conception
-
-Le projet applique le patron **Boundary-Control-Entity (BCE)** :
-
-- **Entity** — les données métier (plateau, joueurs, cases, dés)
-- **Control** — la logique applicative et les règles du jeu
-- **Boundary** — les interfaces entre l'IHM et les contrôleurs
-
-Un **Adaptateur** (`AdaptateurNoyauFonctionel`) découple le noyau fonctionnel de la couche de présentation, permettant de faire fonctionner le jeu aussi bien en mode console qu'en mode graphique Swing.
