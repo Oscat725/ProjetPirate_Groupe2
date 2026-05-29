@@ -28,8 +28,8 @@ public class ControlCommencerPartie implements ICommencerPartie {
     public void initialiserJoueurs(String nomJ1, String nomJ2) {
         jeu.setJoueur(0, new Joueur(nomJ1, new Pion(0)));
         jeu.setJoueur(1, new Joueur(nomJ2, new Pion(1)));
-        
-        //initaliser sur la case de depart
+
+        // initaliser sur la case de depart
         jeu.getPlateau().getCase(0).setJoueur(0, jeu.getJoueur(0));
         jeu.getPlateau().getCase(0).setJoueur(1, jeu.getJoueur(1));
     }
@@ -53,6 +53,6 @@ public class ControlCommencerPartie implements ICommencerPartie {
 
     @Override
     public void finCommencerPartie() {
-        controlJeuPirate.jouerUnTour();
+        controlJeuPirate.debuterPremierTour();
     }
 }

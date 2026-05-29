@@ -27,7 +27,7 @@ public class ControlActiverCaseBombe extends ControlActiverCaseSpecial implement
 		if (caseBombe instanceof CaseBombe) {
 			this.joueurCourantIndex = joueurCourant;
 			derniersDegats = controlDe.lancerDesModif(1, 1, 5);
-			iBoundary.afficherEffetCase("BOMBE", "Le pirate subit " + derniersDegats + " degats", this);
+			iBoundary.afficherEffetCase("BOMBE", "Le pirate subit " + derniersDegats + " degats", this,0,derniersDegats, joueurCourant);
 		}
 	}
 
