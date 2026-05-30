@@ -1,0 +1,115 @@
+title Diagramme de Séquence Système — Parcours simple
+
+
+actor Joueur
+participant Système
+
+
+
+Joueur->Système:commencerPartie()
+activate Système
+
+Joueur<<--Système:"     ISLA DE LA MUERTE - Jeu des Pirates"
+
+Joueur<<--Système:"Nom du joueur 1 (Rouge) :"
+Joueur->>Système:entrerClavier(nom1)
+
+Joueur<<--Système:"Nom du joueur 2 (Bleu)  :"
+Joueur->>Système:entrerClavier(nom2)
+
+Système->Système:initialiserJoueurs(nom1, nom2)
+activate Système
+Système<<--Système:
+deactivate Système
+
+Système->Système:determinerQuiCommence(): String
+activate Système
+Système<<--Système:premierJoueur
+deactivate Système
+
+Joueur<<--Système:"\nLancer des dés pour déterminer qui commence ...\n" + premierJoueur + " commence la partie !"
+
+Système->Système:finCommencerPartie()
+activate Système
+
+Système->Système:jouerUnTour()
+activate Système
+
+loop !Fin
+
+    Joueur<<--Système:"\n   ->  Au tour de :" + nomJoueurCourant
+
+    Joueur<<--Système:"Appuyez sur Entrée pour lancer les dés ..."
+    Joueur->>Système:entrerClavier(Entrée)
+
+    Système->Système:lancerDe(): Integer[]
+    activate Système
+    Système<<--Système:resultatDes {valDe1, valDe2}
+    deactivate Système
+
+    Système->Système:resultatDe(): int
+    activate Système
+    Système<<--Système:sommeDes
+    deactivate Système
+
+    Joueur<<--Système:"--- Lancer de dés ---\nDé 1 : " + valDe1 + "\nDé 2 : " + valDe2 + "\n\nSomme Total : " + sommeDes
+
+    Système->Système:deplacerPirate(sommeDes)
+    activate Système
+    Système<<--Système:
+    deactivate Système
+
+    Joueur<<--Système:nomJoueurCourant + " se déplace de la case " + ancienneCase + " à la case " + nouvelleCase
+
+    Système->Système:activerCase(numCase)
+    activate Système
+    Système<<--Système:
+    deactivate Système
+
+    Système->Système:calculerPV()
+    activate Système
+    Système<<--Système:
+    deactivate Système
+
+    Joueur<<--Système:" - PV de " + nomJoueurCourant + ": " + pv + "pts/5"
+
+    Système->Système:verifierFinPartie(): boolean
+    activate Système
+    Système<<--Système:estFini
+    deactivate Système
+
+    alt partie continue
+
+        Système->Système:finDeTour()
+        activate Système
+
+        Système->Système:passerAuJoueurSuivant()
+        activate Système
+        Système<<--Système:
+        deactivate Système
+
+        Système->Système:changerJoueur(): Joueur
+        activate Système
+        Système<<--Système:joueurCourant
+        deactivate Système
+
+        Système->Système:changerJoueurActif(nomJoueurCourant)
+        activate Système
+        Système<<--Système:
+        deactivate Système
+
+        Système<<--Système:
+        deactivate Système
+
+    end
+
+end
+
+Système<<--Système:
+deactivate Système
+Système<<--Système:
+deactivate Système
+
+Joueur<<--Système:"\n--------------------FIN DE LA PARTIE !--------------------\n         Le gagnant est : " + nomGagnant
+
+deactivate Système

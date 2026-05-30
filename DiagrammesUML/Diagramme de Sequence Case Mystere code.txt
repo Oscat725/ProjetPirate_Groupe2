@@ -1,0 +1,262 @@
+title Diagramme de Sequence Détaillé - CaseMystere
+
+
+participant ControleurDe
+participant ControlJeuPirate
+participant ControlCacherDe
+participant ControlDeplacer
+participant ControlActiverCase
+participant ControlActiverCaseMystere
+participant ControlPointDeVie
+participant ControlVerifierFinPartie
+participant BoundaryConsole
+participant Jeu
+participant Plateau
+participant Joueur
+participant CaseMystere
+
+
+
+BoundaryConsole->ControlJeuPirate:finAfficherTour()
+activate ControlJeuPirate
+ControlJeuPirate->ControlCacherDe:demanderUtilisationCoco()
+activate ControlCacherDe
+ControlCacherDe->Jeu:getJoueurCourant(): Joueur
+activate Jeu
+Jeu-->ControlCacherDe:joueur
+deactivate Jeu
+ControlCacherDe->Joueur:hasCoco(): Boolean
+activate Joueur
+Joueur-->ControlCacherDe:hasCoco
+deactivate Joueur
+alt [hasCoco = vrai]
+ControlCacherDe->BoundaryConsole:demanderUtilisationCoco(cb: IControlCacherDe)
+activate BoundaryConsole
+BoundaryConsole->ControlCacherDe:finDemandeCoco(reponse: String)
+activate ControlCacherDe
+alt [reponse = oui]
+ControlCacherDe->Joueur:setAffecteCoco(true)
+activate Joueur
+Joueur-->ControlCacherDe:
+deactivate Joueur
+ControlCacherDe->Joueur:setHasCoco(false)
+activate Joueur
+Joueur-->ControlCacherDe:
+deactivate Joueur
+end
+ControlCacherDe->ControlJeuPirate:apresDemandeCoco()
+activate ControlJeuPirate
+ControlCacherDe-->BoundaryConsole:
+deactivate ControlCacherDe
+BoundaryConsole-->ControlCacherDe:
+deactivate BoundaryConsole
+else [hasCoco = faux]
+ControlCacherDe->ControlJeuPirate:apresDemandeCoco()
+activate ControlJeuPirate
+end
+ControlCacherDe-->ControlJeuPirate:
+deactivate ControlCacherDe
+
+ControlJeuPirate->ControleurDe:lancerDe()
+activate ControleurDe
+ControleurDe->Jeu:getJoueurCourant(): Joueur
+activate Jeu
+Jeu-->ControleurDe:joueur
+deactivate Jeu
+ControleurDe->Joueur:lancerDe(): Integer[*]
+activate Joueur
+Joueur-->ControleurDe:resultatDes
+deactivate Joueur
+ControleurDe->BoundaryConsole:affichageResultatDe(de1: Integer, de2: Integer, cb: ILancerDe)
+activate BoundaryConsole
+BoundaryConsole->ControleurDe:finLancerDe()
+activate ControleurDe
+ControleurDe->ControlJeuPirate:apresLancerDe(somme: Integer)
+activate ControlJeuPirate
+ControlJeuPirate->ControlDeplacer:deplacerPirate(somme: Integer)
+activate ControlDeplacer
+ControlDeplacer->Jeu:getJoueurCourant(): Joueur
+activate Jeu
+Jeu-->ControlDeplacer:joueur
+deactivate Jeu
+ControlDeplacer->Joueur:getPosition(): Integer
+activate Joueur
+Joueur-->ControlDeplacer:anciennePos
+deactivate Joueur
+ControlDeplacer->Jeu:getPlateau(): Plateau
+activate Jeu
+Jeu-->ControlDeplacer:plateau
+deactivate Jeu
+ControlDeplacer->Plateau:getCase(anciennePos: Integer): Case
+activate Plateau
+Plateau-->ControlDeplacer:ancienneCase
+deactivate Plateau
+ControlDeplacer->Plateau:getCase(nouvellePos: Integer): Case
+activate Plateau
+Plateau-->ControlDeplacer:nouvelleCase
+deactivate Plateau
+ControlDeplacer->Joueur:setPosition(nouvellePos: Integer)
+activate Joueur
+Joueur-->ControlDeplacer:
+deactivate Joueur
+ControlDeplacer->BoundaryConsole:deplacerPirates(nom: String, ancPos: Integer, nouvPos: Integer, cb: IDeplacerPirate)
+activate BoundaryConsole
+BoundaryConsole->ControlDeplacer:finDeplacerPirate(numCase: Integer)
+activate ControlDeplacer
+ControlDeplacer->ControlJeuPirate:apresDeplacer(numCase: Integer)
+activate ControlJeuPirate
+ControlJeuPirate->Jeu:getPlateau(): Plateau
+activate Jeu
+Jeu-->ControlJeuPirate:plateau
+deactivate Jeu
+ControlJeuPirate->Plateau:getCase(numCase: Integer): Case
+activate Plateau
+Plateau-->ControlJeuPirate:c
+deactivate Plateau
+ControlJeuPirate->ControlActiverCase:isCaseSpecial(c: Case): Boolean
+activate ControlActiverCase
+ControlActiverCase-->ControlJeuPirate:isCaseSpecial
+deactivate ControlActiverCase
+
+alt [isCaseSpecial = vrai]
+ControlJeuPirate->Jeu:getIndiceJoueurCourant(): Integer
+activate Jeu
+Jeu-->ControlJeuPirate:joueurIndex
+deactivate Jeu
+ControlJeuPirate->ControlActiverCase:activerCase(c: Case, joueurIndex: Integer)
+activate ControlActiverCase
+ControlActiverCase->ControlActiverCaseMystere:activerCase(caseMystere: Case, joueurIndex: Integer)
+activate ControlActiverCaseMystere
+ControlActiverCaseMystere->CaseMystere:activerCase()
+activate CaseMystere
+CaseMystere-->ControlActiverCaseMystere:
+deactivate CaseMystere
+ControlActiverCaseMystere->CaseMystere:getValue(): Integer
+activate CaseMystere
+CaseMystere-->ControlActiverCaseMystere:storedValue
+deactivate CaseMystere
+ControlActiverCaseMystere->BoundaryConsole:afficherEffetCase(type: String, msg: String, cb: IActiverCase)
+activate BoundaryConsole
+BoundaryConsole->ControlActiverCaseMystere:finActiverCase()
+activate ControlActiverCaseMystere
+alt [storedEffect = 0 : avancer]
+ControlActiverCaseMystere->ControlDeplacer:deplacerPirate(storedValue: Integer)
+else [storedEffect = 1 : reculer]
+ControlActiverCaseMystere->ControlDeplacer:deplacerPirate(-storedValue: Integer)
+else [storedEffect = 2 : gagner PV]
+ControlActiverCaseMystere->ControlPointDeVie:gagnerPointsDeVie(nb: Integer, j: Joueur)
+activate ControlPointDeVie
+ControlPointDeVie->Joueur:getPointDeVie(): Integer
+activate Joueur
+Joueur-->ControlPointDeVie:pvActuel
+deactivate Joueur
+ControlPointDeVie->Joueur:setPointDeVie(pv: Integer)
+activate Joueur
+Joueur-->ControlPointDeVie:
+deactivate Joueur
+ControlPointDeVie->BoundaryConsole:afficherPointDeVie(nom: String, pv: Integer, cb: IPointsDeVie)
+activate BoundaryConsole
+BoundaryConsole->ControlPointDeVie:finAfficherPV()
+activate ControlPointDeVie
+ControlPointDeVie->ControlJeuPirate:apresAfficherPV()
+activate ControlJeuPirate
+ControlJeuPirate->ControlVerifierFinPartie:verifierFinPartie(): Boolean
+activate ControlVerifierFinPartie
+ControlVerifierFinPartie-->ControlJeuPirate:partieTerminee
+deactivate ControlVerifierFinPartie
+alt [partieTerminee = vrai]
+ControlJeuPirate->BoundaryConsole:afficherFinDePartie(gagnant: String, cb: IFinDePartie)
+else [partieTerminee = faux]
+ControlJeuPirate->Jeu:passerAuJoueurSuivant()
+activate Jeu
+Jeu-->ControlJeuPirate:
+deactivate Jeu
+ControlJeuPirate->Jeu:getJoueurCourant(): Joueur
+activate Jeu
+Jeu-->ControlJeuPirate:joueurSuivant
+deactivate Jeu
+ControlJeuPirate->BoundaryConsole:changerJoueurActif(nom: String, cb: IControlJeuPirate)
+BoundaryConsole->ControlJeuPirate:finAfficherTour()
+ControlJeuPirate->ControlCacherDe:demanderUtilisationCoco()
+end
+ControlJeuPirate-->ControlPointDeVie:
+deactivate ControlJeuPirate
+ControlPointDeVie-->BoundaryConsole:
+deactivate ControlPointDeVie
+BoundaryConsole-->ControlPointDeVie:
+deactivate BoundaryConsole
+ControlPointDeVie-->ControlActiverCaseMystere:
+deactivate ControlPointDeVie
+end
+ControlActiverCaseMystere-->BoundaryConsole:
+deactivate ControlActiverCaseMystere
+BoundaryConsole-->ControlActiverCaseMystere:
+deactivate BoundaryConsole
+ControlActiverCaseMystere-->ControlActiverCase:
+deactivate ControlActiverCaseMystere
+ControlActiverCase-->ControlJeuPirate:
+deactivate ControlActiverCase
+else [isCaseSpecial = faux]
+ControlJeuPirate->ControlPointDeVie:calculerPV()
+activate ControlPointDeVie
+ControlPointDeVie->Jeu:getJoueurCourant(): Joueur
+activate Jeu
+Jeu-->ControlPointDeVie:joueur
+deactivate Jeu
+ControlPointDeVie->Joueur:getPointDeVie(): Integer
+activate Joueur
+Joueur-->ControlPointDeVie:pvActuel
+deactivate Joueur
+ControlPointDeVie->BoundaryConsole:afficherPointDeVie(nom: String, pv: Integer, cb: IPointsDeVie)
+activate BoundaryConsole
+BoundaryConsole->ControlPointDeVie:finAfficherPV()
+activate ControlPointDeVie
+ControlPointDeVie->ControlJeuPirate:apresAfficherPV()
+activate ControlJeuPirate
+ControlJeuPirate->ControlVerifierFinPartie:verifierFinPartie(): Boolean
+activate ControlVerifierFinPartie
+ControlVerifierFinPartie-->ControlJeuPirate:partieTerminee
+deactivate ControlVerifierFinPartie
+alt [partieTerminee = vrai]
+ControlJeuPirate->BoundaryConsole:afficherFinDePartie(gagnant: String, cb: IFinDePartie)
+else [partieTerminee = faux]
+ControlJeuPirate->Jeu:passerAuJoueurSuivant()
+activate Jeu
+Jeu-->ControlJeuPirate:
+deactivate Jeu
+ControlJeuPirate->Jeu:getJoueurCourant(): Joueur
+activate Jeu
+Jeu-->ControlJeuPirate:joueurSuivant
+deactivate Jeu
+ControlJeuPirate->BoundaryConsole:changerJoueurActif(nom: String, cb: IControlJeuPirate)
+BoundaryConsole->ControlJeuPirate:finAfficherTour()
+ControlJeuPirate->ControlCacherDe:demanderUtilisationCoco()
+end
+ControlJeuPirate-->ControlPointDeVie:
+deactivate ControlJeuPirate
+ControlPointDeVie-->BoundaryConsole:
+deactivate ControlPointDeVie
+BoundaryConsole-->ControlPointDeVie:
+deactivate BoundaryConsole
+ControlPointDeVie-->ControlJeuPirate:
+deactivate ControlPointDeVie
+end
+
+ControlJeuPirate-->ControlDeplacer:
+deactivate ControlJeuPirate
+ControlDeplacer-->BoundaryConsole:
+deactivate ControlDeplacer
+BoundaryConsole-->ControlDeplacer:
+deactivate BoundaryConsole
+ControlDeplacer-->ControlJeuPirate:
+deactivate ControlDeplacer
+ControlJeuPirate-->ControleurDe:
+deactivate ControlJeuPirate
+ControleurDe-->BoundaryConsole:
+deactivate ControleurDe
+BoundaryConsole-->ControleurDe:
+deactivate BoundaryConsole
+ControleurDe-->ControlJeuPirate:
+deactivate ControleurDe
+ControlJeuPirate-->BoundaryConsole:
+deactivate ControlJeuPirate
